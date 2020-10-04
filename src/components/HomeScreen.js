@@ -4,36 +4,17 @@ import Robot from '../static/robot 1.png';
 import '../static/css/homescreen.css';
 
 const HomeScreen = (props) => {
-    
-    const robot = useRef();
-    const [robotPos, setRobotPos] = useState('0px');
-
-    const getStart = () => {
-        var position = 0;
-        var move = setInterval(() => {
-            console.log(robot.current);
-            if(position === 500){
-                clearInterval(move);
-                props.changeView();
-            }else{
-                setRobotPos(`${position}px`);
-                position += 50;
-            }
-        },500);
-
-    }
-    
     return (
         <div id='wrapper'>
             <div className='botImage'>
                 <img src={BotImage} alt='botImage'/>
                 <h3 className='introduction'>Hi there, I'm Jhene, <br></br> Let me be your assistant! </h3>
-                <button className='get-started' onClick={getStart}>
+                <button className='get-started' onClick={props.changeView}>
                     Get Started
                 </button>
             </div>
             <div className='robot-container'>
-                <img src={Robot} alt='flying-robot' ref={robot} style={{'top':robotPos}} />
+                <img src={Robot} alt='flying-robot'  />
             </div>
         </div>
     );

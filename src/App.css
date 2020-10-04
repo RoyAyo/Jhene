@@ -1,0 +1,17 @@
+.App{
+    position: relative;
+}
+
+.App::after{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('./static/apigbg.svg');
+    position: absolute;
+    z-index: 2;
+    opacity: 0.1;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

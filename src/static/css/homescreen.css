@@ -9,7 +9,10 @@
     color: red;
     padding-top: 170px;
     flex-direction: column;
+    position: relative;
+    background: linear-gradient(174.85deg, #FCE2FF 8.79%, #E6DDFF 129.35%);
 }
+
 
 .botImage{
     text-align: center;
@@ -43,7 +46,6 @@
     font-size: 18px;
     line-height: 28px;
     letter-spacing: 0.1px;
-    cursor: pointer;
 }
 
 .robot-container{
