@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import BotImage from '../static/BotImage.png';
 import Robot from '../static/robot 1.png';
 import '../static/css/homescreen.css';
