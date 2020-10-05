@@ -1,0 +1,32 @@
+#chat-wrapper{
+    z-index: 3;
+}
+
+.top-chat-screen{
+    background-color:pink;
+    text-align: center;   
+    padding: 1rem 2rem;
+    border-bottom: 1px solid grey;
+}
+
+.top-chat-screen span{
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.1px;
+    color: #AA2384;
+}
+
+.top-chat-screen button{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 18px;
+    float: right;
+    color: black;
+    font-weight: bold;
+}

@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
 import './App.css';
 import HomeScreen from './components/HomeScreen';
+import ChatScreen from './components/ChatScreen';
 
 function App() {
 
   const [viewChat, setViewChat] = useState(false);
 
   const changeView = () => {
+    console.log('Yeah');
     setViewChat(true);
   }
 
   return (
-    <div className="App">
+    <div>
       {
         viewChat ? (
-          <div>
-            <h1>Hello world</h1>
-          </div>
+            <ChatScreen /> 
         ) : (
-          <HomeScreen changeView={changeView}/>
+          <HomeScreen changeView={changeView} />
         )
       }
     </div>
