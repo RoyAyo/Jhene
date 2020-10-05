@@ -13,7 +13,9 @@ const ChatScreen = () => {
                 </button>
             </div>
             <div className='chatApp'>
-                
+                <div className='chat-app-wrapper'>
+                    
+                </div>
             </div>
         </div>
     )

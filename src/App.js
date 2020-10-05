@@ -8,7 +8,6 @@ function App() {
   const [viewChat, setViewChat] = useState(false);
 
   const changeView = () => {
-    console.log('Yeah');
     setViewChat(true);
   }
 
