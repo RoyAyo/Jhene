@@ -1,5 +1,6 @@
 import React from 'react';
 import '../static/css/chatscreen.css';
+import {connect} from 'react-redux';
 
 const ChatScreen = () => {
     return (
@@ -21,4 +22,18 @@ const ChatScreen = () => {
     )
 };
 
-export default ChatScreen;
+const MapStateToProps = state => {
+    return {
+        message : state.messages
+    }
+};
+
+const MapDispatchToProps = dispatch => {
+    return {
+        sendMessage : () => {
+            dispatch(sendMessage);
+        }
+    }
+};
+
+export default connect(MapStateToProps,MapDispatchToProps)(ChatScreen);
