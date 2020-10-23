@@ -7,7 +7,7 @@ const reducer = combineReducers({
 });
 
 const initialState = {
-
+    messages : []
 };
 
 const store = createStore(reducer,initialState);
