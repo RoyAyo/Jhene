@@ -18,15 +18,17 @@ const ChatScreen = () => {
                 </button>
             </div>
             <div className='chatApp'>
-                <div className='chat-app-wrapper'>
-                   
-                </div>
-                <div className='chat-inputs'>
-                <input type='text' value={input} onChange={(e) => setInput(e.target.value)}/>
-                <button>
+                <div className='wrap'>
+                    <div className='chat-app-wrapper'>
                     
-                </button>
-            </div>
+                    </div>
+                    <div className='chat-inputs'>
+                        <input type='text' value={input} onChange={(e) => setInput(e.target.value)} placeholder='Write Something...' />
+                        <span>
+                            
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     )
