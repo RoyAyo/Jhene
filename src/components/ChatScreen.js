@@ -19,63 +19,10 @@ const ChatScreen = () => {
             <div className='chatApp'>
                 <div className='wrap'>
                     <div className='chat-app-wrapper'>
-                        <p className='texts'>Hello world sisi</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
-                        <p className='texts'>Hello world2</p>
+                        <p className='bot-texts'> <span className='text'>Hello world sisi Hello world sisi Hello world sisiHello world sisiHello world sisiHello world sisiHello world sisiHello world sisi Hello world sisi Hello world sisiHello world sisiHello world sisiHello world sisi Hello world sisiHello world sisi</span></p>
+                        <p className='user-texts'><span className='text'>Hello you too</span></p>
+                        <p className='bot-texts'><span className='text'>I am good</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
                     </div>
                     <div className='chat-inputs'>
                         <img src={SendImg} alt='' />
