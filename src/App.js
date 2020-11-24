@@ -15,7 +15,7 @@ function App() {
     <div>
       {
         viewChat ? (
-            <ChatScreen /> 
+            <ChatScreen />
         ) : (
           <HomeScreen changeView={changeView} />
         )

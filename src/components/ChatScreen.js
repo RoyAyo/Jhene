@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import '../static/css/chatscreen.css';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import SendImg from '../static/send.png';
 
 const ChatScreen = () => {
-
-    const [input, setInput] = useState();
-    const messages = useSelector(state => state.send_messages);
+    // const messages = useSelector(state => state.send_messages);
 
     return (
         <div id='chat-wrapper'>
@@ -20,13 +19,67 @@ const ChatScreen = () => {
             <div className='chatApp'>
                 <div className='wrap'>
                     <div className='chat-app-wrapper'>
-                    
+                        <p className='texts'>Hello world sisi</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
+                        <p className='texts'>Hello world2</p>
                     </div>
                     <div className='chat-inputs'>
-                        <input type='text' value={input} onChange={(e) => setInput(e.target.value)} placeholder='Write Something...' />
-                        <span>
-                            
-                        </span>
+                        <img src={SendImg} alt='' />
+                        <input type='text' placeholder='Write Something...' />
                     </div>
                 </div>
             </div>

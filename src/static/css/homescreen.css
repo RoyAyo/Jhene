@@ -7,7 +7,7 @@
     position: relative;
     height: 100vh;
 }
-
+/* 
 .App::after{
     background-size: cover;
     background-repeat: no-repeat;
@@ -20,7 +20,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-}
+} */
 
 #wrapper{
     height: 100%;
@@ -29,7 +29,11 @@
     padding-top: 170px;
     flex-direction: column;
     position: relative;
-    background: linear-gradient(174.85deg, #FCE2FF 8.79%, #E6DDFF 129.35%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../apigbg.svg');
+
+    /* background: linear-gradient(174.85deg, #FCE2FF 8.79%, #E6DDFF 129.35%); */
 }
 
 
