@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../static/css/chatscreen.css';
 // import { useSelector } from 'react-redux';
 import SendImg from '../static/send.png';
+import ChatLoader from "./ChatLoader";
 
 const ChatScreen = () => {
     // const messages = useSelector(state => state.send_messages);
@@ -23,6 +24,7 @@ const ChatScreen = () => {
                         <p className='user-texts'><span className='text'>Hello you too</span></p>
                         <p className='bot-texts'><span className='text'>I am good</span></p>
                         <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'> <ChatLoader /> </span></p>
                     </div>
                     <div className='chat-inputs'>
                         <img src={SendImg} alt='' />
