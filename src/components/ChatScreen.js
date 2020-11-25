@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import '../static/css/chatscreen.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.png';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
+import {sendMessage } from '../redux/actions/messages';
+
 
 const ChatScreen = () => {
     const messages = useSelector(state => state.messages);
+
+    const userInput = useRef();
+
+    const dispatch = useDispatch()
+
+    const handleClick = () => {
+        userInput.current.disabled = true;
+        const message = userInput.current.value;
+        dispatch(sendMessage(message));
+    };
 
     return (
         <div id='chat-wrapper'>
@@ -32,8 +44,19 @@ const ChatScreen = () => {
                             }
                     </div>
                     <div className='chat-inputs'>
-                        <img src={SendImg} alt='' />
-                        <input type='text' placeholder='Write Something...' />
+                        <img src={SendImg} alt='' onClick={handleClick}/>
+                        <input 
+                            type='text' 
+                            placeholder='Write Something...' 
+                            ref={userInput} 
+                            onKeyPress={
+                                (e) => {
+                                    if(e.keyCode === 13){
+                                        handleClick();
+                                    }
+                                }
+                            }
+                        />
                     </div>
                 </div>
             </div>
