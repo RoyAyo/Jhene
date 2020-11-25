@@ -72,7 +72,7 @@
     scrollbar-width: none;
     -ms-overflow-style:none;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 0px 10px;
 }
 

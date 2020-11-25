@@ -1,14 +1,19 @@
-import { SEND_MESSAGE } from '../actions/messages';
+import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE } from '../actions/messages';
 
 const initialState = {
-    messages : {}
+    messages : []
 }
 
 const messagesReducer = (state = initialState, {type,payload} ) => {
     switch(type){
-        case SEND_MESSAGE:
+        case INITIALIZE_MESSAGE:
             return {
-                messages : payload.data
+                ...state,
+                messages : state.messages.push(payload)
+            }
+        case DISPLAY_BOT_MESSAGE : 
+            return {
+                ...state
             }
         default :
             return state

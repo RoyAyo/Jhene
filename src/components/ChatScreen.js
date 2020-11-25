@@ -24,6 +24,43 @@ const ChatScreen = () => {
                         <p className='user-texts'><span className='text'>Hello you too</span></p>
                         <p className='bot-texts'><span className='text'>I am good</span></p>
                         <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
+                        <p className='bot-texts'><span className='text'>How are you too</span></p>
                         <p className='bot-texts'><span className='text'> <ChatLoader /> </span></p>
                     </div>
                     <div className='chat-inputs'>
