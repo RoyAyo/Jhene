@@ -1,4 +1,4 @@
-import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE } from '../actions/messages';
+import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE } from '../actions/messages';
 
 const initialState = {
     messages : []
@@ -9,11 +9,25 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
         case INITIALIZE_MESSAGE:
             return {
                 ...state,
-                messages : state.messages.push(payload)
+                messages : [...state.messages,payload]
             }
         case DISPLAY_BOT_MESSAGE : 
+            var init_message = state.messages.pop();
+            const loading = false;
+            const {
+                bot_questions,
+                message,
+                context
+            } = payload
+            const new_payload = Object.assign(init_message,{loading,bot_questions,context,message});
             return {
-                ...state
+                ...state,
+                messages : [...state.messages,new_payload]
+            }
+        case MY_MESSAGE : 
+            return {
+                ...state,
+                messages : [...state.messages,payload]
             }
         default :
             return state

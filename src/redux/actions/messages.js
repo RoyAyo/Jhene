@@ -47,33 +47,35 @@ export const sendMessage = message => {
     return (dispatch) => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
-        const from_context = window.localStorage.setItem('_context') || '';
-        const data = {
-            from_context,
-            message
-        }
-        fetch('localhost:5555/send_message',{
-            method : 'POST',
-            headers : {
-                'Content-type' : 'application/json'
-            },
-            data
-        })
-        .then(data => {
-            if(data.ok){
-                return data.json()
-            }
-            throw new Error(data.msg)
-        })
-        .then(data => {
-            if(data.more_context){
-                window.localStorage.setItem('_context',data.context);
-            }else{
-                window.localStorage.removeItem('_context');
-            }
-            dispatch(displayBotMessage(data));
-        }).catch(e => {
-            dispatch(displayBotError(e.message));
-        });
+        // const from_context = window.localStorage.getItem('_context') || '';
+        // const context_response = [];
+        // const data = {
+        //     from_context,
+        //     context_response,
+        //     message
+        // }
+        // fetch('localhost:5000/send_message',{
+        //     method : 'POST',
+        //     headers : {
+        //         'Content-type' : 'application/json'
+        //     },
+        //     data
+        // })
+        // .then(data => {
+        //     if(data.ok){
+        //         return data.json()
+        //     }
+        //     throw new Error(data.msg)
+        // })
+        // .then(data => {
+        //     if(data.more_context){
+        //         window.localStorage.setItem('_context',data.context);
+        //     }else{
+        //         window.localStorage.removeItem('_context');
+        //     }
+        //     dispatch(displayBotMessage(data));
+        // }).catch(e => {
+        //     dispatch(displayBotError(e.message));
+        // });
     }
 };
