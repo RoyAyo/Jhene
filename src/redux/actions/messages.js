@@ -57,7 +57,7 @@ export const sendMessage = message => {
             headers : {
                 'Content-type' : 'application/json'
             },
-            body:data
+            body:JSON.stringify(data)
         })
         .then(data => {
             console.log(data);
