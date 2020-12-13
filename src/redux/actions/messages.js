@@ -48,17 +48,19 @@ export const sendMessage = message => {
         const from_context = window.localStorage.getItem('_context') || '';
         // const context_response = [];
         const data = {
-            from_context,
-            message
+            message,
+            from_context
         }
-        fetch('localhost:5000/send_message',{
+        console.log(data);
+        fetch('http://localhost:8000/send_message',{
             method : 'POST',
             headers : {
                 'Content-type' : 'application/json'
             },
-            data
+            body:data
         })
         .then(data => {
+            console.log(data);
             if(data.ok){
                 return data.json()
             }
