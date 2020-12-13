@@ -3,7 +3,7 @@ import BotTextWithButtons from './BotTextWithButtons';
 import ChatLoader from "../ChatLoader";
 
 
-const BotText = message => {
+const BotText = ({message}) => {
     return (
         <>
             {

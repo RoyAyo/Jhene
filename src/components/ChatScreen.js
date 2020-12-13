@@ -15,7 +15,7 @@ const ChatScreen = () => {
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        userInput.current.disabled = true;
+        // userInput.current.disabled = true;
         const message = userInput.current.value;
         dispatch(sendMessage(message));
     };
@@ -54,6 +54,7 @@ const ChatScreen = () => {
                                     if(e.keyCode === 13){
                                         handleClick();
                                     }
+                                    
                                 }
                             }
                         />

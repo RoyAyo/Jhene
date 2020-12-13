@@ -1,27 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import HomeScreen from './components/HomeScreen';
 import ChatScreen from './components/ChatScreen';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 function App() {
 
-  const [viewChat, setViewChat] = useState(false);
+  // const [viewChat, setViewChat] = useState(false);
 
-  const changeView = () => {
-    setViewChat(true);
-  }
+  // const changeView = () => {
+  //   setViewChat(true);
+  // }
 
   return (
-    <div>
-      {
-        viewChat ? (
-            <ChatScreen />
-        ) : (
-          <HomeScreen changeView={changeView} />
-        )
-      }
-    </div>
+    <Router>
+      <Route path='/' exact component={ChatScreen} />
+    </Router>
   );
 }
 

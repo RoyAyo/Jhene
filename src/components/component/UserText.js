@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserText = message => {
+const UserText = ({message}) => {
     return (
         <>
             <p className='user-texts'>

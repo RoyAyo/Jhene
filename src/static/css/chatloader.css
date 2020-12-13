@@ -1,9 +1,13 @@
+.loading{
+  display: block;
+}
+
 .spinner {
     width: 70px;
     text-align: center;
   }
   
-  .spinner > div {
+  .spinner > span {
     width: 16px;
     height: 16px;
     background-color: #AA2384;
