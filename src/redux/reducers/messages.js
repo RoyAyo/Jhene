@@ -15,16 +15,15 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var init_message = state.messages.pop();
             const loading = false;
             const {
-                bot_questions,
                 message,
                 context
             } = payload
-            const new_payload = Object.assign(init_message,{loading,bot_questions,context,message});
+            const new_payload = Object.assign(init_message,{loading,context,message});
             return {
                 ...state,
                 messages : [...state.messages,new_payload]
             }
-        case MY_MESSAGE : 
+        case MY_MESSAGE :
             return {
                 ...state,
                 messages : [...state.messages,payload]

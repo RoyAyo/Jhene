@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import '../static/css/chatscreen.css';
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.png';
@@ -15,8 +15,9 @@ const ChatScreen = () => {
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        // userInput.current.disabled = true;
+        userInput.current.disabled = true;
         const message = userInput.current.value;
+        userInput.current.value = '';
         dispatch(sendMessage(message));
     };
 
