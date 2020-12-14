@@ -4,8 +4,11 @@ import {useSpring, animated} from 'react-spring';
 
 
 const BotText = ({message}) => {
+
+    const props = useSpring({position:'relative',right:'0px',from:{right:'100px'}});
+
     return (
-        <p className='bot-texts'>
+        <animated.p className='bot-texts' style={props}>
             <span className='text'>
                 {
                     message.loading ? (
@@ -15,7 +18,7 @@ const BotText = ({message}) => {
                     )
                 }    
             </span>
-        </p>
+        </animated.p>
     )
 }
 
