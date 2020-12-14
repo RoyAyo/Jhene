@@ -22,8 +22,9 @@ const ChatScreen = () => {
 
     //component did update    
     useEffect(() => {
-        console.log('Hello')
-        messagesDiv.current.scrollIntoView({behaviour:'smooth'});
+        console.log(messagesDiv.current.offsetHeight);
+        console.log(messagesDiv.current.clientHeight);
+        messagesDiv.current.scrollIntoView(false);
     }, [messages]);
 
 
