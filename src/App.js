@@ -7,6 +7,7 @@ function App() {
   return (
     <Router>
       <Route path='/' exact component={ChatScreen} />
+      <Route path='/check' exact component={<div>Hello world</div>} />
     </Router>
   );
 }
