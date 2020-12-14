@@ -5,6 +5,7 @@ import SendImg from '../static/send.png';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
 import {sendMessage } from '../redux/actions/messages';
+import Div100vh from 'react-div-100vh'
 
 
 const ChatScreen = () => {    
@@ -41,7 +42,7 @@ const ChatScreen = () => {
     };
 
     return (
-        <div id='chat-wrapper'>
+        <Div100vh>
             <div className='top-chat-screen'>
                 <span>
                     Jhene
@@ -78,7 +79,7 @@ const ChatScreen = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Div100vh>
     )
 };
 

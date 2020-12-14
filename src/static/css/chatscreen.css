@@ -4,10 +4,9 @@
     box-sizing: border-box;
 }
 
-#chat-wrapper{
-    height: 100vh;
-}
-
+/* #chat-wrapper{
+    height: 100%;
+} */
 
 .top-chat-screen{
     background-color:#ffffff;
@@ -143,4 +142,6 @@
     .chat-inputs img{
         left: calc(100% - 40px);
     }
+
+
 }
