@@ -22,16 +22,18 @@ const ChatScreen = () => {
 
     //component did update    
     useEffect(() => {
-        console.log(messagesDiv.current.offsetHeight);
-        console.log(messagesDiv.current.clientHeight);
-        messagesDiv.current.scrollIntoView(false);
+        const scroll = messagesDiv.current.scrollHeight;
+        const height = messagesDiv.current.clientHeight;
+        if(scroll > height){
+            messagesDiv.current.scrollTo(0,(scroll - height));
+        }
     }, [messages]);
 
 
     const handleClick = () => {
-        // if(message_loading || userInput.current.value === ''){
-        //     return false;
-        // }
+        if(message_loading || userInput.current.value === ''){
+            return false;
+        }
         const message = userInput.current.value;
         userInput.current.value = '';
         dispatch(sendMessage(message));
