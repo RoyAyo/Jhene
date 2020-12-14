@@ -60,19 +60,19 @@
 } */
 
 .chat-app-wrapper{
-    position: relative;
+    /* position: relative; */
     /* background: linear-gradient(174.85deg, #FCE2FF 8.79%, #E6DDFF 129.35%); */
     height: calc(100% - 45px);
     background-position: top; 
-    z-index: 3;
+    /* z-index: 3; */
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url('../apigbg.svg');
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style:none;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     padding: 0px 10px;
 }
 
@@ -80,13 +80,14 @@
     display: none;
 }
 
-.chat-app-wrapper p{
+/* .chat-app-wrapper p{
     margin-bottom: 8px;
-}
+} */
 
 .text{
     display: inline-block;
     max-width: 70%;
+    min-width: 8%;
     padding: 1rem;
     box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.06);
     font-family: Sarabun;
@@ -97,8 +98,11 @@
     position: relative;
 }
 
-/* .bot-texts{
-} */
+.bot-texts{
+    margin-bottom: 8px;
+    display: flex;
+    min-height: 44px;
+}
 
 .bot-texts .text{
     border-radius: 2px 20px 20px 20px;
@@ -108,7 +112,9 @@
 
 .user-texts{
     display: flex;
+    min-height: 44px;
     justify-content: flex-end;
+    margin-bottom: 8px;
 }
 
 .user-texts .text{

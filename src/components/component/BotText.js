@@ -5,19 +5,17 @@ import {useSpring, animated} from 'react-spring';
 
 const BotText = ({message}) => {
     return (
-        <>
-            <p className='bot-texts'>
-                <span className='text'>
-                    {
-                        message.loading ? (
-                            <ChatLoader />
-                        ) : (
-                            message.message
-                        )
-                    }    
-                </span>
-            </p>
-        </>
+        <p className='bot-texts'>
+            <span className='text'>
+                {
+                    message.loading ? (
+                        <ChatLoader />
+                    ) : (
+                        message.message
+                    )
+                }    
+            </span>
+        </p>
     )
 }
 

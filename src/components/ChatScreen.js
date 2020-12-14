@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef,useEffect } from 'react';
 import '../static/css/chatscreen.css';
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.png';
@@ -7,23 +7,34 @@ import UserText from './component/UserText';
 import {sendMessage } from '../redux/actions/messages';
 
 
-const ChatScreen = () => {
-    const messages = useSelector(state => state.messages);
+const ChatScreen = () => {    
+    //refs
+    const userInput = useRef();
+    const messagesDiv = useRef();
 
+
+    //selectors....(map state to props)
+    const messages = useSelector(state => state.messages);
     const message_loading = useSelector(state => state.message_loading);
 
-    const userInput = useRef();
+    //dispatch...
+    const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+    //component did update    
+    useEffect(() => {
+        console.log('Hello')
+        messagesDiv.current.scrollIntoView({behaviour:'smooth'});
+    }, [messages]);
+
 
     const handleClick = () => {
-
-        if(message_loading || userInput.current.value === ''){
-            return false;
-        }
+        // if(message_loading || userInput.current.value === ''){
+        //     return false;
+        // }
         const message = userInput.current.value;
         userInput.current.value = '';
         dispatch(sendMessage(message));
+
     };
 
     return (
@@ -38,7 +49,7 @@ const ChatScreen = () => {
             </div>
             <div className='chatApp'>
                 <div className='wrap'>
-                    <div className='chat-app-wrapper'>
+                    <div className='chat-app-wrapper' ref={messagesDiv}>
                             {
                                 messages.map((message,i) => {
                                     return message.bot ? (

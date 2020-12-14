@@ -4,13 +4,11 @@ import {useSpring, animated} from 'react-spring';
 
 const UserText = ({message}) => {
     return (
-        <>
-            <p className='user-texts'>
-                <span className='text'>
-                    {message.message}
-                </span>
-            </p>
-        </>
+        <p className='user-texts'>
+            <span className='text'>
+                {message.message}
+            </span>
+        </p>
     )
 }
 
