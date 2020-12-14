@@ -23,6 +23,7 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             const new_payload = Object.assign(init_message,{loading,context,message});
             return {
                 ...state,
+                message_loading : false,
                 messages : [...state.messages,new_payload]
             }
         case MY_MESSAGE :

@@ -10,12 +10,17 @@ import {sendMessage } from '../redux/actions/messages';
 const ChatScreen = () => {
     const messages = useSelector(state => state.messages);
 
+    const message_loading = useSelector(state => state.message_loading);
+
     const userInput = useRef();
 
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        // userInput.current.disabled = true;
+
+        if(message_loading || userInput.current.value === ''){
+            return false;
+        }
         const message = userInput.current.value;
         userInput.current.value = '';
         dispatch(sendMessage(message));
