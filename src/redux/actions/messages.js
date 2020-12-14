@@ -51,7 +51,6 @@ export const sendMessage = message => {
             message,
             from_context
         }
-        console.log(data);
         fetch('http://localhost:8000/send_message',{
             method : 'POST',
             headers : {
@@ -60,14 +59,12 @@ export const sendMessage = message => {
             body:JSON.stringify(data)
         })
         .then(data => {
-            console.log(data);
             if(data.ok){
                 return data.json()
             }
             throw new Error(data.msg)
         })
         .then(data => {
-            console.log(data);
             dispatch(displayBotMessage(data));
         }).catch(e => {
             const data = {

@@ -15,7 +15,7 @@ const ChatScreen = () => {
     const dispatch = useDispatch()
 
     const handleClick = () => {
-        userInput.current.disabled = true;
+        // userInput.current.disabled = true;
         const message = userInput.current.value;
         userInput.current.value = '';
         dispatch(sendMessage(message));
@@ -40,7 +40,7 @@ const ChatScreen = () => {
                                         <BotText message={message} key={i} />
                                     ) : (
                                         <UserText message={message} key={i} />
-                                    )                                    
+                                    )
                                 })
                             }
                     </div>
@@ -50,14 +50,11 @@ const ChatScreen = () => {
                             type='text' 
                             placeholder='Write Something...' 
                             ref={userInput} 
-                            onKeyPress={
-                                (e) => {
-                                    if(e.keyCode === 13){
-                                        handleClick();
-                                    }
-                                    
+                            onKeyPress={(e) => {
+                                if(e.key === 'Enter'){
+                                    handleClick();
                                 }
-                            }
+                            }}
                         />
                     </div>
                 </div>

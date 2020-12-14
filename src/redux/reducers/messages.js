@@ -1,7 +1,8 @@
 import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE } from '../actions/messages';
 
 const initialState = {
-    messages : []
+    messages : [],
+    message_loading : false
 }
 
 const messagesReducer = (state = initialState, {type,payload} ) => {
@@ -9,6 +10,7 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
         case INITIALIZE_MESSAGE:
             return {
                 ...state,
+                message_loading : true,
                 messages : [...state.messages,payload]
             }
         case DISPLAY_BOT_MESSAGE : 
