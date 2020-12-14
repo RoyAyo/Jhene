@@ -37,6 +37,7 @@ const ChatScreen = () => {
         }
         const message = userInput.current.value;
         userInput.current.value = '';
+        userInput.current.blur();
         dispatch(sendMessage(message));
 
     };
