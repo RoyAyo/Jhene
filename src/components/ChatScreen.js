@@ -7,6 +7,7 @@ import UserText from './component/UserText';
 import Screen from './component/Screen';
 import {sendMessage } from '../redux/actions/messages';
 import {initializeUser} from '../redux/actions/users';
+import jheneImg from '../static/jhene.png'; 
 import Div100vh from 'react-div-100vh'
 
 
@@ -78,12 +79,18 @@ const ChatScreen = () => {
                 ) : (
                     <>
                         <div className='top-chat-screen'>
-                            <span>
-                                Jhene
-                            </span>
-                            <button>
-                                &#8942;
-                            </button>
+                            <div>
+                                <img src={jheneImg} alt='' />
+                            </div>
+                            <div>
+                                <p>Jhene</p>
+                                <p>Your virtual assistant</p>
+                            </div>
+                            <div>
+                                <button>
+                                    &#8942;
+                                </button>
+                            </div>
                         </div>
                         <div className='chatApp'>
                             <div className='wrap'>
