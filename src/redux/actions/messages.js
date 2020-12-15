@@ -51,7 +51,7 @@ export const sendMessage = message => {
             message,
             from_context
         }
-        fetch('http://52.86.178.184/send_message',{
+        fetch(`http://52.86.178.184/send_message`,{
             method : 'POST',
             headers : {
                 'Content-type' : 'application/json'
