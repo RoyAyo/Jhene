@@ -47,9 +47,9 @@
 .chat-app-wrapper{
     height: calc(100% - 45px);
     background-position: top; 
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url('../apigbg.svg');
+    background-image: url('../bg.png');
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style:none;
@@ -110,6 +110,8 @@
     border-radius: 22.5px;
     padding:0.7rem 1rem;
     width: 100%;
+    padding-right: 50px;
+    font-size: 13px;
 }
 
 .chat-inputs input::placeholder{
@@ -130,7 +132,7 @@
     width: 20px;
     position: absolute;
     cursor : pointer;
-    bottom: 12.5px;
+    bottom: 11.5px;
     left: calc(100% - 60px);
 
 }
