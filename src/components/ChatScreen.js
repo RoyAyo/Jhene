@@ -84,7 +84,7 @@ const ChatScreen = () => {
                             </div>
                             <div>
                                 <p>Jhene</p>
-                                <p>Your virtual assistant</p>
+                                <p>Your virtual plug</p>
                             </div>
                             <div>
                                 <button>
