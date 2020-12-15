@@ -176,7 +176,7 @@
 @media(max-width:750px){
 
     .top-chat-screen{
-        padding: 0.4rem;
+        padding: 0.4rem 16px;
     }
 
     .chat-inputs{

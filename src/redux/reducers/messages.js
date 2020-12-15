@@ -1,7 +1,7 @@
 import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE } from '../actions/messages';
 
 const initialState = {
-    messages : [],
+    messages : [{'message':'Hola, how are you doing?',bot:true,context:''}],
     message_loading : false
 }
 
