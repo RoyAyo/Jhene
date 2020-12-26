@@ -2,7 +2,9 @@ export const DISPLAY_BOT_MESSAGE = 'display_bot_message';
 export const DISPLAY_BOT_ERROR = 'display_bot_error';
 export const INITIALIZE_MESSAGE = 'initialize_message';
 export const MY_MESSAGE = 'my_message';
-export const FOLLOW_UPS = 'follow_ups'
+export const FOLLOW_UPS = 'follow_ups';
+export const Click_Button = 'click_button';
+export const Convert_Options = 'convert_options';
 
 
 export const displayBotMessage = payload => {
@@ -46,6 +48,20 @@ const initialiseMessage =() => {
             context : '',
             message : ''
         }
+    }
+}
+
+export const clickButton = payload => {
+    return {
+        type : Click_Button,
+        payload
+    }
+};
+
+export const convertOptions = payload => {
+    return {
+        type : Convert_Options,
+        payload
     }
 }
 

@@ -1,4 +1,4 @@
-import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, FOLLOW_UPS, Button_Click, Convert_Options } from '../actions/messages';
+import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, FOLLOW_UPS, Click_Button, Convert_Options } from '../actions/messages';
 
 const initialState = {
     messages : [{'message':'Hola, how are you doing?',bot:true,context:''}],
@@ -54,7 +54,7 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
                 answers : payload.answers,
                 requirements : payload.requirements
             }
-        case Button_Click:
+        case Click_Button:
             var answer = payload.answer;
             var answer_to = payload.answer_to;
             var answers = state.answers;
@@ -68,9 +68,8 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var initMessage = '';
             var i = 0;
             last_message.options.forEach(option => {
-                initMessage += `${option}`;
                 if(i === last_message.length){
-                    initMessage += " or";
+                    initMessage += `${option} or`;
                 }else{
                     initMessage += `${option}, `;
                 }
