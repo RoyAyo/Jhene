@@ -63,7 +63,7 @@ export const clickButton = ({option,requirements,answers,final_questions,context
         dispatch(convertOptions({option,requirements,answers}));
         dispatch(myMessage(option));
         dispatch(initialiseMessage());
-        if(requirements.length === 1){
+        if(requirements.length <= 1){
             const from_context = context;
             const data = {
                 from_context,
