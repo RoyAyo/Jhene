@@ -1,24 +1,30 @@
 import React from 'react';
 import ChatLoader from "../ChatLoader";
 import {useSpring, animated} from 'react-spring';
-import { useDispatch } from 'react-redux';
-import {Click_Button, Convert_Options} from '../../redux/actions/messages'; 
+import { useDispatch,useSelector } from 'react-redux';
+import {clickButton} from '../../redux/actions/messages'; 
 
 
 const Button = ({option}) => {
 
+    const messages = useSelector(state => state.message);
+    const {
+        requirements,
+        answers,
+        final_questions,
+        context
+    } = messages
     const dispatch = useDispatch();
 
-    const clickButton = () => {
-        dispatch(Click_Button);
-        dispatch(Convert_Options);
+    const click_Button = () => {
+        dispatch(clickButton({option,requirements,answers,final_questions,context}));
     }
 
     const props = useSpring({position:'relative',right:'0px',from:{right:'100px'},backgroundColor:'#FFFFFF'});
 
     return (
         <animated.p className='bot-texts' style={props}>
-            <span className='text' onClick={clickButton}>
+            <span className='text' onClick={click_Button}>
                 {
                     option
                 }
@@ -54,7 +60,7 @@ const BotText = ({message}) => {
             </animated.p>
             {
                 message.with_options ? (
-                    message.options.map(option => <Button option={option}/>)
+                    message.options.map(option => <Button option={option} />)
                 ) : (
                     <></>
                 )
