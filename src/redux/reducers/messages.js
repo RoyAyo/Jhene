@@ -1,8 +1,13 @@
-import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE } from '../actions/messages';
+import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, FOLLOW_UPS, Button_Click, Convert_Options } from '../actions/messages';
 
 const initialState = {
     messages : [{'message':'Hola, how are you doing?',bot:true,context:''}],
-    message_loading : false
+    message_loading : false,
+    questions : {},
+    in_loop : false,
+    answers : {},
+    requirements : [],
+    context : ''
 }
 
 const messagesReducer = (state = initialState, {type,payload} ) => {
@@ -15,12 +20,13 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             }
         case DISPLAY_BOT_MESSAGE : 
             var init_message = state.messages.pop();
-            const loading = false;
-            const {
+            var loading = false;
+            var {
                 message,
-                context
+                context,
+                vendor
             } = payload
-            const new_payload = Object.assign(init_message,{loading,context,message});
+            var new_payload = Object.assign(init_message,{loading,context,message,with_option:false,vendor});
             return {
                 ...state,
                 message_loading : false,
@@ -30,6 +36,49 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             return {
                 ...state,
                 messages : [...state.messages,payload]
+            }
+        case FOLLOW_UPS :
+            var r = payload.requirements.pop(0);
+            var options = payload.final_questions[r];
+            var payload_ = {
+                vendor : false,
+                with_option: true,
+                bot : true,
+                options
+            }
+            return {
+                ...state,
+                in_loop : true,
+                questions : [...state,payload.final_questions],
+                messages : [...state.messages,payload_],
+                answers : payload.answers,
+                requirements : payload.requirements
+            }
+        case Button_Click:
+            var answer = payload.answer;
+            var answer_to = payload.answer_to;
+            var answers = state.answers;
+            answers[answer_to] = answer;
+            return {
+                ...state,
+                answers,
+            }
+        case Convert_Options: 
+            var last_message = state.messages.pop();
+            var initMessage = '';
+            var i = 0;
+            last_message.options.forEach(option => {
+                initMessage += `${option}`;
+                if(i === last_message.length){
+                    initMessage += " or";
+                }else{
+                    initMessage += `${option}, `;
+                }
+                i++;
+            });
+            var newPayload = Object.assign(last_message,{message:initMessage,with_option:false})
+            return {
+                messages : [...state.messages,newPayload]
             }
         default :
             return state

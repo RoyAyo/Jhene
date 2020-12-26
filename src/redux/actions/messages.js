@@ -2,6 +2,7 @@ export const DISPLAY_BOT_MESSAGE = 'display_bot_message';
 export const DISPLAY_BOT_ERROR = 'display_bot_error';
 export const INITIALIZE_MESSAGE = 'initialize_message';
 export const MY_MESSAGE = 'my_message';
+export const FOLLOW_UPS = 'follow_ups'
 
 
 export const displayBotMessage = payload => {
@@ -29,6 +30,13 @@ export const myMessage = message => {
     }
 }
 
+const displayFollowUps = payload => {
+    return {
+        type : FOLLOW_UPS,
+        payload
+    }
+}
+
 const initialiseMessage =() => {
     return {
         type : INITIALIZE_MESSAGE,
@@ -51,7 +59,7 @@ export const sendMessage = message => {
             message,
             from_context
         }
-        fetch(`http://52.86.178.184/send_message`,{
+        fetch(`http://localhost:8000/send_message`,{
             method : 'POST',
             headers : {
                 'Content-type' : 'application/json'
@@ -65,6 +73,9 @@ export const sendMessage = message => {
             throw new Error(data.msg)
         })
         .then(data => {
+            if(data.more_info){
+                dispatch(displayFollowUps(data));
+            }
             dispatch(displayBotMessage(data));
         }).catch(e => {
             const data = {
