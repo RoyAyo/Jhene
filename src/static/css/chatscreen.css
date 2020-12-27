@@ -42,18 +42,18 @@
 }
 
 .top-chat-screen div p:first-child{
-    font-family: Sarabun;
+    font-family: "Nexa",sans-serif;
     font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 28px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 41px;
     letter-spacing: 0.1px;
     color: #fff;
     margin-bottom: 0px;
 }
 
 .top-chat-screen div p:nth-child(2){
-    font-family: DM Sans;
+    font-family: "Dm Sans",sans-serif;
     font-style: normal;
     font-weight: normal;
     position: relative;
@@ -95,18 +95,23 @@
     display: none;
 }
 
-.text{
+.text, .text-button{
     display: inline-block;
     max-width: 70%;
     word-wrap: break-word;
     min-width: 8%;
     padding: 1rem;
     box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.06);
-    font-family: Sarabun;
+    font-family: "Dm Sans",sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.text-button{
+    min-width: 14%;
+    cursor: pointer;
 }
 
 .bot-texts{
@@ -118,8 +123,18 @@
 .bot-texts .text{
     border-radius: 2px 20px 20px 20px;
     background:#fff;
-    /* color: #AA2384; */
+    color: #224E9C;
 }
+
+.bot-texts .text-button{
+    color:#fff;
+    background:rgba(24, 44, 105, 0.4);
+    cursor:"pointer";
+    text-align: center;
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
+}
+
 
 .user-texts{
     display: flex;
@@ -141,6 +156,7 @@
 }
 
 .chat-inputs input{
+    font-family: 'dmsans','sans-serif';
     height: 45px;
     border: 1px solid #3474E2;
     border-radius: 22.5px;
@@ -151,7 +167,7 @@
 }
 
 .chat-inputs input::placeholder{
-    font-family: Sarabun;
+    font-family: 'dmsans','sans-serif';
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
@@ -188,6 +204,10 @@
     .top-chat-screen div p:nth-child(2){
         bottom: 5px;
         font-size: 11.5px;
+    }
+
+    .text-button{
+        width: 45% ;
     }
 
 }

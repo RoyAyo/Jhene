@@ -6,6 +6,14 @@ import {Provider} from 'react-redux';
 import store from './redux/store/index';
 import * as serviceWorker from './serviceWorker';
 
+import webFont from 'webfontloader';
+
+webFont.load({
+  google:{
+    families: ['DM Sans:400,500', 'Nexa']
+  }
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
