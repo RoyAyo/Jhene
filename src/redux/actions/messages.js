@@ -58,9 +58,11 @@ const convertOptions = payload => {
     }
 }
 
-export const clickButton = ({option,requirements,answers,final_questions,context}) => {
+export const clickButton = ({option,requirements,answers,questions,context,answering}) => {
     return (dispatch) => {
-        dispatch(convertOptions({option,requirements,answers}));
+        answers[answering] = option.split(" ")[0].toLowerCase();
+        var new_requirements = requirements.filter(i => i !== answering);
+        dispatch(convertOptions({option,new_requirements,answers}));
         dispatch(myMessage(option));
         dispatch(initialiseMessage());
         if(requirements.length <= 1){
@@ -72,6 +74,7 @@ export const clickButton = ({option,requirements,answers,final_questions,context
                 more_info : true,
                 location : ""
             }
+            console.log(data);
             fetch(`http://localhost:8000/send_message`,{
                 method : 'POST',
                 headers : {
@@ -94,7 +97,7 @@ export const clickButton = ({option,requirements,answers,final_questions,context
                 dispatch(displayBotMessage(data));
             });
         }else{
-            dispatch(showOption({final_questions,requirements,answers}));
+            dispatch(showOption({questions,requirements:new_requirements,answers,context}));
         }
         
     }
@@ -130,8 +133,9 @@ export const sendMessage = message => {
             if(data.more_info){
                 //edit data to taste
                 dispatch(showOption(data));
+            }else{
+                dispatch(displayBotMessage(data));
             }
-            dispatch(displayBotMessage(data));
         }).catch(e => {
             const data = {
                 message : e.message

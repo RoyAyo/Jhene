@@ -5,26 +5,26 @@ import { useDispatch,useSelector } from 'react-redux';
 import {clickButton} from '../../redux/actions/messages'; 
 
 
-const Button = ({option}) => {
+const Button = ({option,answering}) => {
 
     const messages = useSelector(state => state.message);
     const {
         requirements,
         answers,
-        final_questions,
+        questions,
         context
     } = messages
     const dispatch = useDispatch();
 
     const click_Button = () => {
-        dispatch(clickButton({option,requirements,answers,final_questions,context}));
+        dispatch(clickButton({option,requirements,answers,questions,context,answering}));
     }
 
-    const props = useSpring({position:'relative',right:'0px',from:{right:'100px'},backgroundColor:'#FFFFFF'});
+    const props = useSpring({position:'relative',right:'0px',from:{right:'100px'}});
 
     return (
         <animated.p className='bot-texts' style={props}>
-            <span className='text' onClick={click_Button}>
+            <span className='text' onClick={click_Button} style={{color:"#fff",backgroundColor:'#3474E2',cursor:"pointer"}}>
                 {
                     option
                 }
@@ -45,22 +45,23 @@ const BotText = ({message}) => {
                         message.loading ? (
                             <ChatLoader />
                         ) : (
-                            message.with_options ? (
-                                <>
-                                    Select One
-                                </>
-                            ) : (
+                            message.vendor ? (
+                                    <>
+                                        {message.vendor}
+                                    </>
+                                ) : (
                                 <>
                                     {message.message}
-                                </>
+                                 </>        
                             )
                         )
                     }
                 </span>
             </animated.p>
             {
-                message.with_options ? (
-                    message.options.map(option => <Button option={option} />)
+                message.with_option ? (
+                    // console.log('we are here')
+                    message.options.map((option,i) => <Button option={option} key={i} answering={message.answering}/>)
                 ) : (
                     <></>
                 )

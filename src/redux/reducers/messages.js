@@ -40,16 +40,17 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
         case SHOW_OPTIONS :
             state.messages.pop();
             var r = payload.requirements[0];
-            var options = payload.final_questions[r];
+            var options = payload.questions[r];
             var payload_ = {
                 with_option: true,
                 bot : true,
                 message : 'Select One',
-                options
+                options,
+                answering : r
             }
             return {
                 ...state,
-                questions : [...state.questions,payload.final_questions],
+                questions : Object.assign(state.questions,payload.questions),
                 messages : [...state.messages,payload_],
                 answers : payload.answers,
                 requirements : payload.requirements,
@@ -58,24 +59,25 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
         case CONVERT_OPTIONS: 
             var last_message = state.messages.pop();
             var initMessage = '';
-            var i = 0;
+            var i = 1;
             last_message.options.forEach(option => {
-                if(i === last_message.length){
-                    initMessage += `${option} or`;
-                }else{
+                if(i === (last_message.options.length - 1)){
+                    initMessage += `${option} or `;
+                }
+                else if(i === last_message.options.length){
+                    initMessage += `${option}`;
+                }
+                else{
                     initMessage += `${option}, `;
                 }
                 i++;
             });
-            var answers = payload.answers;
-            r = payload.requirements.pop(0);
-            answers[r] = payload.option;
             var newPayload = Object.assign(last_message,{message:initMessage,with_option:false,vendor:false});
             return {
                 ...state,
                 messages : [...state.messages,newPayload],
-                answers,
-                requirements : payload.requirements
+                answers : payload.answers,
+                requirements : payload.new_requirements
             }
         default :
             return state
