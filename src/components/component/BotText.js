@@ -24,7 +24,7 @@ const Button = ({option,answering}) => {
 
     return (
         <animated.p className='bot-texts' style={props}>
-            <span className='text' onClick={click_Button} style={{color:"#fff",backgroundColor:'#3474E2',cursor:"pointer"}}>
+            <span className='text-button' onClick={click_Button}>
                 {
                     option
                 }
