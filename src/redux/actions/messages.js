@@ -75,7 +75,7 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
                 location : ""
             }
             console.log(data);
-            fetch(`http://localhost:8000/send_message`,{
+            fetch(`http://52.86.178.184/send_message`,{
                 method : 'POST',
                 headers : {
                     'Content-type' : 'application/json'
@@ -116,7 +116,7 @@ export const sendMessage = message => {
             location : ""
 
         }
-        fetch(`http://localhost:8000/send_message`,{
+        fetch(`http://52.86.178.184/send_message`,{
             method : 'POST',
             headers : {
                 'Content-type' : 'application/json'
