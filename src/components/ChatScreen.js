@@ -108,7 +108,7 @@ const ChatScreen = () => {
                                     <img src={SendImg} alt='' onClick={handleClick}/>
                                     <input 
                                         type='text' 
-                                        placeholder='Write Something...' 
+                                        placeholder='Type a Message...' 
                                         ref={userInput} 
                                         onKeyPress={(e) => {
                                             if(e.key === 'Enter'){
