@@ -110,7 +110,7 @@ const ChatScreen = () => {
                                         type='text' 
                                         placeholder='Type a Message...' 
                                         ref={userInput} 
-                                        onKeyPress={(e) => {
+                                        onKeyPress={(e) => { 
                                             if(e.key === 'Enter'){
                                                 handleClick();
                                             }
