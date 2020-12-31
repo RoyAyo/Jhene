@@ -138,7 +138,7 @@ export const sendMessage = message => {
             }
         }).catch(e => {
             const data = {
-                message : e.message
+                message : "I am currently flexing, please try again later"
             }
             dispatch(displayBotMessage(data));
         });
