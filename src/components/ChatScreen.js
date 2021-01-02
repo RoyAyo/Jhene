@@ -1,7 +1,7 @@
 import React, { useRef,useEffect,useState } from 'react';
 import '../static/css/chatscreen.css';
 import { useSelector, useDispatch } from 'react-redux';
-import SendImg from '../static/send.png';
+import SendImg from '../static/send.svg';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
 import Screen from './component/Screen';
