@@ -10,7 +10,7 @@ import webFont from 'webfontloader';
 
 webFont.load({
   google:{
-    families: ['DM Sans:400,500', 'Nexa']
+    families: ['DM Sans:400,500', 'Poppins']
   }
 });
 
