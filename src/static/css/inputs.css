@@ -1,0 +1,38 @@
+input.form-input{
+    width: 100%;
+    padding: 12.5px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #F2F7FF;
+    box-sizing: border-box;
+    background: #F2F7FF;
+    height: 60px;
+    border-radius: 10px;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    margin-bottom: 23px;
+}
+
+p.input::placeholder, p.input::-moz-placeholder{
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: #A0A4A8;
+}
+
+p.input-label{
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+    color: #4F5665;
+    letter-spacing: 0.2px;
+}

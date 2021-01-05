@@ -8,6 +8,7 @@ import pose2 from './pose2.png';
 import royPics from './roy.png';
 import sixxPics from './sixx.png';
 import gmailIcon from './gmail.svg';
+import googleIcon from './google icon.svg';
 
 export {
     hamburgerIcon,
@@ -19,5 +20,6 @@ export {
     pose2,
     royPics,
     sixxPics,
-    gmailIcon
+    gmailIcon,
+    googleIcon
 };

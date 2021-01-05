@@ -1,0 +1,134 @@
+.wrapper{
+    padding : 30px 11.07%;
+}
+
+.get-started{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 550;
+    font-size: 32px;
+    line-height: 24px;
+    text-align: center;
+    color: #3474E2;
+    margin-bottom: 27px;
+    letter-spacing: -0.165px;
+}
+
+.body{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.body .form{
+    width: 50%;
+}
+
+.body .form h4{
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: -0.165px;
+    color: #3474E2;
+    max-width: 420px;
+    margin-bottom: 15px;
+}
+
+.body .form p.or-skip{
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 28px;
+    letter-spacing: 1.25px;
+    color: #4F5665;
+}
+
+.body .form p.or-skip a{
+    text-decoration: none;
+    color: #3474E2;
+}
+
+.body .form .or-{
+    text-align: center;
+    font-size: 14px;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: normal;
+    margin: 11px;
+}
+
+.nothing{
+    width: 50%;
+}
+
+.nothing div{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nothing div img{
+    position: relative;
+    top: 80px;
+}
+
+@media(max-width:1150px){
+    .body .form{
+        width: 65%;
+    }
+
+    .wrapper{
+        padding: 30px 11.4%;
+    }
+
+    .nothing{
+        width: 35%;
+    }
+
+    .nothing div img{
+        width: 300px;
+        height: 320px;
+        top :  150px;
+        left: 20px;
+    }
+
+}
+
+@media(max-width:1013px){
+    .nothing{
+        display: none;
+    }
+
+    .wrapper{
+        padding: 15px 11.4%;
+    }
+    .body .form{
+        width: 100%;
+    }
+}
+
+@media(max-width:750px){
+    .wrapper{
+        padding: 0px 16px;
+    }
+
+    .get-started{
+        margin-bottom: 20px;
+    }
+
+    .body{
+        margin-bottom: 0px;
+    }
+
+    .body .form{
+        width: 100%;
+    }
+
+    .body .form h4{
+        font-size: 16px;
+    }
+}
