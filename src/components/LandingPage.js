@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import VisibilitySensor from "react-visibility-sensor";
 import { animated } from 'react-spring';
@@ -19,11 +19,45 @@ import "../static/css/landingpage.css";
 
 const LandingPage = () => {
 
-    //animations props
-    // const getStartedProps = useSpring();
+    const [isHamburgerMenu,setIsHamburgerMenu] = useState(false);
 
     return (
         <div>
+            <VisibilitySensor>
+                {({isVisible}) => (
+                    <Spring to={{display: isHamburgerMenu ? "" : "none", opacity:isVisible ? 1 : 0}}>
+                        {props => (
+                            <div className="fixed-header-sm" style={{...props}}>
+                                <p onClick={() => setIsHamburgerMenu(false)}>
+                                    &#10005;
+                                </p>
+                                <ul>
+                                    <li>
+                                        <Link to="#" className="sm-links">
+                                            Get Started
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="#" className="sm-links">
+                                            Request Vendor Access
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="#" className="sm-links">
+                                            Contact Us
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="#" className="sm-links">
+                                            About Us
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                    </Spring>
+                )}
+            </VisibilitySensor>
             <div className="header">
                 <div className="lg">
                     <div>
@@ -48,7 +82,7 @@ const LandingPage = () => {
                     <div>
                         <img  src={logo} alt=""/>
                     </div>
-                    <div>
+                    <div onClick={() => setIsHamburgerMenu(true)}>
                         <img src={hamburgerIcon} alt="" className="hamburger-icon" />
                     </div>
                 </div>
@@ -57,7 +91,7 @@ const LandingPage = () => {
                 <div className="top-desc">
                     <VisibilitySensor partialVisibility>
                         {({isVisible}) => (
-                            <Spring delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-90deg)" }}>
+                            <Spring delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0 }}>
                                 {props => (
                                     <div className="imgs" style={{...props}}>
                                           <img src={pose} alt="" />
