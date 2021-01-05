@@ -1,92 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import VisibilitySensor from "react-visibility-sensor";
 import { animated } from 'react-spring';
 import {Spring} from 'react-spring/renderprops';
 
+import Header from './component/Header';
+
 import {
-    gmailIcon,
-    hamburgerIcon,
     header,
-    logo,
     pose,
     pose2,
     royPics,
     sixxPics,
-    twitterIcon
 } from "../static/index";
 import "../static/css/landingpage.css";
+import Footer from './component/Footer';
 
 const LandingPage = () => {
-
-    const [isHamburgerMenu,setIsHamburgerMenu] = useState(false);
-
     return (
         <div>
-            <VisibilitySensor>
-                {({isVisible}) => (
-                    <Spring to={{display: isHamburgerMenu ? "" : "none", opacity:isVisible ? 1 : 0}}>
-                        {props => (
-                            <div className="fixed-header-sm" style={{...props}}>
-                                <p onClick={() => setIsHamburgerMenu(false)}>
-                                    &#10005;
-                                </p>
-                                <ul>
-                                    <li>
-                                        <Link to="#" className="sm-links">
-                                            Get Started
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#" className="sm-links">
-                                            Request Vendor Access
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#" className="sm-links">
-                                            Contact Us
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="#" className="sm-links">
-                                            About Us
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-                    </Spring>
-                )}
-            </VisibilitySensor>
-            <div className="header">
-                <div className="lg">
-                    <div>
-                        <img  src={logo} alt=""/>
-                    </div>
-                    <div className="links">
-                        <Link to="/contact" className="link">
-                            Contact us
-                        </Link>
-                        <Link to="/about" className="link">
-                            About
-                        </Link>
-                        <Link to="/requst" className="link link-btn">
-                            Request Access
-                        </Link>
-                        <Link to="/register" className="link link-btn link-btn2">
-                            Get Started
-                        </Link>
-                    </div>
-                </div>
-                <div className="sm-md">
-                    <div>
-                        <img  src={logo} alt=""/>
-                    </div>
-                    <div onClick={() => setIsHamburgerMenu(true)}>
-                        <img src={hamburgerIcon} alt="" className="hamburger-icon" />
-                    </div>
-                </div>
-            </div>
+            <Header />
             <div className="wrapper">
                 <div className="top-desc">
                     <VisibilitySensor partialVisibility>
@@ -218,34 +151,7 @@ const LandingPage = () => {
                         )}
                     </VisibilitySensor>
                 </div>
-                <VisibilitySensor>
-                    {({isVisible}) => (
-                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "translateY(0)" : "translateY(20px)" }}>
-                            {props => (
-                                <div className="footers" style={{...props}}>
-                                    <div className="icons">
-                                        <div className="logo-footer">
-                                            <img src={logo} alt="" />
-                                        </div>
-                                        <div className='social-footer'>
-                                            <a href="https://www.twitter.com/Jhenebot" target='_blank' rel="noopener noreferrer">
-                                                <img src={twitterIcon} alt="" />
-                                            </a>
-                                            <a href="mailto:apig.bot@gmail.com">
-                                                <img src={gmailIcon} alt="" className="g-icon" />
-                                            </a>                        
-                                        </div>
-                                    </div>
-                                    <div className="contact-footer">
-                                        <h4>Contact</h4>
-                                        <p>apigbot@gmail.com</p>
-                                        <p>+234 816 572 3798, +234 708 996 1880</p>
-                                    </div>
-                                </div>
-                            )}
-                        </Spring>
-                    )}
-                </VisibilitySensor>
+                <Footer />
             </div>
         </div>
     )

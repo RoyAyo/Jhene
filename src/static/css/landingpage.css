@@ -1,85 +1,3 @@
-.fixed-header-sm{
-    height: 207px;
-    width: 100%;
-    z-index: 5;
-    box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08), 0px 4px 8px rgba(50, 50, 71, 0.06);
-    background-color:#fff;
-    position: fixed;
-}
-
-.fixed-header-sm p{
-    text-align: right;
-    color:#3474E2;
-    font-size: 24px;
-    margin-bottom: 10.73px;
-    cursor: pointer;
-}
-
-.fixed-header-sm ul{
-    list-style-type: none;
-}
-
-.fixed-header-sm ul li{
-    margin-bottom: 14px;
-}
-
-.fixed-header-sm ul li .sm-links{
-    color:#3474E2;
-    font-family: "DM Sans";
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.header .lg{
-    height: 87px;
-    padding: 18px 11.07%;
-    display: flex;
-    width: 100%;
-    box-shadow: 0px 4px 8px rgba(52, 116, 226, 0.1)
-}
-
-.header .lg div:first-child{
-    width: 30%;
-}
-
-.header .lg .links{
-    width: 70%;
-    display: flex;
-    align-self: center;
-    justify-content: flex-end;
-}
-
-.header .lg .links .link{
-    margin-right: 40px;
-    align-self: center;
-    text-decoration: none;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 18px;
-    color: #3474E2;
-    letter-spacing: -0.165px;
-}
-
-.header .lg .links .link.link-btn{
-    padding: 12px 20px;
-    color: #ffffff;
-    background-color: #8976FD;
-    border-radius: 5px;
-    position: relative;
-    /* bottom: 12px; */
-}
-
-.header .lg .links .link.link-btn2{
-    background-color: #3474E2;
-}
-
-
-.header .sm-md{
-    display: none;
-}
-
 .wrapper{
     padding: 0px 11.07%;
     padding-top: 55px;
@@ -296,63 +214,7 @@
     font-size: 17px;
 }
 
-.footers{
-    margin-top: 48px;
-    display: flex;
-    margin-bottom: 30px;
-}
-
-.footers .icons .logo-footer{
-    margin-bottom: 3px;
-}
-
-.footers .icons .logo-footer img{
-    height: 39px;
-    width: 114px;
-}
-
-.footers .icons{
-    margin-right: 177px;
-}
-
-.footers .icons .social-footer img{
-    margin-right: 48px;
-}
-
-.footers .contact-footer{
-    padding: 4px 0px;
-}
-
-.footers .contact-footer h4{
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #3474E2;
-    margin-bottom: 5px;
-}
-
-.g-icon{
-    position: relative;
-    top : 4px;
-}
-
-.footers .contact-footer p{
-    font-size: 14px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 24px;
-    color: #4F5665;
-    margin-bottom: 8px;
-}
-
 @media(max-width:1440px){
-    .header .lg{
-        padding: 18px 11.07%;
-    }
-
     .top-desc .desc p{
         margin-bottom: 40px;
         font-size: 17px;
@@ -402,10 +264,6 @@
         height: 306px;
     }
 
-    .header .lg{
-        padding: 18px 8%;
-    }
-
     .wrapper{
         padding: 0px 8%;
         padding-top: 48px;
@@ -413,43 +271,6 @@
 }
 
 @media(max-width:1000px){
-    .fixed-header-sm{
-        padding: 18px 11.4%;
-    }
-    
-    .header .lg{
-        display: none;
-    }
-
-    .header .sm-md{
-        display: flex;
-        padding: 30px 11.4%;
-        width: 100%;
-    }
-
-    .header .sm-md div:nth-child(1){
-        width: 30%;
-    }
-
-    .header .sm-md div:nth-child(1) img{
-        width: 134px;
-        height: 46px;
-    }
-
-    .header .sm-md div:nth-child(2){
-        width: 70%;
-        text-align: right;
-    }
-
-    .header .sm-md div:nth-child(2) img{
-        cursor: pointer;
-    }
-
-    .header .sm-md .hamburger-icon::after{
-        content: "";
-        clear: both;
-    }
-
     .wrapper{
         padding: 0px 11.4%;
     }
@@ -523,27 +344,6 @@
 }
 
 @media(max-width:750px){
-
-    .fixed-header-sm{
-        padding: 18px 16px;
-    }
-
-    .header .sm-md{
-        display: flex;
-        padding: 18px 16px;
-        padding-top: 30px;
-        width: 100%;
-    }
-
-    .header .sm-md div:nth-child(1){
-        width: 30%;
-    }
-
-    .header .sm-md div:nth-child(1) img{
-        width: 94px;
-        height: 32px;
-    }
-    
     .top-desc .imgs-sm img{
         width: 156px;
         height: 169px;
@@ -649,32 +449,6 @@
     .contact-us p a:hover{
         font-size: 15.5px;
     }
-
-    .g-icon{
-        top: -1px;
-    }
-
-    .footers{
-        display: block;
-        margin-top: 18px;
-    }
-
-    .footers .icons .logo-footer img{
-        height: 29px;
-        width: 80px;
-    }
-
-    .footers .icons .social-footer img{
-        width: 22.74px;
-        height: 15.36px;
-        margin-right: 30.54px;
-    }
-
-    .footers .icons{
-        margin-right: 0px;
-        margin-bottom: 18px;
-    }
-
 }
 
 @media(max-width:450px){
