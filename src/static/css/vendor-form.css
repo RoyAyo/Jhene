@@ -68,9 +68,9 @@
     background-color: #4F5665;
 }
 
-@media(max-width:1250px){
+@media(max-width:1350px){
     .apply-form .fill-form{
-        width : 80%;
+        width : 90%;
     }
 
     .wrapper{
@@ -115,7 +115,7 @@
     .apply-form{
         box-shadow: none;
         padding: 25px 0px;
-    
+        margin-bottom: 65px;
     }
 
     .submit-access{

@@ -40,3 +40,12 @@ p.input-label{
     color: #4F5665;
     letter-spacing: 0.2px;
 }
+
+@media(max-width:750px){
+    p.input-label{
+        font-size: 16px;
+    }
+    input.form-input,p.input::placeholder, p.input::-moz-placeholder{
+        font-size: 14px;
+    }
+}

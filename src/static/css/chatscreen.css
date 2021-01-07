@@ -153,8 +153,9 @@
 }
 
 .chat-inputs input{
-    font-family: 'DM SANS','sans-serif';
+    font-family: 'DM Sans','sans-serif';
     height: 45px;
+    outline: none;
     border: 1px solid #fff;
     background-color: #fff;
     border-radius: 22.5px;
