@@ -1,18 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import VisibilitySensor from "react-visibility-sensor";
-import { animated } from 'react-spring';
 import {Spring} from 'react-spring/renderprops';
 
 import Header from './component/Header';
-
 import {
-    header,
-    pose,
-    pose2,
-    royPics,
-    sixxPics,
-} from "../static/index";
+    Image
+} from 'cloudinary-react';
+
 import "../static/css/landingpage.css";
 import Footer from './component/Footer';
 
@@ -27,7 +22,7 @@ const LandingPage = () => {
                             <Spring delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0 }}>
                                 {props => (
                                     <div className="imgs" style={{...props}}>
-                                          <img src={pose} alt="" />
+                                          <Image cloudName="jhene" publicId="group2_musuvf" />
                                     </div>
                                 )}
                             </Spring>
@@ -41,15 +36,15 @@ const LandingPage = () => {
                                         <h4>Making the e-commerce experience better</h4>
                                         <p>Jhene is a product designed to make online purchase seemless for Buyers, and market coverage wider for Vendors.</p>
                                         <div>
-                                            <Link to="/register">
-                                                <animated.span className="link-btn">
+                                            <Link to="/chat">
+                                                <span className="link-btn">
                                                     Get Started
-                                                </animated.span>
+                                                </span>
                                             </Link>
-                                            <Link to="/request">
-                                                <animated.span className="link-btn link-btn2">
+                                            <Link to="/vendor-form">
+                                                <span className="link-btn link-btn2">
                                                     Request Access
-                                                </animated.span>
+                                                </span>
                                             </Link>
                                         </div>
                                     </div>
@@ -62,7 +57,7 @@ const LandingPage = () => {
                             <Spring delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-90deg)" }}>
                                 {props => (
                                     <div className="imgs-sm" style={{...props}}>
-                                        <img src={pose} alt="" />
+                                        <Image cloudName="jhene" publicId="group2_musuvf"  />
                                     </div>
                                 )}
                             </Spring>
@@ -74,7 +69,7 @@ const LandingPage = () => {
                         <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateX(0)" : "translateX(40px)"}} delay={250}>
                             {props => (
                                 <div className="vendor-desc-img" style={{...props}}>
-                                    <img src={header} alt="" />
+                                    <Image cloudName="jhene" publicId="header-lg_zs3pmt"  />
                                 </div>
                             )}
                         </Spring>
@@ -97,7 +92,7 @@ const LandingPage = () => {
                                                     <p>Customer buys with trust, seller makes more sales. Everybody wins!</p>
                                                 </div>
                                                 <div className="about-us-img">
-                                                    <img src={pose2} alt="" />
+                                                    <Image cloudName="jhene" publicId="pose2_mikg5o"  />
                                                 </div>
                                             </div>
                                         </>
@@ -114,7 +109,7 @@ const LandingPage = () => {
                                         <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
-                                                    <img alt="" src={royPics} />
+                                                    <Image cloudName="jhene" publicId="roy_rl61gf"  />
                                                     <h4>Roy-Layinde Ayoola</h4>
                                                     <p>Developer</p>
                                                 </div>
@@ -127,7 +122,7 @@ const LandingPage = () => {
                                         <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(20deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
-                                                    <img alt="" src={sixxPics} />
+                                                    <Image cloudName="jhene" publicId="sixx_vdx7ku"  />
                                                     <h4>Kolade Olufemi</h4>
                                                     <p>Designer</p>
                                                 </div>

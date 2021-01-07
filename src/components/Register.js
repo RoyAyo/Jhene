@@ -8,8 +8,8 @@ import VisibilitySensor from "react-visibility-sensor";
 import {Spring} from 'react-spring/renderprops';
 
 import {
-    pose
-} from "../static/index";
+    Image
+} from 'cloudinary-react';
 
 import "../static/css/register.css";
 
@@ -38,7 +38,7 @@ const Register = () => {
                             <Spring delay={200} to={{opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)"}}>
                                 {props => (
                                     <div style={{...props}}>
-                                        <img src={pose} alt="" />
+                                        <Image cloudName="jhene" publicId="pose2_mikg5o"  />
                                     </div>
                                 )}
                             </Spring>

@@ -66,7 +66,7 @@ const Header = () => {
                             <Link to="/vendor-form" className="link link-btn">
                                 Request Access
                             </Link>
-                            <Link to="/register" className="link link-btn link-btn2">
+                            <Link to="/chat" className="link link-btn link-btn2">
                                 Get Started
                             </Link>
                         </div>

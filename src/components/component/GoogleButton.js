@@ -26,7 +26,7 @@ const Styles = {
         fontFamily : "DM Sans",
         position: "relative",
         verticalAlign : "top",
-        top: "7px",
+        top: "5px",
     }
 };
 
