@@ -38,7 +38,7 @@ const Register = () => {
                             <Spring delay={200} to={{opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)"}}>
                                 {props => (
                                     <div style={{...props}}>
-                                        <Image cloudName="jhene" publicId="pose2_mikg5o"  />
+                                        <Image cloudName="jhene" publicId="lady-stand_vucuvd"  />
                                     </div>
                                 )}
                             </Spring>
