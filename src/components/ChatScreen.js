@@ -1,5 +1,5 @@
 import React, { useRef,useEffect,useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.svg';
 import BotText from './component/BotText';
@@ -16,6 +16,7 @@ import '../static/css/chatscreen.css';
 const ChatScreen = () => {
 
     const [loading,setLoading] = useState(true);
+    const [auth,setAuth] = useState(true);
 
     //refs
     const userInput = useRef();
@@ -31,14 +32,14 @@ const ChatScreen = () => {
 
     // component did update messages..
     useEffect(() => {
-        if(!loading){
+        if(auth && !loading){
             const scroll = messagesDiv.current.scrollHeight;
             const height = messagesDiv.current.clientHeight;
             if(scroll > height){
                 messagesDiv.current.scrollTo(0,(scroll - height));
             }
         }
-    }, [messages,loading]);
+    }, [messages,loading,auth]);
 
     //component did mount
     useEffect(() => {
@@ -77,6 +78,9 @@ const ChatScreen = () => {
                 loading ? (
                 <Screen />
                 ) : (
+                    !auth ? (
+                        <Redirect to='/register'/>
+                    ) : (
                     <div className="full-body">
                         <div className="large-left-screen">
                             <div className="names">
@@ -150,7 +154,7 @@ const ChatScreen = () => {
                                 </div>
                             </div>
                         </div>
-                    // </div>                       
+                    )
                 )
             }
         </Div100vh>

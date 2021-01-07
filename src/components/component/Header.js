@@ -52,7 +52,9 @@ const Header = () => {
             <div className="header">
                     <div className="lg">
                         <div>
-                            <img  src={logo} alt=""/>
+                            <Link to="/" style={{textDecoration:"none",cursor:"pointer"}}>
+                                <img  src={logo} alt=""/>
+                            </Link>
                         </div>
                         <div className="links">
                             <Link to="/contact" className="link">
@@ -61,7 +63,7 @@ const Header = () => {
                             <Link to="/about" className="link">
                                 About
                             </Link>
-                            <Link to="/requst" className="link link-btn">
+                            <Link to="/vendor-form" className="link link-btn">
                                 Request Access
                             </Link>
                             <Link to="/register" className="link link-btn link-btn2">
