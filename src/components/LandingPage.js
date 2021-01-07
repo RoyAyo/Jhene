@@ -92,7 +92,7 @@ const LandingPage = () => {
                                                     <p>Customer buys with trust, seller makes more sales. Everybody wins!</p>
                                                 </div>
                                                 <div className="about-us-img">
-                                                    <Image cloudName="jhene" publicId="pose2_mikg5o"  />
+                                                    <Image cloudName="jhene" publicId="lady-stand_vucuvd"  />
                                                 </div>
                                             </div>
                                         </>

@@ -73,7 +73,9 @@ const Header = () => {
                     </div>
                     <div className="sm-md">
                         <div>
-                            <img  src={logo} alt=""/>
+                            <Link to='/'>
+                                <img  src={logo} alt=""/>
+                            </Link>
                         </div>
                         <div onClick={() => setIsHamburgerMenu(true)}>
                             <img src={hamburgerIcon} alt="" className="hamburger-icon" />
