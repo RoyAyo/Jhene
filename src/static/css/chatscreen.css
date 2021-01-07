@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 .full-body{
     height: 100%;
 }

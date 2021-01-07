@@ -1,5 +1,6 @@
 input{
     outline: none;
+    -webkit-appearance: none;
 }
 
 input.form-input{

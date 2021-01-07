@@ -1,3 +1,8 @@
+input{
+    outline: none;
+    -webkit-appearance: none;
+}
+
 .wrapper{
     padding: 50px 11.4%;
 }

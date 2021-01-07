@@ -16,7 +16,7 @@ import '../static/css/chatscreen.css';
 const ChatScreen = () => {
 
     const [loading,setLoading] = useState(true);
-    const [auth,setAuth] = useState(false);
+    const [auth,setAuth] = useState(true);
 
     //refs
     const userInput = useRef();
