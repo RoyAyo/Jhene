@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.full-body{
+    height: 100%;
+}
+
+.large-left-screen{
+    display: none;
+}
+
 .top-chat-screen{
     width: 100%;
     background-color:#3474E2;
@@ -206,4 +214,94 @@
         width: 45% ;
     }
 
+}
+
+@media(min-width:900px){
+    .full-body{
+        display: flex;
+        width: 100%;
+        padding:60px 3.67%;
+    }
+
+    .large-left-screen{
+        display: block;
+        width: 31.8%;
+        background-color: #3474E2;
+        padding: 46px 24px;
+    }
+
+    .top-chat-screen{
+        display: none;
+    }
+    .chatApp{
+        height: 100%;
+        width: 68.2%;
+    }
+
+    .large-left-screen .names{
+        display: flex;
+    }
+
+    .names{
+        margin-bottom: 28px;
+    }
+
+    .names div p:first-child{
+        font-family: "DM Sans";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 18px;
+        color: #FFFFFF;
+    }
+
+    .names div p:nth-child(2){
+        font-family: "DM Sans";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        color: #FFFFFF;
+        opacity: 0.5;
+    }
+
+    .names img{
+        margin-right: 20px;
+    }
+
+    .large-left-screen ul{
+        list-style-type: none;
+    }
+    .large-left-screen ul li{
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .large-left-screen ul li .left-chat-link{
+        font-family: "DM Sans";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 18px;
+        text-decoration: none;
+        color: #FFFFFF;
+        transition: all .2s linear;
+    }
+
+    .large-left-screen ul li .left-chat-link:hover{
+        color: #224E9C;
+    }
+
+}
+
+@media(min-width:1013px){
+    .full-body{
+        padding:90px 5.67%;
+    }   
+}
+
+@media(min-width:1250px){
+    .full-body{
+        padding:90px 8.67%;
+    }   
 }

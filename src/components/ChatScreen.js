@@ -1,5 +1,5 @@
 import React, { useRef,useEffect,useState } from 'react';
-import '../static/css/chatscreen.css';
+import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.svg';
 import BotText from './component/BotText';
@@ -7,9 +7,10 @@ import UserText from './component/UserText';
 import Screen from './component/Screen';
 import {sendMessage } from '../redux/actions/messages';
 import {initializeUser} from '../redux/actions/users';
-import jheneImg from '../static/jhene.png'; 
+import jheneImg from '../static/jhene.svg'; 
 import Div100vh from 'react-div-100vh'
 
+import '../static/css/chatscreen.css';
 
 
 const ChatScreen = () => {
@@ -76,50 +77,80 @@ const ChatScreen = () => {
                 loading ? (
                 <Screen />
                 ) : (
-                    <>
-                        <div className='top-chat-screen'>
-                            <div>
-                                <img src={jheneImg} alt='' />
-                            </div>
-                            <div>
-                                <p>Jhene</p>
-                                <p>Your virtual plug</p>
-                            </div>
-                            <div>
-                                <button>
-                                    &#8942;
-                                </button>
-                            </div>
-                        </div>
-                        <div className='chatApp'>
-                            <div className='wrap'>
-                                <div className='chat-app-wrapper' ref={messagesDiv}>
-                                        {
-                                            messages.map((message,i) => {
-                                                return message.bot ? (
-                                                    <BotText message={message} key={i} />
-                                                ) : (
-                                                    <UserText message={message} key={i} />
-                                                )
-                                            })
-                                        }
+                    <div className="full-body">
+                        <div className="large-left-screen">
+                            <div className="names">
+                                <div>
+                                    <img src={jheneImg} alt='' />
                                 </div>
-                                <div className='chat-inputs'>
-                                    <img src={SendImg} alt='' onClick={handleClick}/>
-                                    <input 
-                                        type='text' 
-                                        placeholder='Type a Message...' 
-                                        ref={userInput} 
-                                        onKeyPress={(e) => { 
-                                            if(e.key === 'Enter'){
-                                                handleClick();
+                                <div>
+                                    <p>Jhene</p>
+                                    <p>Your virtual plug</p>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>
+                                    <Link to="/" className="left-chat-link" >
+                                        Landing Page
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/vendor-form" className="left-chat-link">
+                                        Request Vendor Access
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="https://www.gooogle.com" className="left-chat-link">
+                                        Contact Us
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                        {/* <div> */}
+                            <div className='top-chat-screen'>
+                                <div>
+                                    <img src={jheneImg} alt='' />
+                                </div>
+                                <div>
+                                    <p>Jhene</p>
+                                    <p>Your virtual plug</p>
+                                </div>
+                                <div>
+                                    <button>
+                                        &#8942;
+                                    </button>
+                                </div>
+                            </div>
+                            <div className='chatApp'>
+                                <div className='wrap'>
+                                    <div className='chat-app-wrapper' ref={messagesDiv}>
+                                            {
+                                                messages.map((message,i) => {
+                                                    return message.bot ? (
+                                                        <BotText message={message} key={i} />
+                                                    ) : (
+                                                        <UserText message={message} key={i} />
+                                                    )
+                                                })
                                             }
-                                        }}
-                                    />
+                                    </div>
+                                    <div className='chat-inputs'>
+                                        <img src={SendImg} alt='' onClick={handleClick}/>
+                                        <input 
+                                            type='text' 
+                                            placeholder='Type a Message...' 
+                                            ref={userInput} 
+                                            onKeyPress={(e) => { 
+                                                if(e.key === 'Enter'){
+                                                    handleClick();
+                                                }
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </>                       
+                    // </div>                       
                 )
             }
         </Div100vh>
