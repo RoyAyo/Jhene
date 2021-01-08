@@ -165,51 +165,55 @@ export const sendMessage = (message,recommendations=[]) => {
     }
 };
 
-export const userWelcome = (email='',initial=false) => {
+export const userWelcome = (email) => {
     return (dispatch) => {
+        dispatch(initialiseMessage());
 
-        if(initial){
+        const data = JSON.stringify({email});
 
-            dispatch(initialiseMessage());
-
-            const data = JSON.stringify({email});
-
-            fetch(`localhost:8080/api/recommend/getAd`,{
-                method : "POST",
-                data,
-                headers : {
-                    'content-type' : 'application/json'
-                }
-            }).then(data => data.json())
-            .then(data => {
-                if(data.success){
-                    const name = data.user.name.split(' ')[0];
-                    const message = `Hi ${name}, how are you doing`;
-                    const context = '';
-                    const vendor = false;
+        fetch(`http://localhost:8080/api/recommend/getAd`,{
+            method : "POST",
+            body:data,
+            headers : {
+                'content-type' : 'application/json'
+            }
+        }).then(data => data.json())
+        .then(data => {
+            console.log(data);
+            if(data.success){
+                const name = data.user.name.split(' ')[0];
+                const message = `Hi ${name}, how are you doing`;
+                const context = '';
+                const vendor = false;
+                const payload = {
+                    message,
+                    context,
+                    vendor
+                };
+                dispatch(displayBotMessage(payload));
+                if(data.recommendations.length > 0){
+                    dispatch(initialiseMessage());
+                    const recommendation = data.recommendations[0];
+                    const recommendations = data.recommendations.slice(1);
                     const payload = {
-                        message,
-                        context,
-                        vendor
+                        recommendation,
+                        recommendations
                     };
-                    dispatch(displayBotMessage(payload));
-                    if(data.recommendation.length > 0){
-                        dispatch(initialiseMessage());
-                        const recommendation = data.recommendations[0];
-                        const recommendations = data.recommendations.slice(1);
-                        const payload = {
-                            recommendation,
-                            recommendations
-                        };
-                        dispatch(displayBotRecommendation(payload));
-                    }
-                }else{
-                    throw new Error(data.msg);
+                    dispatch(displayBotRecommendation(payload));
                 }
-            })
-            .catch(e => {
-                dispatch(displayBotError("Hola, How are you doing"));
-            }); 
-        }
+            }else{
+                const data = {
+                    message : 'Hola, how are you doing?'
+                }
+                dispatch(displayBotMessage(data));
+            }
+        })
+        .catch(e => {
+            console.log(e.message)
+            const data = {
+                message : 'Hola'
+            }
+            dispatch(displayBotMessage(data));
+        });
     }
 };

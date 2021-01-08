@@ -40,11 +40,11 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             }
         case DISPLAY_BOT_RECOMMENDATION :
             var init_recommend_message = state.messages.pop();
-            var new_recommend_payload = Object.assign(init_recommend_message,{loading:false,message:'',with_option:false,vendor:false,recommendation:payload.recommendations});
+            var new_recommend_payload = Object.assign(init_recommend_message,{loading:false,message:'',with_option:false,vendor:false,recommendation:payload.recommendation});
             return {
                 ...state,
                 recommendations : payload.recommendations,
-                messages : [...state,new_recommend_payload],
+                messages : [...state.messages,new_recommend_payload],
                 message_loading : false
             }
         case SHOW_OPTIONS :

@@ -1,11 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import Header from './component/Header';
 import Input from './component/Input';
 import "../static/css/vendor-form.css";
 import Footer from './component/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const VendorForm = () => {
+
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [link, setLink] = useState('');
+
+    const submit = () => {
+        const data = JSON.stringify({
+            email,
+            business_name:name,
+            link
+        })
+        fetch('http://localhost:8080/api/vendors/request',{
+            method : 'POST',
+            headers :{
+                'content-type' : 'application/json'
+            },
+            body:data
+        }).then(data => data.json())
+        .then(data => {
+            console.log(data)
+            if(data.success){
+                toast.success('Thank you for asking to be a part of us, we would get back to you very soon',{
+                    position : toast.POSITION.TOP_RIGHT
+                });
+            }else{
+                throw new Error(data.msg);
+            }
+        }).catch(e => {
+            toast.error(e.message,{
+                position : toast.POSITION.TOP_RIGHT
+            })
+        });
+    };
+
     return (
         <div>
             <Header />
@@ -18,11 +54,11 @@ const VendorForm = () => {
                 </div>
                 <div className="apply-form">
                     <div className="fill-form">
-                        <Input name="Business Name" placeholder="Type your business name" type="text"/>
-                        <Input name="Email" placeholder="Type your email" type="email"/>
-                        <Input name="Link to website or Social media" placeholder="Type a link" type="url"/>
+                        <Input name="Business Name" placeholder="Type your business name" type="text" onChange={name => setName(name)}/>
+                        <Input name="Email" placeholder="Type your email" type="email" onChange={email => setEmail(email)}/>
+                        <Input name="Link to website or Social media" placeholder="Type a link" type="url" onChange={link => setLink(link)}/>
                         <div className="submit-access">
-                            <button>
+                            <button onClick={submit}>
                                 Submit
                             </button>
                         </div>
@@ -33,6 +69,7 @@ const VendorForm = () => {
                 </div>
                 <Footer />
             </div>
+            <ToastContainer />
         </div>
     )
 };

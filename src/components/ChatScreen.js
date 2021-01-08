@@ -25,7 +25,8 @@ const ChatScreen = () => {
     //selectors....(map state to props)
     const messages = useSelector(state => state.message.messages);
     const message_loading = useSelector(state => state.message.message_loading);
-
+    const recommendations = useSelector(state => state.message.recommendations);
+    
     //dispatch...
     const dispatch = useDispatch();
 
@@ -42,20 +43,21 @@ const ChatScreen = () => {
 
     //component did mount
     useEffect(() => {
-       setTimeout(() => {
-           const email = window.localStorage.getItem('email');
-           const accessed = window.localStorage.getItem('accessed');
-           if(email){
-               setAuth(true);
-               setLoading(true);
-               dispatch(userWelcome(email,true));
-            }else if(accessed){
-                setAuth(true);
-                setLoading(true);
-            }else{
-                setLoading(true)
-            }
-       }, 1500);
+    //    setTimeout(() => {
+        console.log('running')
+        const email = window.localStorage.getItem('email');
+        const accessed = window.localStorage.getItem('accessed');
+        if(email){
+            setAuth(true);
+            setLoading(false);
+            dispatch(userWelcome(email,true));
+        }else if(accessed){
+            setAuth(true);
+            setLoading(false);
+        }else{
+            setLoading(false);
+        }
+    //    }, 1500);
        // eslint-disable-next-line
     },[]);
 
@@ -67,7 +69,7 @@ const ChatScreen = () => {
         const message = userInput.current.value;
         userInput.current.value = '';
         userInput.current.blur();
-        dispatch(sendMessage(message));
+        dispatch(sendMessage(message,recommendations));
     };
 
     return (
