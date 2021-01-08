@@ -1,14 +1,23 @@
 export const DISPLAY_BOT_MESSAGE = 'display_bot_message';
+export const DISPLAY_BOT_RECOMMENDATION = 'display_bot_recommendation';
 export const DISPLAY_BOT_ERROR = 'display_bot_error';
 export const INITIALIZE_MESSAGE = 'initialize_message';
 export const MY_MESSAGE = 'my_message';
 export const SHOW_OPTIONS = 'show_options';
 export const Click_Button = 'click_button';
 export const CONVERT_OPTIONS = 'convert_options';
+export const SET_RECOMMENDATIONS = 'set_recommendations'
 
 export const displayBotMessage = payload => {
     return {
         type : DISPLAY_BOT_MESSAGE,
+        payload
+    }
+};
+
+export const displayBotRecommendation = payload => {
+    return {
+        type : DISPLAY_BOT_RECOMMENDATION,
         payload
     }
 };
@@ -102,7 +111,7 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
     }
 }
 
-export const sendMessage = message => {
+export const sendMessage = (message,recommendations=[]) => {
     return (dispatch) => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
@@ -135,7 +144,16 @@ export const sendMessage = message => {
             }else{
                 dispatch(displayBotMessage(data));
                 if(data.vendor){
-                    dispatch(userWelcome);
+                    if(recommendations.length > 0){
+                        dispatch(initialiseMessage());
+                        const recommendation = data.recommendations[0];
+                        const recommendations = data.recommendations.slice(1);
+                        const payload = {
+                            recommendation,
+                            recommendations
+                        };
+                        dispatch(displayBotRecommendation(payload));
+                    }
                 }
             }
         }).catch(e => {
@@ -147,25 +165,25 @@ export const sendMessage = message => {
     }
 };
 
-export const userWelcome = (email,initial) => {
+export const userWelcome = (email='',initial=false) => {
     return (dispatch) => {
 
-        dispatch(initialiseMessage());
-        
-        const data = JSON.stringify({email});
+        if(initial){
 
-        fetch(`https://jhene-node.herokuapp.com/api/recommend`,{
-            method : "POST",
-            data,
-            headers : {
-                'content-type' : 'application/json'
-            }
-        }).then(data => data.json())
-        .then(data => {
             dispatch(initialiseMessage());
-            if(data.success){
-                if(initial){
-                    const name = data.user.name.split(' '[0]);
+
+            const data = JSON.stringify({email});
+
+            fetch(`localhost:8080/api/recommend/getAd`,{
+                method : "POST",
+                data,
+                headers : {
+                    'content-type' : 'application/json'
+                }
+            }).then(data => data.json())
+            .then(data => {
+                if(data.success){
+                    const name = data.user.name.split(' ')[0];
                     const message = `Hi ${name}, how are you doing`;
                     const context = '';
                     const vendor = false;
@@ -175,26 +193,23 @@ export const userWelcome = (email,initial) => {
                         vendor
                     };
                     dispatch(displayBotMessage(payload));
+                    if(data.recommendation.length > 0){
+                        dispatch(initialiseMessage());
+                        const recommendation = data.recommendations[0];
+                        const recommendations = data.recommendations.slice(1);
+                        const payload = {
+                            recommendation,
+                            recommendations
+                        };
+                        dispatch(displayBotRecommendation(payload));
+                    }
+                }else{
+                    throw new Error(data.msg);
                 }
-                if(data.recommendation){
-                    dispatch(initialiseMessage());
-                    const message = ``;
-                    const context = 'recommendation';
-                    const vendor = false;
-                    const payload = {
-                        message,
-                        context,
-                        vendor,
-                        recommendation : data.recommendation
-                    };
-                    dispatch(displayBotMessage(payload));
-                }
-            }else{
-                throw new Error(data.msg);
-            }
-        })
-        .catch(e => {
-            dispatch(displayBotError("Hola, How are you doing"));
-        });
+            })
+            .catch(e => {
+                dispatch(displayBotError("Hola, How are you doing"));
+            }); 
+        }
     }
 };

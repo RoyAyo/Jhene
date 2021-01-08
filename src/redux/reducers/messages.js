@@ -1,12 +1,13 @@
-import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS } from '../actions/messages';
+import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS, DISPLAY_BOT_RECOMMENDATION } from '../actions/messages';
 
 const initialState = {
-    messages : [{'message':'Hola, how are you doing?',bot:true,context:''}],
+    messages : [],
     message_loading : false,
     questions : {},
     answers : {},
     requirements : [],
-    context : ''
+    context : '',
+    recommendations : []
 }
 
 const messagesReducer = (state = initialState, {type,payload} ) => {
@@ -23,10 +24,9 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var {
                 message,
                 context,
-                vendor,
-                recommendation
+                vendor
             } = payload;
-            var new_payload = Object.assign(init_message,{loading,message,with_option:false,vendor,recommendation});
+            var new_payload = Object.assign(init_message,{loading,message,with_option:false,vendor});
             return {
                 ...state,
                 message_loading : false,
@@ -37,6 +37,15 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             return {
                 ...state,
                 messages : [...state.messages,payload]
+            }
+        case DISPLAY_BOT_RECOMMENDATION :
+            var init_recommend_message = state.messages.pop();
+            var new_recommend_payload = Object.assign(init_recommend_message,{loading:false,message:'',with_option:false,vendor:false,recommendation:payload.recommendations});
+            return {
+                ...state,
+                recommendations : payload.recommendations,
+                messages : [...state,new_recommend_payload],
+                message_loading : false
             }
         case SHOW_OPTIONS :
             state.messages.pop();
