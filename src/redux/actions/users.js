@@ -1,5 +1,6 @@
 export const INITIALIZE_USER = 'inialize_user';
 
+
 export const initializeUser = payload => {
     return {
         type : INITIALIZE_USER,
@@ -7,34 +8,25 @@ export const initializeUser = payload => {
     }
 };
 
-export const checkNewUser = () => {
+export const userWelcome = email => {
     return (dispatch) => {
-        //check the token and fetch
-        const token = window.localStorage.getItem('_token_');
-        const data = JSON.stringify({
-            token
+
+        const data = JSON.stringify({email});
+
+        fetch(`https://jhene-node.herokuapp.com/api/recommend`,{
+            method : "POST",
+            data,
+            headers : {
+                'content-type' : 'application/json'
+            }
+        }).then(data => data.json())
+        .then(data => {
+            //initialize them with a greet..
+            //follow up with a quick recommendation if any..
+
+        })
+        .catch(e => {
+            //do your normal message initializer
         });
-        
-        fetch(``,{
-                method : 'POST',
-                headers : {
-                    'Content-type' : 'application/json'
-                },
-                body:data
-            })
-            .then(data => {
-                if(data.ok){
-                    return data.json()
-                }
-                throw new Error(data.msg)
-            })
-            .then(data => {
-                if(data.success){
-                    dispatch(initializeUser(data));
-                }
-                throw new Error(data.msg);
-            }).catch(e => {
-                console.log(e.message);
-            });
     }
-}
+};

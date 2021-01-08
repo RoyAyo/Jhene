@@ -23,9 +23,10 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var {
                 message,
                 context,
-                vendor
+                vendor,
+                recommendation
             } = payload;
-            var new_payload = Object.assign(init_message,{loading,message,with_option:false,vendor});
+            var new_payload = Object.assign(init_message,{loading,message,with_option:false,vendor,recommendation});
             return {
                 ...state,
                 message_loading : false,

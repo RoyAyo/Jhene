@@ -6,14 +6,46 @@ import GoogleButton from './component/GoogleButton';
 import Button from './component/Button';
 import VisibilitySensor from "react-visibility-sensor";
 import {Spring} from 'react-spring/renderprops';
+import {useGoogleLogin} from 'react-google-login';
 
 import {
     Image
 } from 'cloudinary-react';
 
 import "../static/css/register.css";
+import { withRouter } from 'react-router-dom';
 
-const Register = () => {
+const Register = props => {
+
+    const clientId = "159251316458-etn77jocjneod804i772mqb9b5rn60hu.apps.googleusercontent.com";
+
+    const onSuccess = res => {
+        console.log('res',res.profileObj);
+        const {email} = res.profileObj;
+        window.localStorage.setItem('email',email);
+        props.history.push('/chat');
+    };
+
+    const onFailure = () => {
+        console.log('Unable to login')
+        //still move to home
+    };
+
+    const {signIn} = useGoogleLogin({
+        onSuccess,
+        onFailure,
+        clientId,
+        isSignedIn: true,
+        accessType:'offline',
+        cookiePolicy:"http://localhost:3000"
+    });
+
+    const skip = e => {
+        e.preventDefault();
+        window.localStorage.setItem('accessed',true);
+        props.history.push('/chat');
+    }
+
     return (
         <div>
             <Header />
@@ -22,13 +54,12 @@ const Register = () => {
                 <div className="body">
                     <div className="form">
                         <h4>Can you give us some details to help us improve your experience?</h4>
-                        <p className="or-skip">Or you can <a href="/chat">Skip</a></p>
-                        <GoogleButton />
+                        <p className="or-skip">Or you can <a href="/chat" onClick={e => skip(e)}>Skip</a></p>
+                        <GoogleButton onClick={signIn} />
                         <p className="or-">or</p>
                         <form>
                             <Input name="Name" placeholder="Type Your Name" type="text"/>
                             <Input  name="Email" placeholder="Type Your Email" type="email"/>
-                            <Input  name="Gender" placeholder="" type=""/>
                             <Button name="Let's Go"/>
                         </form>
                     </div>
@@ -52,4 +83,4 @@ const Register = () => {
     )
 };
 
-export default Register;
+export default withRouter(Register);

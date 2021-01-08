@@ -5,8 +5,7 @@ import SendImg from '../static/send.svg';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
 import Screen from './component/Screen';
-import {sendMessage } from '../redux/actions/messages';
-import {initializeUser} from '../redux/actions/users';
+import { sendMessage,userWelcome } from '../redux/actions/messages';
 import jheneImg from '../static/jhene.svg'; 
 import Div100vh from 'react-div-100vh'
 
@@ -43,21 +42,20 @@ const ChatScreen = () => {
 
     //component did mount
     useEffect(() => {
-       fetch(`http://52.86.178.184`).then(data => {
-           console.log(data)
-           if(data.ok){
-               return data.json()
-           }
-           throw new Error('unable to can')
-       })
-       .then(data => {
-           dispatch(initializeUser(data));
-           setLoading(false);
-       })
-       .catch(e => {
-           console.log(e);
-           setLoading(false);
-       });
+       setTimeout(() => {
+           const email = window.localStorage.getItem('email');
+           const accessed = window.localStorage.getItem('accessed');
+           if(email){
+               setAuth(true);
+               setLoading(true);
+               dispatch(userWelcome(email,true));
+            }else if(accessed){
+                setAuth(true);
+                setLoading(true);
+            }else{
+                setLoading(true)
+            }
+       }, 1500);
        // eslint-disable-next-line
     },[]);
 

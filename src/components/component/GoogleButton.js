@@ -30,10 +30,10 @@ const Styles = {
     }
 };
 
-const GoogleButton = () => {
+const GoogleButton = ({onClick}) => {
     return (
         <div>
-            <button style={Styles.buttonStyle}>
+            <button style={Styles.buttonStyle} onClick={onClick}>
                 <img alt="" src={googleIcon} style={Styles.imgStyle} />
                 <span style={Styles.text}>
                     Login With Google
