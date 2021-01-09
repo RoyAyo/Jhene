@@ -135,6 +135,42 @@ input{
     color: #224E9C;
 }
 
+.bot-texts .text .vendor-logo{
+    width: 60px;
+    height: 50px;
+    border: 0.5px solid transparent;
+    border-radius: 5px;
+}
+
+.bot-texts .text .vendor-blocks{
+    display: block;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 8px;
+    color: #7F8E9D;
+}
+
+.bot-texts .text .vendor-blocks .vendor-number,.bot-texts .text .vendor-blocks .vendor-email{
+    font-weight: 400;
+    color: #182C69;
+}
+
+.bot-texts .text .vendor-blocks .vendor-biz-name{
+    vertical-align: top;
+    position: relative;
+    top: 5px;
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #182C69;
+}
+
+
+
 .bot-texts .text-button{
     color:#fff;
     background:rgba(24, 44, 105, 0.4);

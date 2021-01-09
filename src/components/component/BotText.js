@@ -47,7 +47,19 @@ const BotText = ({message}) => {
                         ) : (
                             message.vendor ? (
                                     <>
-                                        {message.vendor}
+                                        <span className='vendor-blocks'>
+                                            <img className="vendor-logo" alt='' src={message.vendor.logo} />
+                                            <span className="vendor-biz-name">{message.vendor.business_name}</span>
+                                        </span>
+                                        <span className='vendor-blocks'>
+                                            Phone number : <span className="vendor-number">{message.vendor.phone_number}</span>
+                                        </span>
+                                        <span className='vendor-blocks'>
+                                            Email : <span className="vendor-email">{message.vendor.email}</span>
+                                        </span>
+                                        <span className='vendor-blocks'>
+                                            Link : <a href={message.vendor.link} target="_blank" rel="noopener noreferrer" className='vendor-link'>{message.vendor.link}</a>
+                                        </span>
                                     </>
                                 ) : (
                                 <>

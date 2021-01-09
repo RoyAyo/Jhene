@@ -154,6 +154,24 @@ export const sendMessage = (message,recommendations=[]) => {
                         };
                         dispatch(displayBotRecommendation(payload));
                     }
+                    //dey run for background, add to user
+                    const email = window.localStorage.getItem('email');
+                    const to_send = JSON.stringify({
+                        email,
+                        vendor:data.vendor,
+                        context:data.context
+                        
+                    });
+                    fetch(`http://localhost:8080/api/recommend/addProduct`,{
+                        method : "POST",
+                        body:to_send,
+                        headers : {
+                            'content-type' : 'application/json'
+                        }
+                    }).then(data => data.json())
+                    .catch(e => {
+                        
+                    });
                 }
             }
         }).catch(e => {

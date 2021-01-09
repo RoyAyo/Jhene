@@ -1,7 +1,20 @@
 import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS, DISPLAY_BOT_RECOMMENDATION } from '../actions/messages';
 
+// const test_message = 
+
 const initialState = {
-    messages : [],
+    messages : [{
+        bot : true,
+        context : '',
+        message : 'Hello',
+        with_option:false,
+        vendor : {
+            logo : "https://www.logodesign.net/logo/sea-swoosh-in-shape-of-letter-c-with-sun-4761ld.png",
+            link : "https://twitter.com/BotJhene",
+            business_name : "Cactus Jhack Apparel",
+            phone_number : "08087219810"
+        }
+    }],
     message_loading : false,
     questions : {},
     answers : {},
