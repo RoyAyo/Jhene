@@ -60,7 +60,7 @@ const ChatScreen = props => {
             }
             setAuth(true);
             setLoading(false);
-            dispatch(userWelcome(email,true));
+            dispatch(userWelcome(undefined,true));
         }else{
             setLoading(false);
         }

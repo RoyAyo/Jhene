@@ -197,7 +197,7 @@ export const sendMessage = (message,recommendations=[]) => {
 export const userWelcome = (email) => {
     return (dispatch) => {
         dispatch(initialiseMessage());
-
+        if(email) {
         const data = JSON.stringify({email});
 
         fetch(`https://jhene-node.herokuapp.com/api/recommend/getAd`,{
@@ -218,22 +218,22 @@ export const userWelcome = (email) => {
                     context,
                     vendor
                 };
-                dispatch(displayBotMessage(payload));
-                if(data.recommendations.length > 0){
-                    dispatch(initialiseMessage());
-                    const recommendation = data.recommendations[0];
-                    const recommendations = data.recommendations.slice(1);
-                    const payload = {
-                        recommendation,
-                        recommendations
-                    };
-                    dispatch(displayBotRecommendation(payload));
-                }
-            }else{
-                const data = {
-                    message : 'Hola, how are you doing?'
-                }
-                dispatch(displayBotMessage(data));
+            dispatch(displayBotMessage(payload));
+            if(data.recommendations.length > 0){
+                dispatch(initialiseMessage());
+                const recommendation = data.recommendations[0];
+                const recommendations = data.recommendations.slice(1);
+                const payload = {
+                    recommendation,
+                    recommendations
+                };
+                dispatch(displayBotRecommendation(payload));
+            }
+        }else{
+            const data = {
+                message : 'Hola, how are you doing?'
+            }
+            dispatch(displayBotMessage(data));
             }
         })
         .catch(e => {
@@ -242,6 +242,9 @@ export const userWelcome = (email) => {
                 message : 'Hola'
             }
             dispatch(displayBotMessage(data));
-        });
+        });    
+        }else{
+            dispatch(displayBotMessage({message:'Hi stranger, How are you doing'}));
+        }
     }
 };
