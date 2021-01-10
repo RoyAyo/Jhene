@@ -4,10 +4,13 @@ import VisibilitySensor from "react-visibility-sensor";
 import {Spring} from 'react-spring/renderprops';
 
 import {
-    hamburgerIcon,
-    logo
+    hamburgerIcon
 } from '../../static/index';
 import '../../static/css/header.css';
+
+import {
+    Image
+} from 'cloudinary-react';
 
 const Header = () => {
     const [isHamburgerMenu,setIsHamburgerMenu] = useState(false);
@@ -66,7 +69,7 @@ const Header = () => {
                     <div className="lg">
                         <div>
                             <Link to="/" style={{textDecoration:"none",cursor:"pointer"}}>
-                                <img  src={logo} alt=""/>
+                                <Image cloudName="jhene" publicId="logo_srwu6p"  />
                             </Link>
                         </div>
                         <div className="links">
@@ -87,7 +90,7 @@ const Header = () => {
                     <div className={isScrolled ? "sm-md scrolled" : "sm-md"}>
                         <div>
                             <Link to='/'>
-                                <img  src={logo} alt=""/>
+                                <Image cloudName="jhene" publicId="logoSm_c2gff8"  />
                             </Link>
                         </div>
                         <div onClick={() => setIsHamburgerMenu(true)}>

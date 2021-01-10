@@ -6,8 +6,11 @@ import BotText from './component/BotText';
 import UserText from './component/UserText';
 import Screen from './component/Screen';
 import { sendMessage,userWelcome } from '../redux/actions/messages';
-import jheneImg from '../static/jhene.svg'; 
 import Div100vh from 'react-div-100vh'
+
+import {
+    Image
+} from 'cloudinary-react';
 
 import '../static/css/chatscreen.css';
 
@@ -43,7 +46,7 @@ const ChatScreen = props => {
 
     //component did mount
     useEffect(() => {
-    //    setTimeout(() => {
+       setTimeout(() => {
         const email = window.localStorage.getItem('email');
         const accessed = window.localStorage.getItem('accessed');
         if(email){
@@ -60,7 +63,7 @@ const ChatScreen = props => {
         }else{
             setLoading(false);
         }
-    //    }, 1500);
+       }, 1000);
        // eslint-disable-next-line
     },[]);
 
@@ -88,7 +91,7 @@ const ChatScreen = props => {
                         <div className="large-left-screen">
                             <div className="names">
                                 <div>
-                                    <img src={jheneImg} alt='' />
+                                    <Image publicId="jhene_tiny_avi_cahosa" cloudName="jhene" />
                                 </div>
                                 <div>
                                     <p>Jhene</p>
@@ -116,7 +119,7 @@ const ChatScreen = props => {
                         {/* <div> */}
                             <div className='top-chat-screen'>
                                 <div>
-                                    <img src={jheneImg} alt='' />
+                                    <Image publicId="jhene_tiny_avi_cahosa" cloudName="jhene" />
                                 </div>
                                 <div>
                                     <p>Jhene</p>
