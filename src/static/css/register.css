@@ -1,4 +1,4 @@
-.wrapper{
+.reg-wrapper{
     padding : 30px 11.07%;
 }
 
@@ -81,7 +81,7 @@
         width: 65%;
     }
 
-    .wrapper{
+    .reg-wrapper{
         padding: 30px 11.4%;
     }
 
@@ -103,7 +103,7 @@
         display: none;
     }
 
-    .wrapper{
+    .reg-wrapper{
         padding: 15px 11.4%;
     }
     .body .form{
@@ -112,7 +112,7 @@
 }
 
 @media(max-width:750px){
-    .wrapper{
+    .reg-wrapper{
         padding: 0px 16px;
     }
 

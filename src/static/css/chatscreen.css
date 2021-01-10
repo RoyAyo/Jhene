@@ -58,7 +58,7 @@ input{
     line-height: 22px;
     letter-spacing: 0.1px;
     color: #fff;
-    margin-bottom: 0px;
+    margin-bottom: 3px;
 }
 
 .top-chat-screen div p:nth-child(2){
@@ -66,7 +66,7 @@ input{
     font-style: normal;
     font-weight: normal;
     position: relative;
-    bottom: 3px;
+    bottom: 2.5px;
     font-size: 13px;
     line-height: 20px;
     color: #FFFFFF;
@@ -261,7 +261,7 @@ input{
     .full-body{
         display: flex;
         width: 100%;
-        padding:60px 3.67%;
+        padding:50px 3.67%;
     }
 
     .large-left-screen{
@@ -315,7 +315,6 @@ input{
     }
     .large-left-screen ul li{
         margin-bottom: 20px;
-        text-align: center;
     }
     
     .large-left-screen ul li .left-chat-link{
@@ -337,12 +336,12 @@ input{
 
 @media(min-width:1013px){
     .full-body{
-        padding:90px 5.67%;
+        padding:40px 5.67%;
     }   
 }
 
 @media(min-width:1250px){
     .full-body{
-        padding:90px 8.67%;
+        padding:40px 8.67%;
     }   
 }

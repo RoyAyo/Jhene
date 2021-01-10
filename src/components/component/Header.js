@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import VisibilitySensor from "react-visibility-sensor";
 import {Spring} from 'react-spring/renderprops';
@@ -11,12 +11,25 @@ import '../../static/css/header.css';
 
 const Header = () => {
     const [isHamburgerMenu,setIsHamburgerMenu] = useState(false);
+    const [isScrolled,setIsScrolled] = useState(false);
     
+
+    useEffect(() => {
+        window.onscroll = () => {
+            if(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50){
+                setIsScrolled(true);
+            }else{
+                setIsScrolled(false);
+            }
+        }
+         // eslint-disable-next-line
+    }, [])
+
     return (
         <>
             <VisibilitySensor>
             {({isVisible}) => (
-                <Spring to={{display: isHamburgerMenu ? "" : "none", opacity:isVisible ? 1 : 0}}>
+                <Spring to={{display: isHamburgerMenu ? "" : "none", opacity:isVisible ? 1 : 0, height : isVisible ? "207px" : "0px"}}>
                     {props => (
                         <div className="fixed-header-sm" style={{...props}}>
                             <p onClick={() => setIsHamburgerMenu(false)}>
@@ -71,7 +84,7 @@ const Header = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="sm-md">
+                    <div className={isScrolled ? "sm-md scrolled" : "sm-md"}>
                         <div>
                             <Link to='/'>
                                 <img  src={logo} alt=""/>

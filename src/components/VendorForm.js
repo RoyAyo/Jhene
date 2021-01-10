@@ -45,7 +45,7 @@ const VendorForm = () => {
     return (
         <div>
             <Header />
-            <div className="wrapper">
+            <div className="ven-wrapper">
                 <h3 className="req-ven">Request Vendor Access</h3>
                 <div className="info">
                     <p>

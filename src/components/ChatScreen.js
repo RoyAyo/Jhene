@@ -1,5 +1,5 @@
 import React, { useRef,useEffect,useState } from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect,withRouter} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.svg';
 import BotText from './component/BotText';
@@ -12,7 +12,7 @@ import Div100vh from 'react-div-100vh'
 import '../static/css/chatscreen.css';
 
 
-const ChatScreen = () => {
+const ChatScreen = props => {
 
     const [loading,setLoading] = useState(true);
     const [auth,setAuth] = useState(false);
@@ -44,7 +44,6 @@ const ChatScreen = () => {
     //component did mount
     useEffect(() => {
     //    setTimeout(() => {
-        console.log('running')
         const email = window.localStorage.getItem('email');
         const accessed = window.localStorage.getItem('accessed');
         if(email){
@@ -52,6 +51,10 @@ const ChatScreen = () => {
             setLoading(false);
             dispatch(userWelcome(email,true));
         }else if(accessed){
+            if(accessed > 12){
+                window.localStorage.setItem('accessed',1);
+                props.history.push('/register');
+            }
             setAuth(true);
             setLoading(false);
         }else{
@@ -162,4 +165,4 @@ const ChatScreen = () => {
 };
 
 
-export default ChatScreen;
+export default withRouter(ChatScreen);

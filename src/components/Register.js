@@ -4,15 +4,10 @@ import Footer from './component/Footer';
 import Input from './component/Input';
 import GoogleButton from './component/GoogleButton';
 import Button from './component/Button';
-import VisibilitySensor from "react-visibility-sensor";
-import {Spring} from 'react-spring/renderprops';
 import {useGoogleLogin} from 'react-google-login';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {
-    Image
-} from 'cloudinary-react';
 
 import "../static/css/register.css";
 import { withRouter } from 'react-router-dom';
@@ -31,7 +26,7 @@ const Register = props => {
             email,
             name
         })
-        fetch('http://localhost:8080/api/auth/register',{
+        fetch('https://jhene-node.herokuapp.com/api/auth/register',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
@@ -54,7 +49,9 @@ const Register = props => {
     };
 
     const onFailure = () => {
-        console.log('Unable to login')
+        toast.error('Unauthorized by google',{
+            position : toast.POSITION.TOP_RIGHT
+        });
     };
 
     const {signIn} = useGoogleLogin({
@@ -79,7 +76,7 @@ const Register = props => {
             name
         });
         console.log(data);
-        fetch('http://localhost:8080/api/auth/register',{
+        fetch('https://jhene-node.herokuapp.com/api/auth/register',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
@@ -106,7 +103,7 @@ const Register = props => {
     return (
         <div>
             <Header />
-            <div className="wrapper">
+            <div className="reg-wrapper">
                 <h3 className="get-started">Get Started</h3>
                 <div className="body">
                     <div className="form">
@@ -119,17 +116,6 @@ const Register = props => {
                         <Button name="Let's Go" onClick={saveEmail} />
                     </div>
                     <div className="nothing">
-                    <VisibilitySensor partialVisibility>
-                        {({isVisible}) => (
-                            <Spring delay={200} to={{opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)"}}>
-                                {props => (
-                                    <div style={{...props}}>
-                                        <Image cloudName="jhene" publicId="lady-stand_vucuvd"  />
-                                    </div>
-                                )}
-                            </Spring>
-                        )}
-                </VisibilitySensor>
                     </div>
                 </div>
             <Footer />

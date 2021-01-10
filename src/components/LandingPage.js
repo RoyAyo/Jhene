@@ -66,7 +66,7 @@ const LandingPage = () => {
                 </div>
                 <VisibilitySensor partialVisibility>
                     {({isVisible}) => (
-                        <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateX(0)" : "translateX(40px)"}} delay={250}>
+                        <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateY(0)" : "translateY(40px)"}} delay={250}>
                             {props => (
                                 <div className="vendor-desc-img" style={{...props}}>
                                     <Image cloudName="jhene" publicId="header-lg_zs3pmt"  />
@@ -92,7 +92,8 @@ const LandingPage = () => {
                                                     <p>Customer buys with trust, seller makes more sales. Everybody wins!</p>
                                                 </div>
                                                 <div className="about-us-img">
-                                                    <Image cloudName="jhene" publicId="lady-stand_vucuvd"  />
+                                                    <Image cloudName="jhene" publicId="lady-stand_vucuvd" className='stand-bot'  />
+                                                    <Image cloudName="jhene" publicId="lady-stand_vucuvd" className='stand-bot-sm'  />
                                                 </div>
                                             </div>
                                         </>
@@ -138,8 +139,8 @@ const LandingPage = () => {
                                 {props => (
                                     <div className="contact-us" style={{...props}}>
                                         <h4>Contact us</h4>
-                                        <p>You want to speak oor partner with us? Send us an email on <a href="mailto:apig.bot@gmail.com">Jhene</a></p>
-                                        <p>Or visit us on Twitter <a href="https://www.twitter.com/Jhenebot" className='twit' target='_blank' rel="noopener noreferrer">Jhene</a></p>
+                                        <p>You want to speak oor partner with us? Send us an email on <a href="mailto:apig.bot@gmail.com">apig.bot@gmail.com</a></p>
+                                        <p>Or visit us on Twitter <a href="https://www.twitter.com/BotJhene" className='twit' target='_blank' rel="noopener noreferrer">@BotJhene</a></p>
                                     </div>
                                 )}
                             </Spring>

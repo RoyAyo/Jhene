@@ -135,7 +135,10 @@ export const sendMessage = (message,recommendations=[]) => {
             if(data.ok){
                 return data.json()
             }
-            throw new Error(data.msg)
+            if(data.status === 500 || data.status === 404 || data.status === 400 ){
+                throw new Error("server");
+            }
+            throw new Error(data.msg);
         })
         .then(data => {
             if(data.more_info){
@@ -143,8 +146,8 @@ export const sendMessage = (message,recommendations=[]) => {
                 dispatch(showOption(data));
             }else{
                 dispatch(displayBotMessage(data));
-                if(data.vendor){
-                    if(recommendations.length > 0){
+                if(recommendations.length > 0){
+                    if(data.vendor){
                         dispatch(initialiseMessage());
                         const recommendation = data.recommendations[0];
                         const recommendations = data.recommendations.slice(1);
@@ -162,7 +165,7 @@ export const sendMessage = (message,recommendations=[]) => {
                         context:data.context
                         
                     });
-                    fetch(`http://localhost:8080/api/recommend/addProduct`,{
+                    fetch(`https://jhene-node.herokuapp.com/api/recommend/addProduct`,{
                         method : "POST",
                         body:to_send,
                         headers : {
@@ -170,13 +173,21 @@ export const sendMessage = (message,recommendations=[]) => {
                         }
                     }).then(data => data.json())
                     .catch(e => {
-                        
+                        console.log(e.message);
                     });
                 }
             }
         }).catch(e => {
-            const data = {
-                message : "I am currently flexing, please try again later"
+            var data;
+            if(e.message === 'server'){
+                data = {
+                    message : "I am currently down, please try again later"
+                }
+            }
+            else{
+                data = {
+                    message : "Go buy data, You cannot reach me"
+                }    
             }
             dispatch(displayBotMessage(data));
         });
@@ -189,7 +200,7 @@ export const userWelcome = (email) => {
 
         const data = JSON.stringify({email});
 
-        fetch(`http://localhost:8080/api/recommend/getAd`,{
+        fetch(`https://jhene-node.herokuapp.com/api/recommend/getAd`,{
             method : "POST",
             body:data,
             headers : {
@@ -197,7 +208,6 @@ export const userWelcome = (email) => {
             }
         }).then(data => data.json())
         .then(data => {
-            console.log(data);
             if(data.success){
                 const name = data.user.name.split(' ')[0];
                 const message = `Hi ${name}, how are you doing`;
