@@ -1,22 +1,38 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import VisibilitySensor from "react-visibility-sensor";
 import {Spring} from 'react-spring/renderprops';
 
 import {
-    hamburgerIcon,
-    logo
+    hamburgerIcon
 } from '../../static/index';
 import '../../static/css/header.css';
 
+import {
+    Image
+} from 'cloudinary-react';
+
 const Header = () => {
     const [isHamburgerMenu,setIsHamburgerMenu] = useState(false);
+    const [isScrolled,setIsScrolled] = useState(false);
     
+
+    useEffect(() => {
+        window.onscroll = () => {
+            if(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50){
+                setIsScrolled(true);
+            }else{
+                setIsScrolled(false);
+            }
+        }
+         // eslint-disable-next-line
+    }, [])
+
     return (
         <>
             <VisibilitySensor>
             {({isVisible}) => (
-                <Spring to={{display: isHamburgerMenu ? "" : "none", opacity:isVisible ? 1 : 0}}>
+                <Spring to={{display: isHamburgerMenu ? "" : "none", opacity:isVisible ? 1 : 0, height : isVisible ? "207px" : "0px"}}>
                     {props => (
                         <div className="fixed-header-sm" style={{...props}}>
                             <p onClick={() => setIsHamburgerMenu(false)}>
@@ -53,7 +69,7 @@ const Header = () => {
                     <div className="lg">
                         <div>
                             <Link to="/" style={{textDecoration:"none",cursor:"pointer"}}>
-                                <img  src={logo} alt=""/>
+                                <Image cloudName="jhene" publicId="logo_srwu6p"  />
                             </Link>
                         </div>
                         <div className="links">
@@ -71,10 +87,10 @@ const Header = () => {
                             </Link>
                         </div>
                     </div>
-                    <div className="sm-md">
+                    <div className={isScrolled ? "sm-md scrolled" : "sm-md"}>
                         <div>
                             <Link to='/'>
-                                <img  src={logo} alt=""/>
+                                <Image cloudName="jhene" publicId="logoSm_c2gff8"  />
                             </Link>
                         </div>
                         <div onClick={() => setIsHamburgerMenu(true)}>

@@ -1,18 +1,21 @@
 import React, { useRef,useEffect,useState } from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect,withRouter} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.svg';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
 import Screen from './component/Screen';
 import { sendMessage,userWelcome } from '../redux/actions/messages';
-import jheneImg from '../static/jhene.svg'; 
 import Div100vh from 'react-div-100vh'
+
+import {
+    Image
+} from 'cloudinary-react';
 
 import '../static/css/chatscreen.css';
 
 
-const ChatScreen = () => {
+const ChatScreen = props => {
 
     const [loading,setLoading] = useState(true);
     const [auth,setAuth] = useState(false);
@@ -43,8 +46,7 @@ const ChatScreen = () => {
 
     //component did mount
     useEffect(() => {
-    //    setTimeout(() => {
-        console.log('running')
+       setTimeout(() => {
         const email = window.localStorage.getItem('email');
         const accessed = window.localStorage.getItem('accessed');
         if(email){
@@ -52,12 +54,17 @@ const ChatScreen = () => {
             setLoading(false);
             dispatch(userWelcome(email,true));
         }else if(accessed){
+            if(accessed > 12){
+                window.localStorage.setItem('accessed',1);
+                props.history.push('/register');
+            }
             setAuth(true);
             setLoading(false);
+            dispatch(userWelcome(undefined,true));
         }else{
             setLoading(false);
         }
-    //    }, 1500);
+       }, 1000);
        // eslint-disable-next-line
     },[]);
 
@@ -85,7 +92,7 @@ const ChatScreen = () => {
                         <div className="large-left-screen">
                             <div className="names">
                                 <div>
-                                    <img src={jheneImg} alt='' />
+                                    <Image publicId="jhene_tiny_avi_cahosa" cloudName="jhene" />
                                 </div>
                                 <div>
                                     <p>Jhene</p>
@@ -113,7 +120,7 @@ const ChatScreen = () => {
                         {/* <div> */}
                             <div className='top-chat-screen'>
                                 <div>
-                                    <img src={jheneImg} alt='' />
+                                    <Image publicId="jhene_tiny_avi_cahosa" cloudName="jhene" />
                                 </div>
                                 <div>
                                     <p>Jhene</p>
@@ -162,4 +169,4 @@ const ChatScreen = () => {
 };
 
 
-export default ChatScreen;
+export default withRouter(ChatScreen);

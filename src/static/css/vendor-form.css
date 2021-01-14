@@ -3,11 +3,11 @@ input{
     -webkit-appearance: none;
 }
 
-.wrapper{
-    padding: 50px 11.4%;
+.ven-wrapper{
+    padding: 50px 11.07%;
 }
 
-.wrapper .req-ven{
+.ven-wrapper .req-ven{
     text-align: center;
     font-family: Poppins;
     font-style: normal;
@@ -25,7 +25,7 @@ input{
     justify-content: center;
 }
 
-.wrapper .info p{
+.ven-wrapper .info p{
     width: 673px;
     font-family: Poppins;
     font-style: normal;
@@ -78,7 +78,7 @@ input{
         width : 90%;
     }
 
-    .wrapper{
+    .ven-wrapper{
         padding: 15px 11.4%;
     }
 
@@ -93,26 +93,26 @@ input{
         width : 100%;
     }
 
-    .wrapper{
+    .ven-wrapper{
         padding: 0px 16px;
     }
     
-    .wrapper .info p{
+    .ven-wrapper .info p{
         width: 80%;
     }
 }
 
 @media(max-width:750px){
 
-    .wrapper{
+    .ven-wrapper{
         padding: 0px 16px;
     }
 
-    .wrapper .req-ven{
+    .ven-wrapper .req-ven{
         font-size: 16px;
     }
 
-    .wrapper .info p{
+    .ven-wrapper .info p{
         width: 100%;
         font-size: 16px;
     }

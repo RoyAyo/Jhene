@@ -20,7 +20,7 @@
 
 .top-desc .desc{
     width: 70%;
-    padding-top: 58px;
+    padding-top: 88px;
 }
 
 .top-desc .desc h4{
@@ -32,7 +32,7 @@
     letter-spacing: -0.165px;
     color: #3474E2;
     max-width: 653px;
-    margin-bottom: 13px;
+    margin-bottom: 20px;
 }
 .top-desc .desc p{
     font-family: "Poppins";
@@ -42,7 +42,7 @@
     line-height: 30px;
     letter-spacing: -0.165px;
     color: #4F5665;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 
 .top-desc .desc div .link-btn{
@@ -110,7 +110,7 @@
     font-size: 16px;
     color: #4F5665;
     letter-spacing: -0.165px;
-    line-height: 24px
+    line-height: 24px;
 }
 
 .about-us .about-us-img{
@@ -119,7 +119,7 @@
 
 .about-us .about-us-img img{
     position: relative;
-    bottom: 60px;
+    bottom: 50px;
     width: 160px;
     height: 296px;
 }
@@ -212,6 +212,10 @@
 
 .contact-us p a:hover{
     font-size: 17px;
+}
+
+.stand-bot-sm{
+    display: none;
 }
 
 @media(max-width:1440px){
@@ -448,6 +452,14 @@
 
     .contact-us p a:hover{
         font-size: 15.5px;
+    }
+
+    .stand-bot-sm{
+        display: inline;
+    }
+
+    .stand-bot{
+        display: none;
     }
 }
 
