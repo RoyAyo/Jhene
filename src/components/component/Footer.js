@@ -4,10 +4,13 @@ import VisibilitySensor from "react-visibility-sensor";
 import {Spring} from 'react-spring/renderprops';
 
 import {
-    logo,
     twitterIcon,
     gmailIcon
 } from '../../static/index';
+
+import {
+    Image
+} from 'cloudinary-react';
 
 const Footer = () => {
     return (
@@ -19,7 +22,7 @@ const Footer = () => {
                             <div className="footers" style={{...props}}>
                                 <div className="icons">
                                     <div className="logo-footer">
-                                        <img src={logo} alt="" />
+                                        <Image cloudName="jhene" publicId="logoSm_c2gff8"  />
                                     </div>
                                     <div className='social-footer'>
                                         <a href="https://www.twitter.com/Jhenebot" target='_blank' rel="noopener noreferrer">

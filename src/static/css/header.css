@@ -110,11 +110,6 @@
         width: 30%;
     }
 
-    .header .sm-md div:nth-child(1) img{
-        width: 134px;
-        height: 46px;
-    }
-
     .header .sm-md div:nth-child(2){
         width: 70%;
         text-align: right;
@@ -145,11 +140,6 @@
 
     .header .sm-md div:nth-child(1){
         width: 30%;
-    }
-
-    .header .sm-md div:nth-child(1) img{
-        width: 94px;
-        height: 32px;
     }
 
     .header .scrolled{

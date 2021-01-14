@@ -23,6 +23,7 @@ const Header = () => {
                 setIsScrolled(true);
             }else{
                 setIsScrolled(false);
+                setIsHamburgerMenu(false);
             }
         }
          // eslint-disable-next-line
@@ -90,7 +91,7 @@ const Header = () => {
                     <div className={isScrolled ? "sm-md scrolled" : "sm-md"}>
                         <div>
                             <Link to='/'>
-                                <Image cloudName="jhene" publicId="logoSm_c2gff8"  />
+                                <Image cloudName="jhene" publicId="logoSm_c2gff8"  className="header-logo" />
                             </Link>
                         </div>
                         <div onClick={() => setIsHamburgerMenu(true)}>

@@ -82,8 +82,7 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
                 more_info : true,
                 location : ""
             }
-            console.log(data);
-            fetch(`http://52.86.178.184/send_message`,{
+            fetch(`https://api.jhene.co/send_message`,{
                 method : 'POST',
                 headers : {
                     'Content-type' : 'application/json'
@@ -124,7 +123,7 @@ export const sendMessage = (message,recommendations=[]) => {
             location : ""
 
         }
-        fetch(`http://52.86.178.184/send_message`,{
+        fetch(`https://api.jhene.co/send_message`,{
             method : 'POST',
             headers : {
                 'Content-type' : 'application/json'
@@ -186,8 +185,8 @@ export const sendMessage = (message,recommendations=[]) => {
             }
             else{
                 data = {
-                    message : "Go buy data, You cannot reach me"
-                }    
+                    message : "You cannot currently reach me, seem to be a network issue"
+                }
             }
             dispatch(displayBotMessage(data));
         });
@@ -210,7 +209,7 @@ export const userWelcome = (email) => {
         .then(data => {
             if(data.success){
                 const name = data.user.name.split(' ')[0];
-                const message = `Hi ${name}, how are you doing`;
+                const message = `Hi ${name}, how can I help you today?`;
                 const context = '';
                 const vendor = false;
                 const payload = {
@@ -231,13 +230,12 @@ export const userWelcome = (email) => {
             }
         }else{
             const data = {
-                message : 'Hola, how are you doing?'
+                message : 'Hola, how can I help you??'
             }
             dispatch(displayBotMessage(data));
             }
         })
         .catch(e => {
-            console.log(e.message)
             const data = {
                 message : 'Hola'
             }
