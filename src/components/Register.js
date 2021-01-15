@@ -60,7 +60,7 @@ const Register = props => {
         clientId,
         isSignedIn: true,
         accessType:'offline',
-        cookiePolicy:"http://jhene.herokuapp.com"
+        cookiePolicy:"https://jhene.co"
     });
 
     const skip = e => {

@@ -237,12 +237,12 @@ export const userWelcome = (email) => {
         })
         .catch(e => {
             const data = {
-                message : 'Hola'
+                message : 'Hi there, How can I be of help'
             }
             dispatch(displayBotMessage(data));
         });    
         }else{
-            dispatch(displayBotMessage({message:'Hi stranger, How are you doing'}));
+            dispatch(displayBotMessage({message:'Hi there, How may I help you today'}));
         }
     }
 };

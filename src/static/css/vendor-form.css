@@ -67,10 +67,11 @@ input{
     border-radius: 5px;
     cursor: pointer;
     transition: all .2s linear;
+    border: 1px solid transparent;
 }
 
 .submit-access button:hover{
-    background-color: #4F5665;
+    background-color: #8976FD;
 }
 
 @media(max-width:1350px){
