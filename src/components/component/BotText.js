@@ -36,7 +36,7 @@ const Button = ({option,answering}) => {
 }
 
 const copyClickBoard = e => {
-    var num = e.target.previousSibling;
+    var num = e.target.previousSibling.innerHTML;
     const elem = document.body.appendChild(document.createElement('input'));
     elem.value = num;
     elem.focus();

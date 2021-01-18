@@ -92,7 +92,6 @@ const Register = props => {
                 throw new Error(data.msg);
             }
         }).catch(e => {
-            //shouldn't happen but alert invalid login
             // console.log(e.message);
             toast.error(e.message,{
                 position : toast.POSITION.TOP_RIGHT
