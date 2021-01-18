@@ -22,7 +22,7 @@ const LandingPage = () => {
                             <Spring delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0 }}>
                                 {props => (
                                     <div className="imgs" style={{...props}}>
-                                          <Image cloudName="jhene" publicId="group2_musuvf" />
+                                          <Image cloudName="jhene" publicId="Group_203_1_c8ccnx" />
                                     </div>
                                 )}
                             </Spring>
@@ -69,7 +69,7 @@ const LandingPage = () => {
                         <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateY(0)" : "translateY(40px)"}} delay={250}>
                             {props => (
                                 <div className="vendor-desc-img" style={{...props}}>
-                                    <Image cloudName="jhene" publicId="header-lg_zs3pmt"  />
+                                    <Image cloudName="jhene" publicId="header_1_2_vdokoa" className="header-lg-illustration"  />
                                 </div>
                             )}
                         </Spring>
@@ -92,8 +92,8 @@ const LandingPage = () => {
                                                     <p>Customer buys with trust, seller makes more sales. Everybody wins!</p>
                                                 </div>
                                                 <div className="about-us-img">
-                                                    <Image cloudName="jhene" publicId="lady-stand_vucuvd" className='stand-bot'  />
-                                                    <Image cloudName="jhene" publicId="lady-stand_vucuvd" className='stand-bot-sm'  />
+                                                    <Image cloudName="jhene" publicId="pose_f9_cropped_1_3_agjefk" className='stand-bot'  />
+                                                    <Image cloudName="jhene" publicId="pose_f9_cropped_1_3_agjefk" className='stand-bot-sm'  />
                                                 </div>
                                             </div>
                                         </>

@@ -70,7 +70,7 @@ const Header = () => {
                     <div className="lg">
                         <div>
                             <Link to="/" style={{textDecoration:"none",cursor:"pointer"}}>
-                                <Image cloudName="jhene" publicId="logo_srwu6p"  />
+                                <Image cloudName="jhene" publicId="logo_blue_1_c5fe2q" style={{width:"174px",height:"60px"}} />
                             </Link>
                         </div>
                         <div className="links">
@@ -91,7 +91,7 @@ const Header = () => {
                     <div className={isScrolled ? "sm-md scrolled" : "sm-md"}>
                         <div>
                             <Link to='/'>
-                                <Image cloudName="jhene" publicId="logoSm_c2gff8"  className="header-logo" />
+                                <Image cloudName="jhene" publicId="logo_blue_1_ptflze"  className="header-logo" style={{width:"94px",height:"32px"}} />
                             </Link>
                         </div>
                         <div onClick={() => setIsHamburgerMenu(true)}>

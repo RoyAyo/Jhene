@@ -3,6 +3,8 @@ import ChatLoader from "../ChatLoader";
 import {useSpring, animated} from 'react-spring';
 import { useDispatch,useSelector } from 'react-redux';
 import {clickButton} from '../../redux/actions/messages'; 
+import copyImg from '../../static/copy.png';
+import { toast,ToastContainer } from 'react-toastify';
 
 
 const Button = ({option,answering}) => {
@@ -33,6 +35,20 @@ const Button = ({option,answering}) => {
     )
 }
 
+const copyClickBoard = e => {
+    var num = e.target.previousSibling;
+    const elem = document.body.appendChild(document.createElement('input'));
+    elem.value = num;
+    elem.focus();
+    elem.select();
+    elem.setSelectionRange(0,99999);
+    document.execCommand('copy');
+    elem.parentNode.removeChild(elem);
+    toast.success('Copied to ClickBoard',{
+        position : toast.POSITION.TOP_RIGHT
+    })
+};
+
 const BotText = ({message}) => {
 
     const props = useSpring({position:'relative',right:'0px',from:{right:'100px'}});
@@ -47,12 +63,12 @@ const BotText = ({message}) => {
                         ) : (
                             message.vendor ? (
                                     <>
-                                        <span className='vendor-blocks'>
+                                        <span className='vendor-blocks' style={{marginBottom:'0px'}}>
                                             <img className="vendor-logo" alt='' src={message.vendor.logo} />
                                             <span className="vendor-biz-name">{message.vendor.business_name}</span>
                                         </span>
                                         <span className='vendor-blocks'>
-                                            Phone number : <span className="vendor-number">{message.vendor.phone_number}</span>
+                                            Phone number : <span className="vendor-number">{message.vendor.phone_number}</span><img src={copyImg} alt=''  style={{width:'30px','height':'30px',position:'relative','top':'10px',cursor:'pointer' }} onClick={e => copyClickBoard(e)}/> 
                                         </span>
                                         <span className='vendor-blocks'>
                                             Email : <span className="vendor-email">{message.vendor.email}</span>
@@ -60,6 +76,15 @@ const BotText = ({message}) => {
                                         <span className='vendor-blocks'>
                                             Link : <a href={message.vendor.link} target="_blank" rel="noopener noreferrer" className='vendor-link'>{message.vendor.link}</a>
                                         </span>
+                                        {
+                                            message.vendor.address ? (
+                                                <span className='google-map-address-link'>
+                                                    <a href='#vend'>Trace Shop</a>
+                                                </span>
+                                            ) : (
+                                                <></>
+                                            )
+                                        }
                                     </>
                                 ) : (
                                 <>
@@ -78,6 +103,7 @@ const BotText = ({message}) => {
                     <></>
                 )
             }
+            <ToastContainer />
         </>
     )
 }

@@ -3,7 +3,16 @@ import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHO
 // const test_message = 
 
 const initialState = {
-    messages : [],
+    messages : [{
+        bot : true,
+        message : '',
+        vendor : {
+            link : 'https://google.com',
+            logo : 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/05/attachment_83325650-e1582728525967.png?auto=format&q=60&fit=max&w=930',
+            phone_number : '08090289182',
+            business_name : 'RoyCo Footwares'
+        }
+    }],
     message_loading : false,
     questions : {},
     answers : {},

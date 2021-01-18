@@ -22,7 +22,7 @@ const Footer = () => {
                             <div className="footers" style={{...props}}>
                                 <div className="icons">
                                     <div className="logo-footer">
-                                        <Image cloudName="jhene" publicId="logoSm_c2gff8"  />
+                                        <Image cloudName="jhene" publicId="logo_blue_1_ptflze" />
                                     </div>
                                     <div className='social-footer'>
                                         <a href="https://www.twitter.com/Jhenebot" target='_blank' rel="noopener noreferrer">

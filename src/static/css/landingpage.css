@@ -14,6 +14,11 @@
     margin-right: 60px;
 }
 
+.top-desc .imgs img{
+    width: 393px;
+    height: 411px;
+}
+
 .top-desc .imgs-sm{
     display: none;
 }
@@ -119,7 +124,7 @@
 
 .about-us .about-us-img img{
     position: relative;
-    bottom: 50px;
+    bottom: 37px;
     width: 160px;
     height: 296px;
 }
@@ -285,7 +290,7 @@
 
     .vendor-desc-img img{
         width: 100%;
-        height: 220px;
+        height: 260px;
     }
 
     .top-desc{
@@ -366,7 +371,7 @@
     }
 
     .vendor-desc-img img{
-        height: 190px;
+        height: 210px;
     }
 
     .top-desc .desc div .link-btn{
@@ -463,8 +468,14 @@
     }
 }
 
-@media(max-width:450px){
+@media(max-width:500px){
     .vendor-desc-img img{
-        height: 165px;
+        height: 175px;
+    }
+}
+
+@media(max-width:410px){
+    .vendor-desc-img img{
+        height: 145px;
     }
 }
