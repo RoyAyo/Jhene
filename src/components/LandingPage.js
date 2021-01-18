@@ -110,7 +110,7 @@ const LandingPage = () => {
                                         <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
-                                                    <Image cloudName="jhene" publicId="roy_rl61gf"  />
+                                                    <Image cloudName="jhene" publicId="Group_204_pcucbb"  />
                                                     <h4>Roy-Layinde Ayoola</h4>
                                                     <p>Developer</p>
                                                 </div>
@@ -123,7 +123,7 @@ const LandingPage = () => {
                                         <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(20deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
-                                                    <Image cloudName="jhene" publicId="sixx_vdx7ku"  />
+                                                    <Image cloudName="jhene" publicId="Group_205_o6zc59"  />
                                                     <h4>Kolade Olufemi</h4>
                                                     <p>Designer</p>
                                                 </div>
