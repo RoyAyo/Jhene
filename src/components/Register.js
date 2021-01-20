@@ -16,6 +16,7 @@ const Register = props => {
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
+    const [loading,setLoading] = useState("Let's go");
 
     const clientId = "159251316458-etn77jocjneod804i772mqb9b5rn60hu.apps.googleusercontent.com";
 
@@ -34,7 +35,6 @@ const Register = props => {
             body:data
         }).then(data => data.json())
         .then(data => {
-            console.log(data)
             if(data.success){
                 window.localStorage.setItem('email',email);
                 props.history.push('/chat');
@@ -77,11 +77,12 @@ const Register = props => {
                 position : toast.POSITION.TOP_RIGHT
             });
         }
+        setLoading('Loading...')
         const data = JSON.stringify({
             email,
             name
         });
-        console.log(data);
+
         fetch('https://jhene-node.herokuapp.com/api/auth/register',{
             method : 'POST',
             headers :{
@@ -98,10 +99,10 @@ const Register = props => {
                 throw new Error(data.msg);
             }
         }).catch(e => {
-            // console.log(e.message);
             toast.error(e.message,{
                 position : toast.POSITION.TOP_RIGHT
             });
+            setLoading("Let's go");
         });
     }
 
@@ -118,7 +119,7 @@ const Register = props => {
                         <p className="or-">or</p>
                         <Input  name="Email" placeholder="Type Your Email" type="email" onChange={email => setEmail(email)} />
                         <Input name="Name" placeholder="Type Your Name" type="text" onChange={name => setName(name)}/>
-                        <Button name="Let's Go" onClick={saveEmail} />
+                        <Button name={loading} onClick={saveEmail} />
                     </div>
                     <div className="nothing">
                     </div>

@@ -13,6 +13,7 @@ const VendorForm = () => {
     const [link, setLink] = useState('');
     const [location, setLocation] = useState('');
     const [description, setDescription] = useState('');
+    const [loading,setLoading] = useState('Submit');
 
     const submit = () => {
         if(name.length === 0){
@@ -31,7 +32,8 @@ const VendorForm = () => {
             link,
             location,
             description
-        })
+        });
+        setLoading('Loading...');
         fetch('https://jhene-node.herokuapp.com/api/vendors/request',{
             method : 'POST',
             headers :{
@@ -40,18 +42,24 @@ const VendorForm = () => {
             body:data
         }).then(data => data.json())
         .then(data => {
-            console.log(data)
             if(data.success){
                 toast.success('Thank you for asking to be a part of us, we would get back to you very soon',{
                     position : toast.POSITION.TOP_RIGHT
                 });
+                setEmail('');
+                setLocation('');
+                setName('');
+                setLink('');
+                setDescription('');
+                setLoading('Submit');
             }else{
                 throw new Error(data.msg);
             }
         }).catch(e => {
             toast.error(e.message,{
                 position : toast.POSITION.TOP_RIGHT
-            })
+            });
+            setLoading('Submit');
         });
     };
 
@@ -74,7 +82,7 @@ const VendorForm = () => {
                         <Input name="Short description of what you do or sell" placeholder="I Sell Fashion Items" type="text" onChange={desc => setDescription(desc)}/>
                         <div className="submit-access">
                             <button onClick={submit}>
-                                Submit
+                                {loading}
                             </button>
                         </div>
                     </div>
