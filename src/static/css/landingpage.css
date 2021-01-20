@@ -329,12 +329,12 @@
     }
 
     .about-us{
-    margin-bottom: 28px;
-    display: block;
+        margin-bottom: 28px;
+        display: block;
     }
 
     .about-us .about-us-desc{
-        width: 100%;
+        width: 98%;
         padding-right: 0px;
     }
 
@@ -349,6 +349,13 @@
 
     .about-us .about-us-img img{
         bottom: 0px;
+    }
+}
+
+@media(max-width:850px){
+    .about-us .about-us-img img{
+        width: 96px;
+        height: 195px;
     }
 }
 
@@ -478,4 +485,4 @@
     .vendor-desc-img img{
         height: 145px;
     }
-}
+} 

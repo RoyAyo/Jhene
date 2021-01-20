@@ -32,7 +32,7 @@ const VendorForm = () => {
             location,
             description
         })
-        fetch('http://localhost:8080/api/vendors/request',{
+        fetch('https://jhene-node.herokuapp.com/api/vendors/request',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'

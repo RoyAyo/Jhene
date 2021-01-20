@@ -71,6 +71,12 @@ const Register = props => {
 
     const saveEmail = () => {
         //save to the database
+        
+        if(email === ''){
+            return toast.error('Please Input your email',{
+                position : toast.POSITION.TOP_RIGHT
+            });
+        }
         const data = JSON.stringify({
             email,
             name
@@ -95,7 +101,7 @@ const Register = props => {
             // console.log(e.message);
             toast.error(e.message,{
                 position : toast.POSITION.TOP_RIGHT
-            })
+            });
         });
     }
 

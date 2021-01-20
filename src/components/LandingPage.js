@@ -107,7 +107,7 @@ const LandingPage = () => {
                         <div className="pics">
                             <VisibilitySensor partialVisibility>
                                     {({isVisible}) => (
-                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)" }}>
+                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-10deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
                                                     <Image cloudName="jhene" publicId="Group_204_pcucbb"  />
@@ -120,7 +120,7 @@ const LandingPage = () => {
                             </VisibilitySensor>
                             <VisibilitySensor partialVisibility>
                                     {({isVisible}) => (
-                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(20deg)" }}>
+                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(10deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
                                                     <Image cloudName="jhene" publicId="Group_205_o6zc59"  />
