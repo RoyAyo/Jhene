@@ -17,7 +17,7 @@ const VendorForm = () => {
 
     const submit = () => {
         if(name.length === 0){
-            return toast.error('BUSINESS Name',{
+            return toast.error('Business name is required please',{
                 position : toast.POSITION.TOP_RIGHT
             });
         };

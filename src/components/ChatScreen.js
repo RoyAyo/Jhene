@@ -19,10 +19,12 @@ const ChatScreen = props => {
 
     const [loading,setLoading] = useState(true);
     const [auth,setAuth] = useState(false);
+    const [displayModal, setDisplayModal] = useState('none');
 
     //refs
     const userInput = useRef();
     const messagesDiv = useRef();
+    const chatWrapRef = useRef();
 
 
     //selectors....(map state to props)
@@ -53,6 +55,9 @@ const ChatScreen = props => {
             setAuth(true);
             setLoading(false);
             dispatch(userWelcome(email,true));
+            chatWrapRef.current.addEventListener('click',() => {
+                setDisplayModal('none');
+            });
         }else if(accessed){
             if(accessed > 12){
                 window.localStorage.setItem('accessed',1);
@@ -89,6 +94,20 @@ const ChatScreen = props => {
                         <Redirect to='/register'/>
                     ) : (
                     <div className="full-body">
+                        <div className='left-modal' style={{display : displayModal}}>
+                            <h5>Weclome to Jhene</h5>
+                            <Link to='/' className='modal-link'>
+                                Landing Page
+                            </Link>
+                            <Link to='/' className='modal-link'>
+                                Request Vendor Access
+                            </Link>
+                            <Link to='/' className='modal-link'>
+                                Contact Us
+                            </Link>
+                            <hr style={{margin:'20px 0px',border:'0.5px solid #4F5665'}}></hr>
+                            <p>To use Jhene quick, Go to this browser's menu and click "Add to Home Screen"</p>
+                        </div>
                         <div className="large-left-screen">
                             <div className="names">
                                 <div>
@@ -127,13 +146,13 @@ const ChatScreen = props => {
                                     <p>Your virtual plug</p>
                                 </div>
                                 <div>
-                                    <button>
+                                    <button onClick={() => setDisplayModal('block')}>
                                         &#8942;
                                     </button>
                                 </div>
                             </div>
                             <div className='chatApp'>
-                                <div className='wrap'>
+                                <div className='wrap' ref={chatWrapRef}>
                                     <div className='chat-app-wrapper' ref={messagesDiv}>
                                             {
                                                 messages.map((message,i) => {
