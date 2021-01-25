@@ -41,22 +41,22 @@ const Header = () => {
                             </p>
                             <ul>
                                 <li>
-                                    <Link to="#" className="sm-links">
+                                    <Link to="/chat" className="sm-links">
                                         Get Started
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="#" className="sm-links">
+                                    <Link to="/vendor-form" className="sm-links">
                                         Request Vendor Access
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="#" className="sm-links">
+                                    <Link to="/" className="sm-links">
                                         Contact Us
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="#" className="sm-links">
+                                    <Link to="/" className="sm-links">
                                         About Us
                                     </Link>
                                 </li>
