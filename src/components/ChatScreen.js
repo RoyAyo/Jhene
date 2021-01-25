@@ -106,7 +106,7 @@ const ChatScreen = props => {
                                 Contact Us
                             </Link>
                             <hr style={{margin:'20px 0px',border:'0.5px solid #4F5665'}}></hr>
-                            <p>To use Jhene quick, Go to this browser's menu and click "Add to Home Screen"</p>
+                            <p>Go to this browser's menu and click "Add to Home Screen" for ease of use.</p>
                         </div>
                         <div className="large-left-screen">
                             <div className="names">
