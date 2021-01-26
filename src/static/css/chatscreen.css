@@ -288,14 +288,13 @@ input{
         right: 0px;
         top: 0px;
         background-color: #FFFFFF;
-        height: 30vh;
         width: 45vw;
-        padding: 10px 5px;
+        padding: 15px 5px;
         box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.06);
     }
 
     .left-modal h5{
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 500;
         font-family: Poppins;
         text-align: center;
@@ -321,7 +320,7 @@ input{
 
   .left-modal p{
       padding: 0px 5px;
-      font-size: 16px;
+      font-size: 14px;
       font-family: "DM SANS";
       letter-spacing: 1.25px;
       color: #4F5665;
