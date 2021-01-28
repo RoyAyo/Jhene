@@ -4,9 +4,7 @@ export const DISPLAY_BOT_ERROR = 'display_bot_error';
 export const INITIALIZE_MESSAGE = 'initialize_message';
 export const MY_MESSAGE = 'my_message';
 export const SHOW_OPTIONS = 'show_options';
-export const Click_Button = 'click_button';
 export const CONVERT_OPTIONS = 'convert_options';
-export const SET_RECOMMENDATIONS = 'set_recommendations'
 
 export const displayBotMessage = payload => {
     return {
@@ -109,7 +107,7 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
     }
 }
 
-export const sendMessage = (message,recommendations=[]) => {
+export const sendMessage = (message,ads=[],tips=[]) => {
     return (dispatch) => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
@@ -144,36 +142,40 @@ export const sendMessage = (message,recommendations=[]) => {
                 dispatch(showOption(data));
             }else{
                 dispatch(displayBotMessage(data));
-                if(recommendations.length > 0){
-                    if(data.vendor){
+                if(data.vendor){
+                    const choice = ['none','ad','tip','none'];
+                    var n = Math.floor(Math.random() * 4);
+                    if(choice[n] !== 'none' && (ads.length > 0 || tips.length > 0)){
                         dispatch(initialiseMessage());
-                        const recommendation = data.recommendations[0];
-                        const recommendations = data.recommendations.slice(1);
+                        const recommendation = choice[n] === 'ad' ? ads[0] : tips[0];
+                        const update_ads = choice[n] === 'ad' ? ads.slice(1) : ads;
+                        const update_tips = choice[n] === 'ad' ? tips :  tips.slice(1);
                         const payload = {
                             recommendation,
-                            recommendations
+                            ads:update_ads,
+                            tips :update_tips
                         };
                         dispatch(displayBotRecommendation(payload));
                     }
-                    //dey run for background, add to user
-                    const email = window.localStorage.getItem('email');
-                    const to_send = JSON.stringify({
-                        email,
-                        vendor:data.vendor,
-                        context:data.context
-                        
-                    });
-                    fetch(`https://jhene-node.herokuapp.com/api/recommend/addProduct`,{
-                        method : "POST",
-                        body:to_send,
-                        headers : {
-                            'content-type' : 'application/json'
-                        }
-                    }).then(data => data.json())
-                    .catch(e => {
-                        console.log(e.message);
-                    });
                 }
+                //dey run for background, add to user
+                const email = window.localStorage.getItem('email');
+                const to_send = JSON.stringify({
+                    email,
+                    vendor:data.vendor,
+                    context:data.context
+                    
+                });
+                fetch(`https://jhene-node.herokuapp.com/api/recommend/addProduct`,{
+                    method : "POST",
+                    body:to_send,
+                    headers : {
+                        'content-type' : 'application/json'
+                    }
+                }).then(data => data.json())
+                .catch(e => {
+                    console.log(e.message);
+                });
             }
         }).catch(e => {
             var data;
@@ -217,15 +219,22 @@ export const userWelcome = (email) => {
                     vendor
                 };
             dispatch(displayBotMessage(payload));
-            if(data.recommendations.length > 0){
-                dispatch(initialiseMessage());
-                const recommendation = data.recommendations[0];
-                const recommendations = data.recommendations.slice(1);
-                const payload = {
-                    recommendation,
-                    recommendations
-                };
-                dispatch(displayBotRecommendation(payload));
+            if(data.ads.length > 0 || data.tips.length > 0){
+                //pick a random choice out of four
+                const choice = ['none','ad','tip','none'];
+                var n = Math.floor(Math.random() * 4);
+                if(choice[n] !== 'none'){
+                    dispatch(initialiseMessage());
+                    const recommendation = choice[n] === 'ad' ? data.ads[0] : data.tips[0];
+                    const ads = choice[n] === 'ad' ? data.ads.slice(1) : data.ads;
+                    const tips = choice[n] === 'ad' ? data.tips :  data.tips.slice(1);
+                    const payload = {
+                        recommendation,
+                        ads,
+                        tips
+                    };
+                    dispatch(displayBotRecommendation(payload));
+                }
             }
         }else{
             const data = {

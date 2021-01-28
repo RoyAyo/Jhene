@@ -9,7 +9,7 @@ const initialState = {
         with_option : false,
         vendor : false,
         recommendation : {
-            desc : 'Valentine is here, check this out to get your best nightwares',
+            desc : 'Valentine is here, Aims digiga this out to get your best nightwares',
             link : 'https://google.com',
             type : 'Tip'
         },
@@ -20,7 +20,7 @@ const initialState = {
     answers : {},
     requirements : [],
     context : '',
-    recommendations : [],
+    ads : [],
     tips : []
 }
 
@@ -57,7 +57,8 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var new_recommend_payload = Object.assign(init_recommend_message,{loading:false,message:'',with_option:false,vendor:false,recommendation:payload.recommendation});
             return {
                 ...state,
-                recommendations : payload.recommendations,
+                ads : payload.ads,
+                tips : payload.tips,
                 messages : [...state.messages,new_recommend_payload],
                 message_loading : false
             }
