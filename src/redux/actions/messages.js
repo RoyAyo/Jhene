@@ -143,9 +143,15 @@ export const sendMessage = (message,ads=[],tips=[]) => {
             }else{
                 dispatch(displayBotMessage(data));
                 if(data.vendor){
-                    const choice = ['none','ad','tip','none'];
-                    var n = Math.floor(Math.random() * 4);
+                    const choice = ['none','ad','tip','none','ad','none','none','ad','none','none','tip'];
+                    var n = Math.floor(Math.random() * 11);
                     if(choice[n] !== 'none' && (ads.length > 0 || tips.length > 0)){
+                        if(choice[n] === 'ad' && data.ads.length === 0){
+                            return
+                        }
+                        if(choice[n] === 'tip' && data.tips.length === 0){
+                            return
+                        }
                         dispatch(initialiseMessage());
                         const recommendation = choice[n] === 'ad' ? ads[0] : tips[0];
                         const update_ads = choice[n] === 'ad' ? ads.slice(1) : ads;
@@ -166,13 +172,13 @@ export const sendMessage = (message,ads=[],tips=[]) => {
                     context:data.context
                     
                 });
-                fetch(`https://jhene-node.herokuapp.com/api/recommend/addProduct`,{
+                fetch(`http://localhost:8080/api/recommend/addProduct`,{
                     method : "POST",
                     body:to_send,
                     headers : {
                         'content-type' : 'application/json'
                     }
-                }).then(data => data.json())
+                })
                 .catch(e => {
                     console.log(e.message);
                 });
@@ -197,10 +203,9 @@ export const sendMessage = (message,ads=[],tips=[]) => {
 export const userWelcome = (email) => {
     return (dispatch) => {
         dispatch(initialiseMessage());
-        if(email) {
-        const data = JSON.stringify({email});
-
-        fetch(`https://jhene-node.herokuapp.com/api/recommend/getAd`,{
+        var data = email ? JSON.stringify({email}) : JSON.stringify({email : ''});
+        
+        fetch(`http://localhost:8080/api/recommend/getAd`,{
             method : "POST",
             body:data,
             headers : {
@@ -209,7 +214,7 @@ export const userWelcome = (email) => {
         }).then(data => data.json())
         .then(data => {
             if(data.success){
-                const name = data.user.name.split(' ')[0];
+                const name = email ? data.name.split(' ')[0] : 'there';
                 const message = `Hi ${name}, how can I help you today?`;
                 const context = '';
                 const vendor = false;
@@ -218,39 +223,37 @@ export const userWelcome = (email) => {
                     context,
                     vendor
                 };
-            dispatch(displayBotMessage(payload));
-            if(data.ads.length > 0 || data.tips.length > 0){
-                //pick a random choice out of four
-                const choice = ['none','ad','tip','none'];
-                var n = Math.floor(Math.random() * 4);
-                if(choice[n] !== 'none'){
-                    dispatch(initialiseMessage());
-                    const recommendation = choice[n] === 'ad' ? data.ads[0] : data.tips[0];
-                    const ads = choice[n] === 'ad' ? data.ads.slice(1) : data.ads;
-                    const tips = choice[n] === 'ad' ? data.tips :  data.tips.slice(1);
-                    const payload = {
-                        recommendation,
-                        ads,
-                        tips
-                    };
-                    dispatch(displayBotRecommendation(payload));
+                dispatch(displayBotMessage(payload));
+                if(data.ads.length > 0 || data.tips.length > 0){
+                    //pick a random choice out of four
+                    const choice = ['tip','ad','tip','none','ad','none','ad','tip'];
+                    var n = Math.floor(Math.random() * 8);
+                    if(choice[n] !== 'none'){
+                        if(choice[n] === 'ad' && data.ads.length === 0){
+                            return
+                        }
+                        if(choice[n] === 'tip' && data.tips.length === 0){
+                            return
+                        }
+                        dispatch(initialiseMessage());
+                        const recommendation = choice[n] === 'ad' ? data.ads[0] : data.tips[0];
+                        const ads = choice[n] === 'ad' ? data.ads.slice(1) : data.ads;
+                        const tips = choice[n] === 'ad' ? data.tips :  data.tips.slice(1);
+                        const payload = {
+                            recommendation,
+                            ads,
+                            tips
+                        };
+                        dispatch(displayBotRecommendation(payload));
+                    }
                 }
+            }else{
+                const data = {message : 'Hola, how can I help you?'}
+                dispatch(displayBotMessage(data));
             }
-        }else{
-            const data = {
-                message : 'Hola, how can I help you??'
-            }
+        }).catch(e => {
+            const data = {message : 'Hi there, How can I be of help'}
             dispatch(displayBotMessage(data));
-            }
-        })
-        .catch(e => {
-            const data = {
-                message : 'Hi there, How can I be of help'
-            }
-            dispatch(displayBotMessage(data));
-        });    
-        }else{
-            dispatch(displayBotMessage({message:'Hi there, How may I help you today'}));
-        }
+        });
     }
 };

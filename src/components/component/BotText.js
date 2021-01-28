@@ -83,7 +83,7 @@ const BotText = ({message}) => {
                                         message.recommendation ? (
                                             <>
                                                 <span style={{display:'block',textAlign:'right', marginBottom:'5px',color:'',fontSize:'10px'}}>{message.recommendation.type}</span>
-                                                 <span className='vendor-biz-name'>{message.recommendation.desc}</span>
+                                                 <span className='vendor-biz-name' style={{color:'black'}}>{message.recommendation.desc}</span>
                                                 {
                                                     message.recommendation.type === 'Ad' ? (
                                                         <span className='vendor-blocks'>
