@@ -76,19 +76,30 @@ const BotText = ({message}) => {
                                         <span className='vendor-blocks'>
                                             Link : <a href={message.vendor.link} target="_blank" rel="noopener noreferrer" className='vendor-link'>{message.vendor.link}</a>
                                         </span>
-                                        {
-                                            message.vendor.address ? (
-                                                <span className='google-map-address-link'>
-                                                    <a href='#vend'>Trace Shop</a>
-                                                </span>
-                                            ) : (
-                                                <></>
-                                            )
-                                        }
                                     </>
                                 ) : (
                                 <>
-                                    {message.message}
+                                    {
+                                        message.recommendation ? (
+                                            <>
+                                                <span style={{display:'block',textAlign:'right', marginBottom:'5px',color:'',fontSize:'10px'}}>{message.recommendation.type}</span>
+                                                 <span className='vendor-biz-name'>{message.recommendation.desc}</span>
+                                                {
+                                                    message.recommendation.type === 'Ad' ? (
+                                                        <span className='vendor-blocks'>
+                                                            Link : <a href={message.recommendation.link} target="_blank" rel="noopener noreferrer" className='vendor-link'>{message.recommendation.link}</a>
+                                                        </span>
+                                                    ) : (
+                                                        <></>
+                                                    )
+                                                }
+                                            </>
+                                        ) : (
+                                            <>
+                                                {message.message}
+                                            </>
+                                        )
+                                    }
                                  </>        
                             )
                         )

@@ -3,13 +3,25 @@ import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHO
 // const test_message = 
 
 const initialState = {
-    messages : [],
+    messages : [{
+        loading : false,
+        message : '',
+        with_option : false,
+        vendor : false,
+        recommendation : {
+            desc : 'Valentine is here, check this out to get your best nightwares',
+            link : 'https://google.com',
+            type : 'Tip'
+        },
+        bot : true
+    }],
     message_loading : false,
     questions : {},
     answers : {},
     requirements : [],
     context : '',
-    recommendations : []
+    recommendations : [],
+    tips : []
 }
 
 const messagesReducer = (state = initialState, {type,payload} ) => {

@@ -105,8 +105,7 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
             });
         }else{
             dispatch(showOption({questions,requirements:new_requirements,answers,context}));
-        }
-        
+        }    
     }
 }
 
@@ -134,7 +133,7 @@ export const sendMessage = (message,recommendations=[]) => {
             if(data.ok){
                 return data.json()
             }
-            if(data.status === 500 || data.status === 404 || data.status === 400 ){
+            if(data.status === 500 || data.status === 404){
                 throw new Error("server");
             }
             throw new Error(data.msg);

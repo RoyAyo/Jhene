@@ -9,6 +9,51 @@ input{
     -moz-appearance: none;
 }
 
+.left-modal{
+    display: none;
+    position: fixed;
+    z-index: 20;
+    right: 0px;
+    top: 0px;
+    background-color: #FFFFFF;
+    width: 45vw;
+    padding: 15px 5px;
+    box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.06);
+}
+
+.left-modal h5{
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Poppins;
+    text-align: center;
+    color: #4F5665;
+    margin-bottom: 15px;
+}
+
+.left-modal .modal-link{
+    display: block;
+    padding: 0px 5px;
+    font-size: 14px;
+    font-family: "DM SANS";
+    font-weight: normal;
+    text-decoration: none;
+    margin-bottom:10px;
+    color:#4F5665;
+    transition: all .2s linear;
+}
+
+.left-modal .modal-link:hover{
+    color: #3474E2; 
+}
+
+.left-modal p{
+  padding: 0px 5px;
+  font-size: 14px;
+  font-family: "DM SANS";
+  letter-spacing: 1.25px;
+  color: #4F5665;
+}
+
 .full-body{
     height: 100%;
 }
@@ -280,52 +325,12 @@ input{
     .text-button{
         width: 45% ;
     }
+}
 
+@media(max-width:1000px){
     .left-modal{
         display: block;
-        position: fixed;
-        z-index: 20;
-        right: 0px;
-        top: 0px;
-        background-color: #FFFFFF;
-        width: 45vw;
-        padding: 15px 5px;
-        box-shadow: 0px 4px 26px rgba(0, 0, 0, 0.06);
     }
-
-    .left-modal h5{
-        font-size: 15px;
-        font-weight: 500;
-        font-family: Poppins;
-        text-align: center;
-        color: #4F5665;
-        margin-bottom: 15px;
-    }
-
-    .left-modal .modal-link{
-        display: block;
-        padding: 0px 5px;
-        font-size: 14px;
-        font-family: "DM SANS";
-        font-weight: normal;
-        text-decoration: none;
-        margin-bottom:10px;
-        color:#4F5665;
-        transition: all .2s linear;
-    }
-
-    .left-modal .modal-link:hover{
-        color: #3474E2; 
-    }
-
-  .left-modal p{
-      padding: 0px 5px;
-      font-size: 14px;
-      font-family: "DM SANS";
-      letter-spacing: 1.25px;
-      color: #4F5665;
-  }
-
 }
 
 @media(min-width:900px){

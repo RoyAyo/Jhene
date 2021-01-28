@@ -70,7 +70,7 @@ const VendorForm = () => {
                 <h3 className="req-ven">Request Vendor Access</h3>
                 <div className="info">
                     <p>
-                        To get your business featured on this platform, you have to make a request so we can reach out to you as soon as possible and verify before we add you.
+                        To get your business featured on this platform, make a request below
                     </p>
                 </div>
                 <div className="apply-form">

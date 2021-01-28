@@ -53,8 +53,8 @@ const ChatScreen = props => {
         const accessed = window.localStorage.getItem('accessed');
         if(email){
             setAuth(true);
-            setLoading(false);
             dispatch(userWelcome(email,true));
+            setLoading(false);
             chatWrapRef.current.addEventListener('click',() => {
                 setDisplayModal('none');
             });
@@ -64,12 +64,15 @@ const ChatScreen = props => {
                 props.history.push('/register');
             }
             setAuth(true);
-            setLoading(false);
             dispatch(userWelcome(undefined,true));
+            setLoading(false);
+            chatWrapRef.current.addEventListener('click',() => {
+                setDisplayModal('none');
+            });
         }else{
             setLoading(false);
         }
-       }, 1000);
+       }, 500);
        // eslint-disable-next-line
     },[]);
 
