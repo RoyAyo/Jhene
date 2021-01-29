@@ -8,6 +8,11 @@
       "type": "image/x-icon"
     },
     {
+      "src": "Icon-72@2x.png",
+      "sizes": "144x144",
+      "type": "image/x-icon"
+    },
+    {
       "src": "logo192.png",
       "type": "image/svg",
       "sizes": "192x192"
@@ -21,5 +26,6 @@
   "start_url": "/chat",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "purpose" : "maskable any"
 }
