@@ -66,7 +66,7 @@ const convertOptions = payload => {
 
 export const clickButton = ({option,requirements,answers,questions,context,answering}) => {
     return (dispatch) => {
-        answers[answering] = option.split(" ")[0].toLowerCase();
+        answers[answering] = option;
         var new_requirements = requirements.filter(i => i !== answering);
         dispatch(convertOptions({option,new_requirements,answers}));
         dispatch(myMessage(option));
