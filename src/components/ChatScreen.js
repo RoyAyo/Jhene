@@ -20,6 +20,7 @@ const ChatScreen = props => {
     const [loading,setLoading] = useState(true);
     const [auth,setAuth] = useState(false);
     const [displayModal, setDisplayModal] = useState('none');
+    const [emailAvailable, setEmailAvailable] = useState(false);
 
     //refs
     const userInput = useRef();
@@ -58,8 +59,9 @@ const ChatScreen = props => {
             chatWrapRef.current.addEventListener('click',() => {
                 setDisplayModal('none');
             });
+            setEmailAvailable(true);
         }else if(accessed){
-            if(accessed > 12){
+            if(accessed > 5){
                 window.localStorage.setItem('accessed',1);
                 props.history.push('/register');
             }
@@ -105,6 +107,15 @@ const ChatScreen = props => {
                             <Link to='/' className='modal-link'>
                                 Request Vendor Access
                             </Link>
+                            {
+                                !emailAvailable ? (
+                                    <Link to='/register' className='modal-link'>
+                                        Register
+                                    </Link> 
+                                ) : (
+                                    <></>
+                                )
+                            }
                             <Link to='/' className='modal-link'>
                                 Contact Us
                             </Link>
@@ -132,6 +143,17 @@ const ChatScreen = props => {
                                         Request Vendor Access
                                     </Link>
                                 </li>
+                                {
+                                    !emailAvailable ? (
+                                        <li>
+                                            <Link to="/register" className="left-chat-link">
+                                                Register
+                                            </Link>
+                                        </li>
+                                    ) : (
+                                        <></>
+                                    )
+                                }
                                 <li>
                                     <Link to="https://www.gooogle.com" className="left-chat-link">
                                         Contact Us
