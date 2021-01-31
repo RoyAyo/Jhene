@@ -112,20 +112,27 @@ export const sendMessage = (message,ads=[],tips=[],location='') => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
         //check if they said next
-        if(message.toLowerCase() === 'next'){
-            return dispatch(displayBotMessage({message:'Best suggestions we have close to you'}));
+        // if(message.toLowerCase() === 'next'){
+        //     return dispatch(displayBotMessage({message:'Still gathering vendors'}));
+        // }
+
+        if((message.toLowerCase() === 'yes') || (message.toLowerCase() === 'yeah') || (message.toLowerCase() === 'yup')){
+            return dispatch(displayBotMessage({message:'awn, what do you need'}));
         }
 
-        const from_context = ''
+        if((message.toLowerCase() === 'no') || (message.toLowerCase() === 'nah') || (message.toLowerCase() === 'nope')){
+            return dispatch(displayBotMessage({message:'Thank you for using Jhene'}));
+        }
+
+        const from_context = '';
         const data = {
             message,
             from_context,
             answers : {},
             more_info : false,
             location
-
         }
-        console.log(data);
+
         fetch(`https://api.jhene.co/send_message`,{
             method : 'POST',
             headers : {
