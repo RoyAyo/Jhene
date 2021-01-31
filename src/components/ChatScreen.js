@@ -23,6 +23,7 @@ const ChatScreen = props => {
     const [auth,setAuth] = useState(false);
     const [displayModal, setDisplayModal] = useState('none');
     const [emailAvailable, setEmailAvailable] = useState(false);
+    const [speechSupport, setSpeechSupport] = useState(false);
 
   const { finalTranscript } = useSpeechRecognition();
 
@@ -53,7 +54,10 @@ const ChatScreen = props => {
 
     //component did mount
     useEffect(() => {
-       setTimeout(() => {
+        if (SpeechRecognition.browserSupportsSpeechRecognition()) {
+            setSpeechSupport(true);
+        }
+        setTimeout(() => {
         const email = window.localStorage.getItem('email');
         const accessed = window.localStorage.getItem('accessed');
         if(email){
@@ -78,7 +82,7 @@ const ChatScreen = props => {
         }else{
             setLoading(false);
         }
-       }, 500);
+       }, 1000);
        // eslint-disable-next-line
     },[]);
 
@@ -93,7 +97,13 @@ const ChatScreen = props => {
         dispatch(sendMessage(message,recommendations));
     };
 
-    finalTranscript.length > 0 ? userInput.current.value = finalTranscript : console.log(finalTranscript)
+    // finalTranscript.length > 0 ? userInput.current.value = finalTranscript : console.log(finalTranscript)
+    // if(){
+
+    // }
+    if(finalTranscript.length > 0){
+        userInput.current.value = finalTranscript;
+    }
 
     return (
         <Div100vh>
@@ -195,8 +205,8 @@ const ChatScreen = props => {
                                                 })
                                             }
                                     </div>
-                                    <div className='chat-inputs'>
-                                        <img src={MicrophoneIcon} alt='' onClick={SpeechRecognition.startListening} className='microphone' />
+                                    <div className={speechSupport ? 'chat-inputs chat-inputs-pad':'chat-inputs'}>
+                                        {speechSupport ? <img src={MicrophoneIcon} alt='' onClick={SpeechRecognition.startListening} className='microphone' /> : <></>}
                                         <img src={SendImg} alt='' onClick={handleClick} />
                                         <input 
                                             type='text' 
