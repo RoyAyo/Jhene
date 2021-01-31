@@ -25,7 +25,7 @@ const ChatScreen = props => {
     const [emailAvailable, setEmailAvailable] = useState(false);
     const [speechSupport, setSpeechSupport] = useState(false);
 
-  const { finalTranscript } = useSpeechRecognition();
+  const { finalTranscript,resetTranscript } = useSpeechRecognition();
 
     //refs
     const userInput = useRef();
@@ -87,6 +87,7 @@ const ChatScreen = props => {
     },[]);
 
 
+    
     const handleClick = () => {
         if(message_loading || userInput.current.value === ''){
             return false;
@@ -94,15 +95,13 @@ const ChatScreen = props => {
         const message = userInput.current.value;
         userInput.current.value = '';
         userInput.current.blur();
+        resetTranscript();
         dispatch(sendMessage(message,recommendations));
     };
 
-    // finalTranscript.length > 0 ? userInput.current.value = finalTranscript : console.log(finalTranscript)
-    // if(){
-
-    // }
     if(finalTranscript.length > 0){
         userInput.current.value = finalTranscript;
+        handleClick();
     }
 
     return (

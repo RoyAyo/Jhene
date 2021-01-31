@@ -2,7 +2,7 @@ import React from 'react'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 const Speech = () => {
-  const { transcript, resetTranscript } = useSpeechRecognition()
+  const { transcript,finalTranscript, resetTranscript } = useSpeechRecognition();
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
@@ -14,6 +14,7 @@ const Speech = () => {
       <button onClick={SpeechRecognition.stopListening}>Stop</button>
       <button onClick={resetTranscript}>Reset</button>
       <p>{transcript}</p>
+      <p>{finalTranscript}</p>
     </div>
   );
 };
