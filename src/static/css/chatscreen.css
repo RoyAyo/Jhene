@@ -277,7 +277,7 @@ input{
     border-radius: 22.5px;
     padding:0.7rem 1rem;
     width: 100%;
-    padding-right: 50px;
+    padding-right: 80px;
     font-size: 13px;
 }
 
@@ -304,6 +304,11 @@ input{
     left: calc(100% - 60px);
 }
 
+.chat-inputs .microphone{
+    left: calc(100% - 100px);
+    bottom:29.2px;
+}
+
 .left-modal{
     display: none;
 }
@@ -316,6 +321,10 @@ input{
     
     .chat-inputs img{
         left: calc(100% - 56px);
+    }
+
+    .chat-inputs .microphone{
+        left: calc(100% - 90px);
     }
     .top-chat-screen div p:nth-child(2){
         bottom: 5px;

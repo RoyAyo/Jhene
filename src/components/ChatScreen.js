@@ -2,11 +2,13 @@ import React, { useRef,useEffect,useState } from 'react';
 import {Link, Redirect,withRouter} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import SendImg from '../static/send.svg';
+import MicrophoneIcon from '../static/microphone.png';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
 import Screen from './component/Screen';
 import { sendMessage,userWelcome } from '../redux/actions/messages';
 import Div100vh from 'react-div-100vh'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 import {
     Image
@@ -21,6 +23,8 @@ const ChatScreen = props => {
     const [auth,setAuth] = useState(false);
     const [displayModal, setDisplayModal] = useState('none');
     const [emailAvailable, setEmailAvailable] = useState(false);
+
+  const { finalTranscript } = useSpeechRecognition();
 
     //refs
     const userInput = useRef();
@@ -88,6 +92,8 @@ const ChatScreen = props => {
         userInput.current.blur();
         dispatch(sendMessage(message,recommendations));
     };
+
+    finalTranscript.length > 0 ? userInput.current.value = finalTranscript : console.log(finalTranscript)
 
     return (
         <Div100vh>
@@ -190,11 +196,12 @@ const ChatScreen = props => {
                                             }
                                     </div>
                                     <div className='chat-inputs'>
-                                        <img src={SendImg} alt='' onClick={handleClick}/>
+                                        <img src={MicrophoneIcon} alt='' onClick={SpeechRecognition.startListening} className='microphone' />
+                                        <img src={SendImg} alt='' onClick={handleClick} />
                                         <input 
                                             type='text' 
                                             placeholder='Type a Message...' 
-                                            ref={userInput} 
+                                            ref={userInput}
                                             onKeyPress={(e) => { 
                                                 if(e.key === 'Enter'){
                                                     handleClick();
