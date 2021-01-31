@@ -107,19 +107,25 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
     }
 }
 
-export const sendMessage = (message,ads=[],tips=[]) => {
+export const sendMessage = (message,ads=[],tips=[],location='') => {
     return (dispatch) => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
+        //check if they said next
+        if(message.toLowerCase() === 'next'){
+            return dispatch(displayBotMessage({message:'Best suggestions we have close to you'}));
+        }
+
         const from_context = ''
         const data = {
             message,
             from_context,
             answers : {},
             more_info : false,
-            location : ""
+            location
 
         }
+        console.log(data);
         fetch(`https://api.jhene.co/send_message`,{
             method : 'POST',
             headers : {

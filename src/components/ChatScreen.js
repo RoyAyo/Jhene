@@ -36,7 +36,8 @@ const ChatScreen = props => {
     //selectors....(map state to props)
     const messages = useSelector(state => state.message.messages);
     const message_loading = useSelector(state => state.message.message_loading);
-    const recommendations = useSelector(state => state.message.recommendations);
+    const ads = useSelector(state => state.message.ads);
+    const tips = useSelector(state => state.message.tips);
     
     //dispatch...
     const dispatch = useDispatch();
@@ -96,12 +97,46 @@ const ChatScreen = props => {
         userInput.current.value = '';
         userInput.current.blur();
         resetTranscript();
-        dispatch(sendMessage(message,recommendations));
+        //make a search for the keyword around
+        const location_keyword = 'around';
+        var message_arr = message.toLowerCase().split(" ");
+        var check_loc_index = message_arr.indexOf(location_keyword);
+        if(check_loc_index !== -1){
+            //keyword directly beside it
+            const next_word = message_arr[check_loc_index + 1];
+            if(next_word === 'me' || next_word === undefined){
+                if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(position => {
+                        //convert lattitude and longetiude to loction
+                        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=ab66adc894e64e35b7c3c55b7e92b091`)
+                        .then(data => {
+                            if(data.ok){
+                                return data.json();
+                            }else{
+                                throw new Error('error getting location')
+                            }
+                        })
+                        .then(data => {
+                            const location = data.results[0].formatted;
+                            dispatch(sendMessage(message,ads,tips,location));
+                        })
+                        .catch(e => {
+                            dispatch(sendMessage(message,ads,tips));
+                        });
+                    });
+                }else{
+                    dispatch(sendMessage(message,ads,tips));
+                }
+            }else{
+                dispatch(sendMessage(message,ads,tips,next_word));
+            }
+        }else{
+            dispatch(sendMessage(message,ads,tips));
+        }
     };
 
     if(finalTranscript.length > 0){
         userInput.current.value = finalTranscript;
-        handleClick();
     }
 
     return (
