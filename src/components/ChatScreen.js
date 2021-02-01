@@ -168,11 +168,6 @@ const ChatScreen = props => {
             const next_word = message_arr[check_loc_index + 1];
             if(next_word === 'me' || next_word === 'here' || next_word === undefined){
                 if(navigator.geolocation){
-                    if(!navigator.geolocation.getCurrentPosition(position => console.log(position))){
-                        var splice_by = next_word === undefined ? 1 : 2;
-                        message_arr.splice(check_loc_index,splice_by);
-                        return dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
-                    }
                     navigator.geolocation.getCurrentPosition(position => {
                         console.log(1);
                         //convert lattitude and longetiude to loction
@@ -195,6 +190,10 @@ const ChatScreen = props => {
                             message_arr.splice(check_loc_index,splice_by);
                             dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
                         });
+                    },() => {
+                        var splice_by = next_word === undefined ? 1 : 2;
+                        message_arr.splice(check_loc_index,splice_by);
+                        return dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
                     });
                 }else{
                     message_arr.splice(check_loc_index,2);
@@ -237,6 +236,10 @@ const ChatScreen = props => {
                             message_arr.splice(check_loc2_index,1);
                             dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
                         });
+                    },() => {
+                        var splice_by = next_word === undefined ? 1 : 2;
+                        message_arr.splice(check_loc_index,splice_by);
+                        return dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
                     });
                 }else{
                     message_arr.splice(check_loc_index,2);
