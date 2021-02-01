@@ -45,7 +45,7 @@ const showOption = payload => {
     }
 }
 
-const initialiseMessage =() => {
+export const initialiseMessage =() => {
     return {
         type : INITIALIZE_MESSAGE,
         payload : {
@@ -125,6 +125,9 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
         }
 
         const send = message_send ? message_send : message;
+
+        //remove useless word like plug or vendor
+        //strip of words like get,buy, plug, vendor, where
 
         const from_context = '';
         const data = {
