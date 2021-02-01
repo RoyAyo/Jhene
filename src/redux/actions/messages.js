@@ -107,7 +107,7 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
     }
 }
 
-export const sendMessage = (message,ads=[],tips=[],location='') => {
+export const sendMessage = (message,ads=[],tips=[],location='',message_send=null) => {
     return (dispatch) => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
@@ -124,14 +124,17 @@ export const sendMessage = (message,ads=[],tips=[],location='') => {
             return dispatch(displayBotMessage({message:'Thank you for using Jhene'}));
         }
 
+        const send = message_send ? message_send : message;
+
         const from_context = '';
         const data = {
-            message,
+            message : send,
             from_context,
             answers : {},
             more_info : false,
             location
         }
+        console.log(data);
 
         fetch(`https://api.jhene.co/send_message`,{
             method : 'POST',

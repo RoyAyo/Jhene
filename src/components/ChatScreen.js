@@ -99,13 +99,65 @@ const ChatScreen = props => {
         resetTranscript();
         //make a search for the keyword around
         const location_keyword = 'around';
+        const location_keyword2 = 'close';
         var message_arr = message.toLowerCase().split(" ");
         var check_loc_index = message_arr.indexOf(location_keyword);
+        var check_loc2_index = message_arr.indexOf(location_keyword2);
         if(check_loc_index !== -1){
             //keyword directly beside it
             const next_word = message_arr[check_loc_index + 1];
-            if(next_word === 'me' || next_word === undefined){
+            if(next_word === 'me' || next_word === 'here' || next_word === undefined){
                 if(navigator.geolocation){
+                    if(!navigator.geolocation.getCurrentPosition(position => console.log(position))){
+                        var splice_by = next_word === undefined ? 1 : 2;
+                        message_arr.splice(check_loc_index,splice_by);
+                        return dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
+                    }
+                    navigator.geolocation.getCurrentPosition(position => {
+                        console.log(1);
+                        //convert lattitude and longetiude to loction
+                        fetch(`https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=ab66adc894e64e35b7c3c55b7e92b091`)
+                        .then(data => {
+                            if(data.ok){
+                                return data.json();
+                            }else{
+                                throw new Error('error getting location')
+                            }
+                        })
+                        .then(data => {
+                            var splice_by = next_word === undefined ? 1 : 2;
+                            message_arr.splice(check_loc_index,splice_by);
+                            const location = data.results[0].formatted;
+                            dispatch(sendMessage(message,ads,tips,location,message_arr.join(' ')));
+                        })
+                        .catch(e => {
+                            var splice_by = next_word === undefined ? 1 : 2;
+                            message_arr.splice(check_loc_index,splice_by);
+                            dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
+                        });
+                    });
+                }else{
+                    message_arr.splice(check_loc_index,2);
+                    dispatch(sendMessage(message,ads,tips));
+                }
+            }else{
+                message_arr.splice(check_loc_index,2);
+                dispatch(sendMessage(message,ads,tips,next_word,message_arr.join(' ')));
+            }
+        }
+        else if(check_loc2_index !== -1){
+            const next_word = message_arr[check_loc2_index + 1];
+            if(next_word === 'to'){
+                const supposed_location = message_arr[check_loc2_index + 2];
+                message_arr.splice(check_loc2_index,3);
+                dispatch(sendMessage(message,ads,tips,supposed_location,message_arr.join(' ')));                  
+            }
+            else{
+                if(navigator.geolocation){
+                    if(!navigator.geolocation.getCurrentPosition(position => console.log(position))){
+                        message_arr.splice(check_loc2_index,1);
+                        return dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
+                    }
                     navigator.geolocation.getCurrentPosition(position => {
                         //convert lattitude and longetiude to loction
                         fetch(`https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=ab66adc894e64e35b7c3c55b7e92b091`)
@@ -118,19 +170,21 @@ const ChatScreen = props => {
                         })
                         .then(data => {
                             const location = data.results[0].formatted;
-                            dispatch(sendMessage(message,ads,tips,location));
+                            message_arr.splice(check_loc2_index,1);
+                            dispatch(sendMessage(message,ads,tips,location,message_arr.join(' ')));
                         })
                         .catch(e => {
-                            dispatch(sendMessage(message,ads,tips));
+                            message_arr.splice(check_loc2_index,1);
+                            dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
                         });
                     });
                 }else{
-                    dispatch(sendMessage(message,ads,tips));
+                    message_arr.splice(check_loc_index,2);
+                    dispatch(sendMessage(message,ads,tips,'',message_arr.join(' ')));
                 }
-            }else{
-                dispatch(sendMessage(message,ads,tips,next_word));
             }
-        }else{
+        }
+        else{
             dispatch(sendMessage(message,ads,tips));
         }
     };
