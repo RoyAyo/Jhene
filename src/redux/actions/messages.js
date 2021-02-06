@@ -191,7 +191,7 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                     context:data.context
                     
                 });
-                fetch(`https://jhene-node.herokuapp.com/api/recommend/addProduct`,{
+                fetch(`http://localhost:8080/api/recommend/addProduct`,{
                     method : "POST",
                     body:to_send,
                     headers : {
@@ -224,7 +224,7 @@ export const userWelcome = (email) => {
         dispatch(initialiseMessage());
         var data = email ? JSON.stringify({email}) : JSON.stringify({email : ''});
         
-        fetch(`https://jhene-node.herokuapp.com/api/recommend/getAd`,{
+        fetch(`http://localhost:8080/api/recommend/getAd`,{
             method : "POST",
             body:data,
             headers : {

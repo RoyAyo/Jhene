@@ -56,7 +56,7 @@ const BotText = ({message}) => {
     return (
         <>
             <animated.p className='bot-texts' style={props}>
-                <span className='text'>
+                <span className={!message.recommendation ? 'text' : 'text recommended'}>
                     {
                         message.loading ? (
                             <ChatLoader />
@@ -82,13 +82,16 @@ const BotText = ({message}) => {
                                     {
                                         message.recommendation ? (
                                             <>
-                                                <span style={{display:'block',textAlign:'right', marginBottom:'5px',color:'',fontSize:'10px'}}>{message.recommendation.type}</span>
-                                                 <span className='vendor-biz-name' style={{color:'black'}}>{message.recommendation.desc}</span>
+                                                <span style={{display:'block', marginBottom:'8px',fontSize:'12px',fontFamily:'DM SANS'}}>{message.recommendation.type}</span>
+                                                 <span className='vendor-desc'>{message.recommendation.desc}</span>
                                                 {
                                                     message.recommendation.type === 'Ad' ? (
-                                                        <span className='vendor-blocks'>
-                                                            Link : <a href={message.recommendation.link} target="_blank" rel="noopener noreferrer" className='vendor-link'>{message.recommendation.link}</a>
-                                                        </span>
+                                                        <>
+                                                            <span className='vendor-blocks' style={{fontFamily:'Poppins',fontSize:'13px'}}>Check the link for more info;</span>
+                                                            <span className='vendor-blocks'>
+                                                                <a href={message.recommendation.link} target="_blank" rel="noopener noreferrer" style={{textDecoration:'none',color:'#3474E2',fontSize:'13px',fontFamily:'DM SANS'}}>{message.recommendation.link}</a>
+                                                            </span>
+                                                        </>
                                                     ) : (
                                                         <></>
                                                     )

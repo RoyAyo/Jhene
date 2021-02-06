@@ -31,10 +31,10 @@ const VendorForm = () => {
             business_name:name,
             link,
             location,
-            description
+            short_desc:description
         });
         setLoading('Loading...');
-        fetch('https://jhene-node.herokuapp.com/api/vendors/request',{
+        fetch('http://localhost:8080/api/vendors/request',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'

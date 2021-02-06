@@ -43,7 +43,7 @@ const LandingPage = () => {
                                             </Link>
                                             <Link to="/vendor-form">
                                                 <span className="link-btn link-btn2">
-                                                    Request Access
+                                                    Vendor Access
                                                 </span>
                                             </Link>
                                         </div>

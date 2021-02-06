@@ -1,20 +1,20 @@
 import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS, DISPLAY_BOT_RECOMMENDATION } from '../actions/messages';
 
-// const test_message = {
-//     loading : false,
-//     message : '',
-//     with_option : false,
-//     vendor : false,
-//     recommendation : {
-//         desc : 'Valentine is here, Aims digiga this out to get your best nightwares',
-//         link : 'https://google.com',
-//         type : 'Tip'
-//     },
-//     bot : true
-// }
+const test_message = {
+    loading : false,
+    message : '',
+    with_option : false,
+    vendor : false,
+    recommendation : {
+        desc : 'Have you been looking for the best plug for your Tshirts and you are lost, you are in the right place.',
+        link : 'https://google.com',
+        type : 'Ad'
+    },
+    bot : true
+}
 
 const initialState = {
-    messages : [],
+    messages : [test_message],
     message_loading : false,
     questions : {},
     answers : {},

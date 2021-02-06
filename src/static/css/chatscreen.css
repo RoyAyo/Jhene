@@ -163,6 +163,31 @@ input{
     line-height: 18px;
 }
 
+.recommended{
+    padding: 1rem;
+    padding-top:6px;
+    padding-right:1.5rem;
+    max-width: 70%;
+    min-height: 100px;
+    border-right: 10px solid #224E9C;
+}
+
+.recommended .vendor-desc{
+    font-family: "DM SANS";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: normal;
+    color: #182C69;
+    line-height: 22px;
+}
+
+.recommended .vendor-blocks{
+    margin-top: 8px;
+    margin-bottom: 0px;  
+}
+
 .text-button{
     min-width: 14%;
     cursor: pointer;
@@ -337,6 +362,12 @@ input{
 
     .text-button{
         width: 45% ;
+    }
+}
+
+@media(max-width:380px){
+    .recommended{
+        max-width: 85%;
     }
 }
 

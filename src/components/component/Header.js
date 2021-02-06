@@ -81,7 +81,7 @@ const Header = () => {
                                 About
                             </Link>
                             <Link to="/vendor-form" className="link link-btn">
-                                Request Access
+                                Vendor Access
                             </Link>
                             <Link to="/chat" className="link link-btn link-btn2">
                                 Get Started
