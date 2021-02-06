@@ -27,7 +27,7 @@ const Register = props => {
             email,
             name
         })
-        fetch('https://jhene-node.herokuapp.com/api/auth/register',{
+        fetch('https://api-node.jhene.co/api/auth/register',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
@@ -83,7 +83,7 @@ const Register = props => {
             name
         });
 
-        fetch('https://jhene-node.herokuapp.com/api/auth/register',{
+        fetch('https://api-node.jhene.co/api/auth/register',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'

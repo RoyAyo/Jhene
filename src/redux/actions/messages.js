@@ -191,7 +191,7 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                     context:data.context
                     
                 });
-                fetch(`http://localhost:8080/api/recommend/addProduct`,{
+                fetch(`https://api-node.jhene.co/api/recommend/addProduct`,{
                     method : "POST",
                     body:to_send,
                     headers : {
@@ -224,7 +224,7 @@ export const userWelcome = (email) => {
         dispatch(initialiseMessage());
         var data = email ? JSON.stringify({email}) : JSON.stringify({email : ''});
         
-        fetch(`http://localhost:8080/api/recommend/getAd`,{
+        fetch(`https://api-node.jhene.co/api/recommend/getAd`,{
             method : "POST",
             body:data,
             headers : {

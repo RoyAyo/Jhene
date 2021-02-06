@@ -59,7 +59,7 @@ const ChatScreen = props => {
         dispatch(initialiseMessage());
         var data = email ? JSON.stringify({email}) : JSON.stringify({email : ''});
         
-        fetch(`https://jhene-node.herokuapp.com/api/recommend/getAd`,{
+        fetch(`https://api-node.jhene.co/api/recommend/getAd`,{
             method : "POST",
             body:data,
             headers : {
