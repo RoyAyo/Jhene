@@ -139,7 +139,7 @@ const LandingPage = () => {
                                 {props => (
                                     <div className="contact-us" style={{...props}}>
                                         <h4>Contact us</h4>
-                                        <p>You want to speak oor partner with us? Send us an email on <a href="mailto:apig.bot@gmail.com">apig.bot@gmail.com</a></p>
+                                        <p>You want to speak oor partner with us? Send us an email on <a href="mailto:apig.bot@gmail.com">jhene.app@gmail.com</a></p>
                                         <p>Or visit us on Twitter <a href="https://www.twitter.com/BotJhene" className='twit' target='_blank' rel="noopener noreferrer">@BotJhene</a></p>
                                     </div>
                                 )}
