@@ -34,7 +34,7 @@ const VendorForm = () => {
             short_desc:description
         });
         setLoading('Loading...');
-        fetch('http://localhost:8080/api/vendors/request',{
+        fetch('https://api-node.jhene.co/api/vendors/request',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
