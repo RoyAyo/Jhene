@@ -34,7 +34,7 @@ const VendorForm = () => {
             short_desc:description
         });
         setLoading('Loading...');
-        fetch('http://localhost:8080/api/vendors/request',{
+        fetch('https://api-node.jhene.co/api/vendors/request',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
@@ -78,7 +78,7 @@ const VendorForm = () => {
                         <Input name="Business Name" placeholder="Type your business name" type="text" onChange={name => setName(name)}/>
                         <Input name="Email" placeholder="Type your email" type="email" onChange={email => setEmail(email)}/>
                         <Input name="Location" placeholder="State, Country" type="text" onChange={location => setLocation(location)}/>
-                        <Input name="Link to website" placeholder="Type a link" type="url" onChange={link => setLink(link)}/>
+                        <Input name="Link to website/Social Media" placeholder="Type a link" type="url" onChange={link => setLink(link)}/>
                         <Input name="Short description of what you do or sell" placeholder="I Sell Fashion Items" type="text" onChange={desc => setDescription(desc)}/>
                         <div className="submit-access">
                             <button onClick={submit}>
