@@ -36,7 +36,7 @@ const Button = ({option,answering}) => {
 }
 
 const copyClickBoard = e => {
-    var num = e.target.previousSibling;
+    var num = e.target.previousSibling.innerHTML;
     const elem = document.body.appendChild(document.createElement('input'));
     elem.value = num;
     elem.focus();
@@ -56,7 +56,7 @@ const BotText = ({message}) => {
     return (
         <>
             <animated.p className='bot-texts' style={props}>
-                <span className='text'>
+                <span className={!message.recommendation ? 'text' : 'text recommended'}>
                     {
                         message.loading ? (
                             <ChatLoader />
@@ -76,19 +76,33 @@ const BotText = ({message}) => {
                                         <span className='vendor-blocks'>
                                             Link : <a href={message.vendor.link} target="_blank" rel="noopener noreferrer" className='vendor-link'>{message.vendor.link}</a>
                                         </span>
-                                        {
-                                            message.vendor.address ? (
-                                                <span className='google-map-address-link'>
-                                                    <a href='#vend'>Trace Shop</a>
-                                                </span>
-                                            ) : (
-                                                <></>
-                                            )
-                                        }
                                     </>
                                 ) : (
                                 <>
-                                    {message.message}
+                                    {
+                                        message.recommendation ? (
+                                            <>
+                                                <span style={{display:'block', marginBottom:'8px',fontSize:'12px',fontFamily:'DM SANS'}}>{message.recommendation.type}</span>
+                                                 <span className='vendor-desc'>{message.recommendation.desc}</span>
+                                                {
+                                                    message.recommendation.type === 'Ad' ? (
+                                                        <>
+                                                            <span className='vendor-blocks' style={{fontFamily:'Poppins',fontSize:'13px'}}>Check the link for more info;</span>
+                                                            <span className='vendor-blocks'>
+                                                                <a href={message.recommendation.link} target="_blank" rel="noopener noreferrer" style={{textDecoration:'none',color:'#3474E2',fontSize:'13px',fontFamily:'DM SANS'}}>{message.recommendation.link}</a>
+                                                            </span>
+                                                        </>
+                                                    ) : (
+                                                        <></>
+                                                    )
+                                                }
+                                            </>
+                                        ) : (
+                                            <>
+                                                {message.message}
+                                            </>
+                                        )
+                                    }
                                  </>        
                             )
                         )

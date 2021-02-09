@@ -1,24 +1,27 @@
 import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS, DISPLAY_BOT_RECOMMENDATION } from '../actions/messages';
 
-// const test_message = 
+// const test_message = {
+//     loading : false,
+//     message : '',
+//     with_option : false,
+//     vendor : false,
+//     recommendation : {
+//         desc : 'You can use the keyword "around me", to allow the bot fetch your location and recommend closer vendors.',
+//         link : 'https://google.com',
+//         type : 'Tip'
+//     },
+//     bot : true
+// }
 
 const initialState = {
-    messages : [{
-        bot : true,
-        message : '',
-        vendor : {
-            link : 'https://google.com',
-            logo : 'https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/05/attachment_83325650-e1582728525967.png?auto=format&q=60&fit=max&w=930',
-            phone_number : '08090289182',
-            business_name : 'RoyCo Footwares'
-        }
-    }],
+    messages : [],
     message_loading : false,
     questions : {},
     answers : {},
     requirements : [],
     context : '',
-    recommendations : []
+    ads : [],
+    tips : []
 }
 
 const messagesReducer = (state = initialState, {type,payload} ) => {
@@ -54,7 +57,8 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var new_recommend_payload = Object.assign(init_recommend_message,{loading:false,message:'',with_option:false,vendor:false,recommendation:payload.recommendation});
             return {
                 ...state,
-                recommendations : payload.recommendations,
+                ads : payload.ads,
+                tips : payload.tips,
                 messages : [...state.messages,new_recommend_payload],
                 message_loading : false
             }

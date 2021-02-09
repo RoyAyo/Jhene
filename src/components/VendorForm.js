@@ -13,10 +13,11 @@ const VendorForm = () => {
     const [link, setLink] = useState('');
     const [location, setLocation] = useState('');
     const [description, setDescription] = useState('');
+    const [loading,setLoading] = useState('Submit');
 
     const submit = () => {
         if(name.length === 0){
-            return toast.error('BUSINESS Name',{
+            return toast.error('Business name is required please',{
                 position : toast.POSITION.TOP_RIGHT
             });
         };
@@ -30,9 +31,10 @@ const VendorForm = () => {
             business_name:name,
             link,
             location,
-            description
-        })
-        fetch('http://localhost:8080/api/vendors/request',{
+            short_desc:description
+        });
+        setLoading('Loading...');
+        fetch('https://api-node.jhene.co/api/vendors/request',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
@@ -40,18 +42,24 @@ const VendorForm = () => {
             body:data
         }).then(data => data.json())
         .then(data => {
-            console.log(data)
             if(data.success){
                 toast.success('Thank you for asking to be a part of us, we would get back to you very soon',{
                     position : toast.POSITION.TOP_RIGHT
                 });
+                setEmail('');
+                setLocation('');
+                setName('');
+                setLink('');
+                setDescription('');
+                setLoading('Submit');
             }else{
                 throw new Error(data.msg);
             }
         }).catch(e => {
             toast.error(e.message,{
                 position : toast.POSITION.TOP_RIGHT
-            })
+            });
+            setLoading('Submit');
         });
     };
 
@@ -62,7 +70,7 @@ const VendorForm = () => {
                 <h3 className="req-ven">Request Vendor Access</h3>
                 <div className="info">
                     <p>
-                        To get your business featured on this platform, you have to make a request so we can reach out to you as soon as possible and verify before we add you.
+                        To get your business featured on this platform, make a request below
                     </p>
                 </div>
                 <div className="apply-form">
@@ -70,11 +78,11 @@ const VendorForm = () => {
                         <Input name="Business Name" placeholder="Type your business name" type="text" onChange={name => setName(name)}/>
                         <Input name="Email" placeholder="Type your email" type="email" onChange={email => setEmail(email)}/>
                         <Input name="Location" placeholder="State, Country" type="text" onChange={location => setLocation(location)}/>
-                        <Input name="Link to website" placeholder="Type a link" type="url" onChange={link => setLink(link)}/>
+                        <Input name="Link to website/Social Media" placeholder="Type a link" type="url" onChange={link => setLink(link)}/>
                         <Input name="Short description of what you do or sell" placeholder="I Sell Fashion Items" type="text" onChange={desc => setDescription(desc)}/>
                         <div className="submit-access">
                             <button onClick={submit}>
-                                Submit
+                                {loading}
                             </button>
                         </div>
                     </div>

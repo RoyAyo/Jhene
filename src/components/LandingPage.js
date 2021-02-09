@@ -43,7 +43,7 @@ const LandingPage = () => {
                                             </Link>
                                             <Link to="/vendor-form">
                                                 <span className="link-btn link-btn2">
-                                                    Request Access
+                                                    Vendor Access
                                                 </span>
                                             </Link>
                                         </div>
@@ -107,10 +107,10 @@ const LandingPage = () => {
                         <div className="pics">
                             <VisibilitySensor partialVisibility>
                                     {({isVisible}) => (
-                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-40deg)" }}>
+                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(-10deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
-                                                    <Image cloudName="jhene" publicId="roy_rl61gf"  />
+                                                    <Image cloudName="jhene" publicId="Group_204_pcucbb"  />
                                                     <h4>Roy-Layinde Ayoola</h4>
                                                     <p>Developer</p>
                                                 </div>
@@ -120,10 +120,10 @@ const LandingPage = () => {
                             </VisibilitySensor>
                             <VisibilitySensor partialVisibility>
                                     {({isVisible}) => (
-                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(20deg)" }}>
+                                        <Spring   delay={150} to={{position: "relative" , opacity:isVisible ? 1 : 0, transform : isVisible ? "rotate(0)" : "rotate(10deg)" }}>
                                             {props => (
                                                 <div style={{...props}}>
-                                                    <Image cloudName="jhene" publicId="sixx_vdx7ku"  />
+                                                    <Image cloudName="jhene" publicId="Group_205_o6zc59"  />
                                                     <h4>Kolade Olufemi</h4>
                                                     <p>Designer</p>
                                                 </div>
@@ -139,7 +139,7 @@ const LandingPage = () => {
                                 {props => (
                                     <div className="contact-us" style={{...props}}>
                                         <h4>Contact us</h4>
-                                        <p>You want to speak oor partner with us? Send us an email on <a href="mailto:apig.bot@gmail.com">apig.bot@gmail.com</a></p>
+                                        <p>You want to speak oor partner with us? Send us an email on <a href="mailto:apig.bot@gmail.com">jhene.app@gmail.com</a></p>
                                         <p>Or visit us on Twitter <a href="https://www.twitter.com/BotJhene" className='twit' target='_blank' rel="noopener noreferrer">@BotJhene</a></p>
                                     </div>
                                 )}

@@ -25,7 +25,7 @@ const Footer = () => {
                                         <Image cloudName="jhene" publicId="logo_blue_1_ptflze" />
                                     </div>
                                     <div className='social-footer'>
-                                        <a href="https://www.twitter.com/Jhenebot" target='_blank' rel="noopener noreferrer">
+                                        <a href="https://www.twitter.com/BotJhene" target='_blank' rel="noopener noreferrer">
                                             <img src={twitterIcon} alt="" />
                                         </a>
                                         <a href="mailto:apig.bot@gmail.com">
@@ -35,7 +35,7 @@ const Footer = () => {
                                 </div>
                                 <div className="contact-footer">
                                     <h4>Contact</h4>
-                                    <p>apigbot@gmail.com</p>
+                                    <p>jhene.app@gmail.com</p>
                                     <p>+234 816 572 3798, +234 708 996 1880</p>
                                 </div>
                             </div>

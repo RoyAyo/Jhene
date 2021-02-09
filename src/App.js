@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
 import ChatScreen from './components/ChatScreen';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Register from './components/Register';
 import VendorForm from './components/VendorForm';
+import Speech from './components/Speech';
+import Error from './components/Error';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Route path='/register' exact component={Register} />
       <Route path='/vendor-form' exact component={VendorForm} />
       <Route path='/chat' exact component={ChatScreen} />
+      <Route path='/speech' exact component={Speech} />
+      <Route component={Error} />
     </Router>
   );
 }
