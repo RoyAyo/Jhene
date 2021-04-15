@@ -75,6 +75,58 @@ const LandingPage = () => {
                         </Spring>
                     )}
                 </VisibilitySensor>
+                <VisibilitySensor>
+                    {({isVisible}) => (
+                        <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateY(0)" : "translateY(40px)"}} delay={250}>
+                            {props => (
+                                <div style={{...props}} className='for-customers'>
+                                    <div className='customers-desc'>
+                                        <h4>Customers</h4>
+                                        <ul>
+                                            <li>Easily find service providers and vendors that sell what you need.</li>
+                                            <li>We vet vendors before enlisting the so you can buy stuff with trust and peace of mind.</li>
+                                            <li>Get a more personal and private shopping experience.</li>
+                                            <Link to="/chat">
+                                                <span className="link-btn-customers" style={{textDecoration:'none'}}>
+                                                    Get Started
+                                                </span>
+                                            </Link>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        {/* <Image cloudName="jhene" publicId="header_1_2_vdokoa" className=""  /> */}
+                                    </div>
+                                </div>
+                            )}
+                        </Spring>
+                    )}
+                </VisibilitySensor>
+                <VisibilitySensor>
+                    {({isVisible}) => (
+                        <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateY(0)" : "translateY(40px)"}} delay={250}>
+                            {props => (
+                                <div style={{...props}} className='for-vendors'>
+                                    <div>
+                                        {/* <Image cloudName="jhene" publicId="header_1_2_vdokoa" className=""  /> */}
+                                    </div>                                    
+                                    <div className='vendors-desc'>
+                                        <h4>Vendors</h4>
+                                        <ul>
+                                            <li>Easily find service providers and vendors that sell what you need.</li>
+                                            <li>We vet vendors before enlisting the so you can buy stuff with trust and peace of mind.</li>
+                                            <li>Get a more personal and private shopping experience.</li>
+                                            <Link to="/chat">
+                                                <span className="link-btn-vendors">
+                                                    Join as a vendor
+                                                </span>
+                                            </Link>
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
+                        </Spring>
+                    )}
+                </VisibilitySensor>
                 <Footer />
             </div>
         </div>

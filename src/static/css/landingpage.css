@@ -86,6 +86,107 @@
     width: 100%;
 }
 
+.for-customers{
+    background: #182C69;
+    padding: 43.77px 145.8px;
+    display: flex;
+    justify-content: center;
+    min-height: 523px;
+    align-items: center;
+}
+
+.for-customers .customers-desc{
+    padding: 30px 5px;
+}
+
+.for-customers .customers-desc h4{
+    color: #FFFFFF;
+    margin-bottom: 24px;
+    font-family: "Proza Libre";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 31px;
+    line-height:42px;
+    letter-spacing: -0.165px;
+}
+
+.for-customers .customers-desc ul{
+    list-style-type: disc;
+    color: #FFFFFF;
+}
+
+.for-customers .customers-desc ul li{
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.165px;
+    margin-bottom: 20px;
+}
+
+.for-customers .customers-desc .link-btn-customers, .for-vendors .vendors-desc .link-btn-vendors{
+    margin-top: 38px;
+    width: 307px;
+    height: 50px;
+    background-color: #FFFFFF;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 5px;
+    line-height: 18px;
+    letter-spacing: -0.165px;
+    color: #3474E2;
+}
+
+.for-vendors{
+    background: #F2F7FF;
+    padding: 43.77px 145.8px;
+    display: flex;
+    justify-content: center;
+    min-height: 523px;
+    align-items: center;
+}
+.for-vendors .vendors-desc{
+    padding: 30px 5px;
+}
+
+.for-vendors .vendors-desc h4{
+    color: #224E9C;;
+    margin-bottom: 24px;
+    font-family: "Proza Libre";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 31px;
+    line-height:42px;
+    letter-spacing: -0.165px;
+}
+
+.for-vendors .vendors-desc ul{
+    list-style-type: disc;
+    color:#224E9C;
+}
+
+.for-vendors .vendors-desc ul li{
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.165px;
+    margin-bottom: 20px;
+    color: #264653;
+}
+
+.for-vendors .vendors-desc .link-btn-vendors{
+    background: #224E9C;
+    color: #FFFFFF;
+}
 
 @media(max-width:1150px){
     .about-us .about-us-img img{
@@ -148,6 +249,13 @@
         width: 220px;
         height: 240px;
     }
+
+    .for-customers{
+        display: block;
+    }
+
+
+
 }
 
 
@@ -192,4 +300,4 @@
     .vendor-desc-img img{
         height: 145px;
     }
-} 
+}
