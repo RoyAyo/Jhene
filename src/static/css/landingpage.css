@@ -1,6 +1,7 @@
 .wrapper{
     /* padding: 0px 11.07%; */
     padding-top: 55px;
+    background: #F2F7FF;
 }
 
 .top-desc{
@@ -34,12 +35,13 @@
 .top-desc .desc h4{
     font-family: "Poppins";
     font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
+    font-weight: bold;
+    font-size: 50px;
     line-height: 35px;
     letter-spacing: -0.165px;
     max-width: 400px;
-    color:  #091133;
+
+    color:  #182C69;
     margin-bottom: 20px;
 }
 .top-desc .desc p{
@@ -90,9 +92,14 @@
     background: #182C69;
     padding: 43.77px 145.8px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     min-height: 523px;
     align-items: center;
+}
+
+.for-customers .customers-img img{
+    width: 305px;
+    height: 390px;
 }
 
 .for-customers .customers-desc{
@@ -148,10 +155,16 @@
     background: #F2F7FF;
     padding: 43.77px 145.8px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     min-height: 523px;
     align-items: center;
 }
+
+.for-vendors .vendors-img img{
+    width: 305px;
+    height: 381px;
+}
+
 .for-vendors .vendors-desc{
     padding: 30px 5px;
 }
@@ -186,6 +199,103 @@
 .for-vendors .vendors-desc .link-btn-vendors{
     background: #224E9C;
     color: #FFFFFF;
+}
+
+.reviews{
+    background: rgba(244,147,66,0.1);
+    padding: 66px 132px;
+    min-height: 523px;
+    align-items: center;
+}
+
+.reviews h4{
+    font-size: 31px;
+    font-family: Proza Libre;
+    font-style: normal;
+    line-height: 42px;
+    color: #091133;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.reviews p{
+    color: #264653;
+    font-size: 16px;
+    line-height: 26px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 13px;
+}
+
+.reviews .all-review{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.reviews .all-review .review{
+    width: 400px;
+    height: 185px;
+    background-color: #FFFFFF;
+    padding: 22px 18px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.review .review-header{
+    display: flex;
+}
+
+.review-header .dp{
+    width: 15%;
+}
+
+.review-header .name{
+    width: 20%;
+}
+
+.review-header .name h6{
+    color: #091133;
+    font-size: 18px;
+    line-height: 25px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.review-header .name p{
+    color: #264653;
+    font-size: 13px;
+    line-height: 20px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.review-header .dp img{
+    width: 41px;
+    height: 41px;
+}
+
+.review-header .icon{
+    width: 65%;
+    text-align: right;
+}
+
+.review-header .icon img{
+    width: 16px;
+    height: 13px;
+}
+
+.review .review-body{
+    color: #264653;
+    font-size: 14px;
+    line-height: 22px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
 }
 
 @media(max-width:1150px){

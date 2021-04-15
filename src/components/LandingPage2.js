@@ -10,6 +10,11 @@ import {
 
 import "../static/css/landingpage.css";
 import Footer from './component/Footer';
+import {
+    vendorImg,
+    customerImg,
+    ntito
+} from '../static/index';
 
 const LandingPage = () => {
     return (
@@ -93,8 +98,8 @@ const LandingPage = () => {
                                             </Link>
                                         </ul>
                                     </div>
-                                    <div>
-                                        {/* <Image cloudName="jhene" publicId="header_1_2_vdokoa" className=""  /> */}
+                                    <div className="customers-img">
+                                        <img alt="" src={customerImg} />
                                     </div>
                                 </div>
                             )}
@@ -106,8 +111,8 @@ const LandingPage = () => {
                         <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateY(0)" : "translateY(40px)"}} delay={250}>
                             {props => (
                                 <div style={{...props}} className='for-vendors'>
-                                    <div>
-                                        {/* <Image cloudName="jhene" publicId="header_1_2_vdokoa" className=""  /> */}
+                                    <div className="vendors-img">
+                                        <img alt="" src={vendorImg}/>
                                     </div>                                    
                                     <div className='vendors-desc'>
                                         <h4>Vendors</h4>
@@ -123,6 +128,88 @@ const LandingPage = () => {
                                         </ul>
                                     </div>
                                 </div>
+                            )}
+                        </Spring>
+                    )}
+                </VisibilitySensor>
+                <VisibilitySensor>
+                    {({isVisible}) => (
+                        <Spring to={{opacity: isVisible ? 1 : 0, transform :isVisible ? "translateY(0)" : "translateY(40px)"}} delay={250}>
+                            {props => (
+                               <div className="reviews" style={{...props}}>
+                                   <h4>People Love Us</h4>
+                                   <p>We have spoken to many investors, vendors and customers. This is what people are saying about Jhene</p>
+                                   <div className="all-review">
+                                        <div className="review">
+                                            <div className="review-header">
+                                                <div className="dp">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                                <div className="name">
+                                                    <h6>Ntito</h6>
+                                                    <p>Customer</p>
+                                                </div>
+                                                <div className="icon">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                            </div>
+                                            <div className="review-body">
+                                                <p>The idea seems unique and different from regular e-commerce websites. I’ll definitely like that I can trust what I buy online.</p>
+                                            </div>
+                                        </div>
+                                        <div className="review">
+                                            <div className="review-header">
+                                                <div className="dp">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                                <div className="name">
+                                                    <h6>Ntito</h6>
+                                                    <p>Customer</p>
+                                                </div>
+                                                <div className="icon">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                            </div>
+                                            <div className="review-body">
+                                                <p>The idea seems unique and different from regular e-commerce websites. I’ll definitely like that I can trust what I buy online.</p>
+                                            </div>
+                                        </div>
+                                        <div className="review">
+                                            <div className="review-header">
+                                                <div className="dp">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                                <div className="name">
+                                                    <h6>Ntito</h6>
+                                                    <p>Customer</p>
+                                                </div>
+                                                <div className="icon">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                            </div>
+                                            <div className="review-body">
+                                                <p>The idea seems unique and different from regular e-commerce websites. I’ll definitely like that I can trust what I buy online.</p>
+                                            </div>
+                                        </div>
+                                        <div className="review">
+                                            <div className="review-header">
+                                                <div className="dp">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                                <div className="name">
+                                                    <h6>Ntito</h6>
+                                                    <p>Customer</p>
+                                                </div>
+                                                <div className="icon">
+                                                    <img src={ntito} alt="" />
+                                                </div>
+                                            </div>
+                                            <div className="review-body">
+                                                <p>The idea seems unique and different from regular e-commerce websites. I’ll definitely like that I can trust what I buy online.</p>
+                                            </div>
+                                        </div>
+                                   </div>
+                               </div>
                             )}
                         </Spring>
                     )}
