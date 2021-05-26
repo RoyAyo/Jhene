@@ -43,7 +43,7 @@ const LandingPage = () => {
                                             </Link>
                                             <Link to="/vendor-form">
                                                 <span className="link-btn link-btn2">
-                                                    Vendor Access
+                                                    I want to join as a vendor
                                                 </span>
                                             </Link>
                                         </div>
