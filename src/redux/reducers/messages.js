@@ -10,7 +10,8 @@ import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHO
 //         link : 'https://google.com',
 //         type : 'Tip'
 //     },
-//     bot : true
+//     bot : true,
+//     escrow: false
 // }
 
 const initialState = {
@@ -66,10 +67,11 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             state.messages.pop();
             var r = payload.requirements[0];
             var options = payload.questions[r];
+            console.log(payload);
             var payload_ = {
                 with_option: true,
                 bot : true,
-                message : 'Select One',
+                message : payload.message ?? "Choose One",
                 options,
                 answering : r
             }

@@ -6,6 +6,7 @@ export const MY_MESSAGE = 'my_message';
 export const SHOW_OPTIONS = 'show_options';
 export const CONVERT_OPTIONS = 'convert_options';
 
+
 export const displayBotMessage = payload => {
     return {
         type : DISPLAY_BOT_MESSAGE,
@@ -69,6 +70,21 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
         answers[answering] = option;
         var new_requirements = requirements.filter(i => i !== answering);
         dispatch(convertOptions({option,new_requirements,answers}));
+        if(window.sessionStorage.getItem("verification") && window.sessionStorage.getItem("verifying") === "confirmNumber"){
+            dispatch(myMessage(option.toLowerCase() === "no" ? "Yes" : "No"));
+            dispatch(initialiseMessage());
+            if(option.toLowerCase() === "no"){
+                window.sessionStorage.setItem("verifying","number");
+                return dispatch(displayBotMessage({message:"Please Input your Whatsapp Number P.S: a verification code will be sent to this number via whatsapp"}));
+            }else{
+                let escrow = JSON.parse(window.sessionStorage.getItem("escrow"));
+                let number = window.sessionStorage.getItem("confirmNumber");
+                window.sessionStorage.setItem("verifying","amount");
+                window.sessionStorage.setItem("escrow",JSON.stringify({...escrow,number}));
+                window.sessionStorage.setItem("verifying","amount");
+                return dispatch(displayBotMessage({message:"Please enter an amount you want to pay the vendor"})); 
+            }
+        }
         dispatch(myMessage(option));
         dispatch(initialiseMessage());
         if(requirements.length <= 1){
@@ -108,26 +124,110 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
 }
 
 export const sendMessage = (message,ads=[],tips=[],location='',message_send=null) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(myMessage(message));
         dispatch(initialiseMessage());
-        //check if they said next
-        // if(message.toLowerCase() === 'next'){
-        //     return dispatch(displayBotMessage({message:'Still gathering vendors'}));
-        // }
 
-        if((message.toLowerCase() === 'yes') || (message.toLowerCase() === 'yeah') || (message.toLowerCase() === 'yup')){
-            return dispatch(displayBotMessage({message:'awn, what do you need'}));
+        var botVerification = window.sessionStorage.getItem("verification");
+
+        switch (message.toLowerCase()) {
+            case "escrow":
+                window.sessionStorage.setItem("verification","escrow");
+                window.sessionStorage.setItem("verifying","vendorcode");
+                return dispatch(displayBotMessage({message:'Please Input the code for Vendor',escrow:true}));
+            case "next":
+                return dispatch(displayBotMessage({message:'Still gathering vendors'}));
+            case "yes":
+                return dispatch(displayBotMessage({message:'awn, what do you need'}));
+            case "yup":
+                return dispatch(displayBotMessage({message:'awn, what do you need'}));
+            case "yeah":
+                return dispatch(displayBotMessage({message:'awn, what do you need'}));
+            case "no":
+                return dispatch(displayBotMessage({message:'Thank you for using Jhene'}));
+            case "nope":
+                return dispatch(displayBotMessage({message:'Thank you for using Jhene'}));
+            case "nah":
+                return dispatch(displayBotMessage({message:'Thank you for using Jhene'}));
+            default:
+                break;
         }
 
-        if((message.toLowerCase() === 'no') || (message.toLowerCase() === 'nah') || (message.toLowerCase() === 'nope')){
-            return dispatch(displayBotMessage({message:'Thank you for using Jhene'}));
+        if(botVerification){
+            var verifying = window.sessionStorage.getItem("verifying"); 
+            switch (verifying) {
+                case "vendorcode":
+                    //send the code to endpoint
+                    let res = true;
+                    let sender = {
+                        number: "09093029102"
+                    };
+                    let vdt = {
+                        _id:"trash",
+                        businessName: "Roy Ventures",
+                        code:"827UX"
+                    }
+                    if(res){
+                        dispatch(displayBotMessage({message:`This code belongs to ${vdt.businessName}`}));
+                        dispatch(initialiseMessage());
+                        //check the number
+                        window.localStorage.setItem("escrow",JSON.stringify({vendorcode:message}));
+                        let number = sender.number ?? window.localStorage.getItem("userNumber");  
+                        if(number){
+                            window.sessionStorage.setItem("verifying","confirmNumber");
+                            window.sessionStorage.setItem("confirmNumber",number);
+                            return dispatch(showOption({message:`Confirm if this is your number ${number}`,questions:{"confirmNumber":["Yes","No"]},answers:{"confirmNumber" : [number,"Not"]},context:"escrow",requirements:["confirmNumber"]}));
+                        }else{
+                            window.sessionStorage.setItem("verifying","number");
+                            return dispatch(displayBotMessage({message:"Please Input your Whatsapp Number P.S: a verification code will be sent to this number via whatsapp"}));
+                        }
+                    }else{
+                        //think of widening the response later
+                        return dispatch(displayBotMessage({message:"Incorrect Vendor Code provided, Please try again"}));
+                    }
+                case "number":
+                    //endpoint /submit/number
+                    window.sessionStorage.setItem("verifying","otp");
+                    window.sessionStorage.setItem("confirmNumber",message);
+                    return dispatch(displayBotMessage({message:"Please enter the otp sent to your number via whatsapp"}));
+                case "otp":
+                    let number = window.sessionStorage.getItem("confirmNumber");
+                    //send number to the endpoint
+                    let otp = "190291";
+                    if(otp !== message){
+                        return dispatch(displayBotMessage({message:"Wrong otp code provided, please try again"}));
+                    }
+                    switch (botVerification) {
+                        case "escrow":
+                            window.sessionStorage.setItem("verifying","amount");
+                            let escrow = JSON.parse(window.sessionStorage.getItem("escrow"));
+                            window.sessionStorage.setItem("escrow",JSON.stringify({...escrow,number}));
+                            window.localStorage.setItem("userNumber",number);
+                            return dispatch(displayBotMessage({message:"Please enter an amount you want to pay the vendor"}));                            
+                        default:
+                            window.sessionStorage.removeItem("verifying")
+                            return dispatch(displayBotMessage({message:"Thank You for verifying Your number with us"}));
+                    }
+                case "amount":
+                    if(!Number(message)){
+                        return dispatch(displayBotMessage({message: "Please enter a valid amount in digits, don't add commas or currency"}));
+                    }
+                    //send endpoint containing amount, vendorcode, senderNumber
+                    //receive Monify Account balance
+                    let mdt = {
+                        totalAmount: 1000,
+                        fee: 100,
+                        bank: "Wema Bank",
+                        bankAccount: "0213052815"
+                    }
+                    window.localStorage.removeItem("verifying");
+                    return dispatch(displayBotMessage({message:`Please pay a total amount of N${Number(message) + mdt.fee} including the fee of N${mdt.fee} into the bank Bank:${mdt.bank} Account: ${mdt.bankAccount}`}));
+                default:
+                    return dispatch(displayBotMessage({message:"I did not understand"}));
+            }
         }
 
         const send = message_send ? message_send : message;
-
-        //remove useless word like plug or vendor
-        //strip of words like get,buy, plug, vendor, where
 
         const from_context = '';
         const data = {
@@ -137,8 +237,8 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
             more_info : false,
             location
         }
-        console.log(data);
 
+        console.log(data);
         fetch(`https://api.jhene.co/send_message`,{
             method : 'POST',
             headers : {
@@ -161,48 +261,10 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                 dispatch(showOption(data));
             }else{
                 dispatch(displayBotMessage(data));
-                if(data.vendor){
-                    const choice = ['none','ad','tip','none','ad','none','none','ad','none','none','tip'];
-                    var n = Math.floor(Math.random() * 11);
-                    if(choice[n] !== 'none' && (ads.length > 0 || tips.length > 0)){
-                        if(choice[n] === 'ad' && data.ads.length === 0){
-                            return
-                        }
-                        if(choice[n] === 'tip' && data.tips.length === 0){
-                            return
-                        }
-                        dispatch(initialiseMessage());
-                        const recommendation = choice[n] === 'ad' ? ads[0] : tips[0];
-                        const update_ads = choice[n] === 'ad' ? ads.slice(1) : ads;
-                        const update_tips = choice[n] === 'ad' ? tips :  tips.slice(1);
-                        const payload = {
-                            recommendation,
-                            ads:update_ads,
-                            tips :update_tips
-                        };
-                        dispatch(displayBotRecommendation(payload));
-                    }
-                }
-                //dey run for background, add to user
-                const email = window.localStorage.getItem('email');
-                const to_send = JSON.stringify({
-                    email,
-                    vendor:data.vendor,
-                    context:data.context
-                    
-                });
-                fetch(`https://api-node.jhene.co/api/recommend/addProduct`,{
-                    method : "POST",
-                    body:to_send,
-                    headers : {
-                        'content-type' : 'application/json'
-                    }
-                })
-                .catch(e => {
-                    console.log(e.message);
-                });
+                // const email = window.localStorage.getItem('email');
             }
         }).catch(e => {
+            console.log(e);
             var data;
             if(e.message === 'server'){
                 data = {
@@ -224,7 +286,7 @@ export const userWelcome = (email) => {
         dispatch(initialiseMessage());
         var data = email ? JSON.stringify({email}) : JSON.stringify({email : ''});
         
-        fetch(`https://api-node.jhene.co/api/recommend/getAd`,{
+        fetch(`https://api-node.jhene.co/api/fetch/user`,{
             method : "POST",
             body:data,
             headers : {
@@ -243,29 +305,7 @@ export const userWelcome = (email) => {
                     vendor
                 };
                 dispatch(displayBotMessage(payload));
-                if(data.ads.length > 0 || data.tips.length > 0){
-                    //pick a random choice out of four
-                    const choice = ['tip','ad','tip','none','ad','none','ad','tip'];
-                    var n = Math.floor(Math.random() * 8);
-                    if(choice[n] !== 'none'){
-                        if(choice[n] === 'ad' && data.ads.length === 0){
-                            return
-                        }
-                        if(choice[n] === 'tip' && data.tips.length === 0){
-                            return
-                        }
-                        dispatch(initialiseMessage());
-                        const recommendation = choice[n] === 'ad' ? data.ads[0] : data.tips[0];
-                        const ads = choice[n] === 'ad' ? data.ads.slice(1) : data.ads;
-                        const tips = choice[n] === 'ad' ? data.tips :  data.tips.slice(1);
-                        const payload = {
-                            recommendation,
-                            ads,
-                            tips
-                        };
-                        dispatch(displayBotRecommendation(payload));
-                    }
-                }
+                
             }else{
                 const data = {message : 'Hola, how can I help you?'}
                 dispatch(displayBotMessage(data));
@@ -276,3 +316,54 @@ export const userWelcome = (email) => {
         });
     }
 };
+
+export const getVendorByCode = async (code) => {
+    const response = await fetch("https://api-node.jhene.co/api/fetch/vendor/:code");
+    if(response.ok){
+        const vendor = response.json().vendor;
+        let payload = {
+            message: `Please confirm if this is the name of the ${vendor.name}`,
+            
+        }
+        displayBotMessage(payload);
+    }
+}
+
+export const informNumber = (data) => {
+    if(data.number){
+        window.localStorage.setItem("verifying","confirmNumber");
+        displayBotMessage({message:'',with_option:true,options:[`Confirm That this is your number ${data.number}`,'Incorrect Number Provided']});
+    }else{
+        window.localStorage.setItem("verifying","number");
+        displayBotMessage({message:'Please, we do not have your whatsapp number, can you verify the number'});
+    }
+
+};
+
+
+
+// const makeRecommendations = (data) => {
+//     if(data.ads.length > 0 || data.tips.length > 0){
+//         //pick a random choice out of four
+//         const choice = ['tip','ad','tip','none','ad','none','ad','tip'];
+//         var n = Math.floor(Math.random() * 8);
+//         if(choice[n] !== 'none'){
+//             if(choice[n] === 'ad' && data.ads.length === 0){
+//                 return
+//             }
+//             if(choice[n] === 'tip' && data.tips.length === 0){
+//                 return
+//             }
+//             // dispatch(initialiseMessage());
+//             const recommendation = choice[n] === 'ad' ? data.ads[0] : data.tips[0];
+//             const ads = choice[n] === 'ad' ? data.ads.slice(1) : data.ads;
+//             const tips = choice[n] === 'ad' ? data.tips :  data.tips.slice(1);
+//             const payload = {
+//                 recommendation,
+//                 ads,
+//                 tips
+//             };
+//             // dispatch(displayBotRecommendation(payload));
+//         }
+//     }
+// }
