@@ -5,7 +5,7 @@ export const INITIALIZE_MESSAGE = 'initialize_message';
 export const MY_MESSAGE = 'my_message';
 export const SHOW_OPTIONS = 'show_options';
 export const CONVERT_OPTIONS = 'convert_options';
-
+export const CLEAR_MESSAGES = 'clear_messages';
 
 export const displayBotMessage = payload => {
     return {
@@ -13,6 +13,12 @@ export const displayBotMessage = payload => {
         payload
     }
 };
+
+export const clearMessages = () => {
+    return {
+        type: CLEAR_MESSAGES
+    }
+}
 
 export const displayBotRecommendation = payload => {
     return {

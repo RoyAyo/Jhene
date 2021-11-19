@@ -1,4 +1,4 @@
-import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS, DISPLAY_BOT_RECOMMENDATION } from '../actions/messages';
+import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHOW_OPTIONS, DISPLAY_BOT_RECOMMENDATION,CLEAR_MESSAGES } from '../actions/messages';
 
 // const test_message = {
 //     loading : false,
@@ -13,6 +13,14 @@ import { INITIALIZE_MESSAGE,DISPLAY_BOT_MESSAGE,MY_MESSAGE, CONVERT_OPTIONS, SHO
 //     bot : true,
 //     escrow: false
 // }
+
+const restartMessage = {
+    loading : false,
+    message : 'Hi there',
+    with_option : false,
+    vendor : false,
+    bot: true
+};
 
 const initialState = {
     messages : [],
@@ -32,6 +40,12 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
                 ...state,
                 message_loading : true,
                 messages : [...state.messages,payload]
+            }
+        case CLEAR_MESSAGES:
+            window.sessionStorage.clear();
+            return {
+                ...state,
+                messages : [restartMessage]
             }
         case DISPLAY_BOT_MESSAGE : 
             var init_message = state.messages.pop();

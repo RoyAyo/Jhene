@@ -6,7 +6,7 @@ import MicrophoneIcon from '../static/microphone.png';
 import BotText from './component/BotText';
 import UserText from './component/UserText';
 import Screen from './component/Screen';
-import { sendMessage,initialiseMessage,displayBotMessage } from '../redux/actions/messages';
+import { sendMessage,initialiseMessage,displayBotMessage, clearMessages } from '../redux/actions/messages';
 import Div100vh from 'react-div-100vh'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
@@ -61,9 +61,15 @@ const ChatScreen = props => {
         const data = {message : 'Hola, how can I help you?'}
         dispatch(displayBotMessage(data));
         setLoading(false);
-        // chatWrapRef.current.addEventListener('click',() => {
-        //     setDisplayModal('none');
-        // });
+        window.setTimeout(() => {
+            chatWrapRef.current.addEventListener('click',() => {
+                setDisplayModal('none');
+            });
+        },3000);
+    }
+
+    const clearChat = () => {
+        dispatch(clearMessages());
     }
 
     //component did mount
@@ -229,6 +235,9 @@ const ChatScreen = props => {
                             <Link to='/' className='modal-link'>
                                 Contact Us
                             </Link>
+                            <button onClick={clearChat} className='modal-link' style={{background:"none",border:"none",outline:"none",cursor:"pointer"}}>
+                                Clear Chat
+                            </button>
                             <hr style={{margin:'20px 0px',border:'0.5px solid #4F5665'}}></hr>
                             <p>Go to this browser's menu and click "Add to Home Screen" for ease of use.</p>
                         </div>
@@ -268,6 +277,11 @@ const ChatScreen = props => {
                                     <Link to="https://www.gooogle.com" className="left-chat-link">
                                         Contact Us
                                     </Link>
+                                </li>
+                                <li>
+                                <button onClick={clearChat} className='left-chat-link' style={{background:"none",border:"none",outline:"none",cursor:"pointer"}}>
+                                    Clear Chat
+                                </button>
                                 </li>
                             </ul>
                         </div>
