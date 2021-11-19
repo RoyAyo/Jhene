@@ -87,18 +87,22 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             var last_message = state.messages.pop();
             var initMessage = '';
             var i = 1;
-            last_message.options.forEach(option => {
-                if(i === (last_message.options.length - 1)){
-                    initMessage += `${option} or `;
-                }
-                else if(i === last_message.options.length){
-                    initMessage += `${option}`;
-                }
-                else{
-                    initMessage += `${option}, `;
-                }
-                i++;
-            });
+            if(window.sessionStorage.getItem("verification") && window.sessionStorage.getItem("verifying") === "confirmNumber"){
+                initMessage += `Is ${window.sessionStorage.getItem("confirmNumber")} your Number`;
+            }else{
+                last_message.options.forEach(option => {
+                    if(i === (last_message.options.length - 1)){
+                        initMessage += `${option} or `;
+                    }
+                    else if(i === last_message.options.length){
+                        initMessage += `${option}`;
+                    }
+                    else{
+                        initMessage += `${option}, `;
+                    }
+                    i++;
+                });
+            }
             var newPayload = Object.assign(last_message,{message:initMessage,with_option:false,vendor:false});
             return {
                 ...state,

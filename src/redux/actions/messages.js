@@ -69,9 +69,9 @@ export const clickButton = ({option,requirements,answers,questions,context,answe
     return (dispatch) => {
         answers[answering] = option;
         var new_requirements = requirements.filter(i => i !== answering);
-        dispatch(convertOptions({option,new_requirements,answers}));
+        dispatch(convertOptions({option,new_requirements,answers,forNumber:true}));
         if(window.sessionStorage.getItem("verification") && window.sessionStorage.getItem("verifying") === "confirmNumber"){
-            dispatch(myMessage(option.toLowerCase() === "no" ? "Yes" : "No"));
+            dispatch(myMessage(option.toLowerCase() === "no" ? "No" : "Yes"));
             dispatch(initialiseMessage());
             if(option.toLowerCase() === "no"){
                 window.sessionStorage.setItem("verifying","number");
@@ -158,7 +158,6 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
             switch (verifying) {
                 case "vendorcode":
                     //send the code to endpoint
-                    let res = true;
                     let sender = {
                         number: "09093029102"
                     };
@@ -167,7 +166,7 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                         businessName: "Roy Ventures",
                         code:"827UX"
                     }
-                    if(res){
+                    if(message === vdt.code){
                         dispatch(displayBotMessage({message:`This code belongs to ${vdt.businessName}`}));
                         dispatch(initialiseMessage());
                         //check the number
@@ -186,6 +185,8 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                         return dispatch(displayBotMessage({message:"Incorrect Vendor Code provided, Please try again"}));
                     }
                 case "number":
+                    const validateNo = validateNumber(message);
+                    if(!validateNo) return dispatch(displayBotMessage({message:"Invalid Number Format Provided"}));
                     //endpoint /submit/number
                     window.sessionStorage.setItem("verifying","otp");
                     window.sessionStorage.setItem("confirmNumber",message);
@@ -367,3 +368,8 @@ export const informNumber = (data) => {
 //         }
 //     }
 // }
+
+const validateNumber = (no) => {
+    var noWithoutPlus = no.replace("+","");
+    return noWithoutPlus.length === 11 || noWithoutPlus.length === 13;
+}
