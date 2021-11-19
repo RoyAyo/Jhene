@@ -169,16 +169,17 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                     };
                     let vdt = {
                         _id:"trash",
-                        businessName: "Roy Ventures",
+                        businessName: "Roy's Pami Ventures",
                         code:"827UX"
                     }
                     if(message === vdt.code){
                         dispatch(displayBotMessage({message:`This code belongs to ${vdt.businessName}`}));
                         dispatch(initialiseMessage());
                         //check the number
-                        window.localStorage.setItem("escrow",JSON.stringify({vendorcode:message}));
-                        let number = sender.number ?? window.localStorage.getItem("userNumber");  
+                        window.sessionStorage.setItem("escrow",JSON.stringify({vendorcode:message}));
+                        let number = sender.number ?? window.localStorage.getItem("userNumber");
                         if(number){
+                            if(!window.localStorage.getItem("userNumber")) window.localStorage.setItem("userNumber",number);
                             window.sessionStorage.setItem("verifying","confirmNumber");
                             window.sessionStorage.setItem("confirmNumber",number);
                             return dispatch(showOption({message:`Confirm if this is your number ${number}`,questions:{"confirmNumber":["Yes","No"]},answers:{"confirmNumber" : [number,"Not"]},context:"escrow",requirements:["confirmNumber"]}));
@@ -210,7 +211,13 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                             let escrow = JSON.parse(window.sessionStorage.getItem("escrow"));
                             window.sessionStorage.setItem("escrow",JSON.stringify({...escrow,number}));
                             window.localStorage.setItem("userNumber",number);
-                            return dispatch(displayBotMessage({message:"Please enter an amount you want to pay the vendor"}));                            
+                            return dispatch(displayBotMessage({message:"Your Number is Verified, Please enter an amount you want to pay the vendor"}));
+                        case "priceRequest":
+                            // const message = window.sessionStorage.getItem("currentMessage");
+                            //send a request to the endpoint with the number and message
+                            window.sessionStorage.removeItem("verifying");
+                            window.sessionStorage.removeItem("verification");
+                            return dispatch(displayBotMessage({message:"Your Number is now verified, Once vendors reach out to us, we will contact you"}));
                         default:
                             window.sessionStorage.removeItem("verifying")
                             return dispatch(displayBotMessage({message:"Thank You for verifying Your number with us"}));
@@ -227,10 +234,29 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
                         bank: "Wema Bank",
                         bankAccount: "0213052815"
                     }
-                    window.localStorage.removeItem("verifying");
+                    window.sessionStorage.removeItem("verifying");
+                    window.sessionStorage.removeItem("verification");
                     return dispatch(displayBotMessage({message:`Please pay a total amount of N${Number(message) + mdt.fee} including the fee of N${mdt.fee} into the bank Bank:${mdt.bank} Account: ${mdt.bankAccount}`}));
                 default:
                     return dispatch(displayBotMessage({message:"I did not understand"}));
+            }
+        }
+
+        const isPriceRequest = forPricing(message.toLowerCase());
+
+        if(isPriceRequest){
+            //send a request to a node.js endpoint that sends a request to the sendMessage endpoint and distributes to vendors
+            dispatch(displayBotMessage({message:"We are reaching out to vendors that sell what you want, we will reach out to you via whatsapp once we get a reply"}));
+            dispatch(initialiseMessage());
+            let number = window.localStorage.getItem("userNumber");
+            if(number){
+                //send the request to the endpoint now
+                return;
+            }else{
+                window.sessionStorage.setItem("verification","priceRequest");
+                window.sessionStorage.setItem("currentMessage",message);
+                window.sessionStorage.setItem("verifying","number");
+                return dispatch(displayBotMessage({message:"Please Input your Whatsapp Number P.S: a verification code will be sent to this number via whatsapp"}));
             }
         }
 
@@ -338,10 +364,10 @@ export const getVendorByCode = async (code) => {
 
 export const informNumber = (data) => {
     if(data.number){
-        window.localStorage.setItem("verifying","confirmNumber");
+        window.sessionStorage.setItem("verifying","confirmNumber");
         displayBotMessage({message:'',with_option:true,options:[`Confirm That this is your number ${data.number}`,'Incorrect Number Provided']});
     }else{
-        window.localStorage.setItem("verifying","number");
+        window.sessionStorage.setItem("verifying","number");
         displayBotMessage({message:'Please, we do not have your whatsapp number, can you verify the number'});
     }
 
@@ -379,3 +405,7 @@ const validateNumber = (no) => {
     var noWithoutPlus = no.replace("+","");
     return noWithoutPlus.length === 11 || noWithoutPlus.length === 13;
 }
+
+const forPricing = (message) => {
+    return message.match("price") || message.match("cost") || message.match("how much");
+};
