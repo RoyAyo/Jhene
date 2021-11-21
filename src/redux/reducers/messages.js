@@ -81,11 +81,10 @@ const messagesReducer = (state = initialState, {type,payload} ) => {
             state.messages.pop();
             var r = payload.requirements[0];
             var options = payload.questions[r];
-            console.log(payload);
             var payload_ = {
                 with_option: true,
                 bot : true,
-                message : payload.message ?? "Choose One",
+                message : (payload.message || payload.message?.length > 1) ? payload.message : "Choose One",
                 options,
                 answering : r
             }

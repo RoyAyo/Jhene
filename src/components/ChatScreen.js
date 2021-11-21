@@ -69,6 +69,7 @@ const ChatScreen = props => {
     }
 
     const clearChat = () => {
+        setDisplayModal('none');
         dispatch(clearMessages());
     }
 

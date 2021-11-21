@@ -164,16 +164,27 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
             switch (verifying) {
                 case "vendorcode":
                     //send the code to endpoint
+                    // const senderEmail = window.localStorage.getItem("email") ?? "0";
+                    // const res = await fetch(`url/api/?email=${senderEmail}`);
+                    // const resJson = await res.json();
+                    // if(!res.ok){
+                        //return dispatch(displayBotError({message:resJson.message}))
+                    // }
+                    // var {
+                    //     vendor,
+                    //     sender
+                    // } = resJson.data
+
                     let sender = {
                         number: "09093029102"
                     };
-                    let vdt = {
+                    let vendor = {
                         _id:"trash",
                         businessName: "Roy's Pami Ventures",
                         code:"827UX"
                     }
-                    if(message === vdt.code){
-                        dispatch(displayBotMessage({message:`This code belongs to ${vdt.businessName}`}));
+                    if(message === vendor.code){
+                        dispatch(displayBotMessage({message:`This code belongs to ${vendor.businessName}`}));
                         dispatch(initialiseMessage());
                         //check the number
                         window.sessionStorage.setItem("escrow",JSON.stringify({vendorcode:message}));
@@ -247,12 +258,12 @@ export const sendMessage = (message,ads=[],tips=[],location='',message_send=null
         if(isPriceRequest){
             //send a request to a node.js endpoint that sends a request to the sendMessage endpoint and distributes to vendors
             dispatch(displayBotMessage({message:"We are reaching out to vendors that sell what you want, we will reach out to you via whatsapp once we get a reply"}));
-            dispatch(initialiseMessage());
             let number = window.localStorage.getItem("userNumber");
             if(number){
                 //send the request to the endpoint now
                 return;
             }else{
+                dispatch(initialiseMessage());
                 window.sessionStorage.setItem("verification","priceRequest");
                 window.sessionStorage.setItem("currentMessage",message);
                 window.sessionStorage.setItem("verifying","number");
